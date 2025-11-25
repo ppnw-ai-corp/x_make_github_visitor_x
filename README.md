@@ -45,6 +45,20 @@ The active fast paths appear in generated JSON under `runtime.fast_paths` and in
 
 The runner discovers immediate child clones, executes the tool suite, and drops timestamped JSON + Markdown dossiers under `reports/`. The orchestrator and GUI expect those artefacts in that location.
 
+### Report Artifacts & Validation
+Each failure report now includes:
+
+- `artifact_root`: folder under `reports/artifacts/<timestamp>/` containing the raw stdout/stderr captures for every failed tool (`stdout_artifact` / `stderr_artifact` entries reference these files, including byte counts and SHA256 digests).
+- `payload_checksum`: canonical hash of the JSON payload itself, plus a sibling `.json.sha256` file for easy diffing in release evidence.
+
+Before publishing a new run you must validate the payload, checksum, and artifacts. Use the built-in CLI:
+
+```
+python -m x_make_github_visitor_x.report_validator --reports-dir x_make_github_visitor_x/reports
+```
+
+The validator enforces the `VISITOR_REPORT_SCHEMA`, recomputes payload hashes, confirms checksum sidecars, and verifies that every stdout/stderr artifact exists with matching bytes + digest. `run_visitor_stage.py` now invokes this validator automatically and aborts the pipeline if any violations are detected, so local validation keeps the orchestrator green.
+
 ### Streaming Mode (Incremental Events)
 In streaming mode the visitor emits **line-delimited JSON (NDJSON)** events while parsing instead of waiting to produce one monolithic end-of-run report. This accelerates GUI feedback and enables real-time orchestration decisions.
 

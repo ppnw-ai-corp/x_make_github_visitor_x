@@ -11,6 +11,17 @@ _JSON_VALUE_TYPES: list[str] = [
     "null",
 ]
 
+_ARTIFACT_REF_SCHEMA: dict[str, object] = {
+    "type": ["object", "null"],
+    "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0},
+    },
+    "required": ["path"],
+    "additionalProperties": False,
+}
+
 _FILE_ALLOWLIST_SCHEMA: dict[str, object] = {
     "type": ["object", "null"],
     "patternProperties": {
@@ -128,9 +139,50 @@ _FAILURE_ENTRY_SCHEMA: dict[str, object] = {
         "suggested_action": {"type": ["string", "null"], "minLength": 1},
         "stdout_preview": {"type": ["string", "null"], "minLength": 1},
         "stderr_preview": {"type": ["string", "null"], "minLength": 1},
+        "stdout_artifact": _ARTIFACT_REF_SCHEMA,
+        "stderr_artifact": _ARTIFACT_REF_SCHEMA,
         "detail": {"type": _JSON_VALUE_TYPES},
     },
     "required": ["message"],
+    "additionalProperties": False,
+}
+
+VISITOR_REPORT_SCHEMA_VERSION = "x_make_github_visitor_x.report/1.0"
+
+VISITOR_REPORT_SCHEMA: dict[str, object] = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "x_make_github_visitor_x visitor_failures report",
+    "type": "object",
+    "properties": {
+        "schema_version": {"enum": ["1.0", VISITOR_REPORT_SCHEMA_VERSION]},
+        "generated_at": {"type": "string", "format": "date-time"},
+        "workspace_root": {"type": "string", "minLength": 1},
+        "runtime": _RUNTIME_SCHEMA,
+        "tool_versions": {
+            "type": "object",
+            "additionalProperties": {"type": "string"},
+        },
+        "summary": _SUMMARY_SCHEMA,
+        "failures": {
+            "type": "array",
+            "items": _FAILURE_ENTRY_SCHEMA,
+        },
+        "artifact_root": {"type": ["string", "null"], "minLength": 1},
+        "payload_checksum": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+        },
+    },
+    "required": [
+        "schema_version",
+        "generated_at",
+        "workspace_root",
+        "runtime",
+        "tool_versions",
+        "summary",
+        "failures",
+        "payload_checksum",
+    ],
     "additionalProperties": False,
 }
 
@@ -223,4 +275,10 @@ ERROR_SCHEMA: dict[str, object] = {
     "additionalProperties": True,
 }
 
-__all__ = ["ERROR_SCHEMA", "INPUT_SCHEMA", "OUTPUT_SCHEMA"]
+__all__ = [
+    "ERROR_SCHEMA",
+    "INPUT_SCHEMA",
+    "OUTPUT_SCHEMA",
+    "VISITOR_REPORT_SCHEMA",
+    "VISITOR_REPORT_SCHEMA_VERSION",
+]

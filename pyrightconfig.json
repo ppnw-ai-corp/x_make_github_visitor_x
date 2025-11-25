@@ -1,12 +1,8 @@
-﻿{
+{
   "include": ["."],
   "extraPaths": [".."],
   "stubPath": "../x_make_common_x/shared_typings",
   "venvPath": "..",
   "venv": ".venv",
-  "reportMissingImports": "error",
-  "diagnosticSeverityOverrides": {
-    "reportMissingModuleSource": "none"
-  }
+  "reportMissingImports": "error"
 }
-

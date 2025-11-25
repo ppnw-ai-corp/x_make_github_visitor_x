@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 # ruff: noqa: S101
+import hashlib
 import json
 import pathlib
 from collections.abc import Mapping
@@ -135,7 +136,12 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
     assert result.had_failures is True
     assert list(result.failure_messages) == failure_messages
     result_details = [dict(detail) for detail in result.failure_details]
-    assert result_details == failure_details
+    for detail in result_details:
+        assert "stdout" not in detail
+        assert "stderr" not in detail
+    assert [detail.get("repo") for detail in result_details] == [
+        entry["repo"] for entry in failure_details
+    ]
     markdown_path = visitor.last_markdown_report_path
     assert markdown_path is not None
     assert markdown_path.suffix == ".md"
@@ -149,6 +155,19 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
     report_data_raw = cast("object", json.loads(payload_text))
     assert isinstance(report_data_raw, dict)
     report_data = cast("dict[str, object]", report_data_raw)
+    payload_checksum = report_data.get("payload_checksum")
+    assert isinstance(payload_checksum, str)
+    payload_copy = dict(report_data)
+    payload_copy.pop("payload_checksum", None)
+    canonical = json.dumps(payload_copy, sort_keys=True, separators=(",", ":")).encode(
+        "utf-8"
+    )
+    assert payload_checksum == hashlib.sha256(canonical).hexdigest()
+
+    artifact_root_value = report_data.get("artifact_root")
+    assert isinstance(artifact_root_value, str)
+    artifact_root = pathlib.Path(artifact_root_value)
+    assert artifact_root.exists()
 
     failures_value = report_data.get("failures")
     assert isinstance(failures_value, list)
@@ -184,6 +203,20 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
     stderr_preview = failures[1].get("stderr_preview")
     assert isinstance(stderr_preview, str)
     assert "incompatible types" in stderr_preview
+
+    stdout_artifact_entry = failures[0].get("stdout_artifact")
+    assert isinstance(stdout_artifact_entry, dict)
+    stdout_artifact_path = pathlib.Path(stdout_artifact_entry.get("path", ""))
+    assert stdout_artifact_path.exists()
+    stdout_bytes = stdout_artifact_path.read_bytes()
+    assert stdout_artifact_entry.get("bytes") == len(stdout_bytes)
+    assert stdout_artifact_entry.get("sha256") == hashlib.sha256(stdout_bytes).hexdigest()
+
+    checksum_path = report_path.with_suffix(".json.sha256")
+    assert checksum_path.exists()
+    recorded_digest = checksum_path.read_text(encoding="utf-8").split()[0]
+    actual_digest = hashlib.sha256(report_path.read_bytes()).hexdigest()
+    assert recorded_digest == actual_digest
 
 
 def test_run_inspect_flow_creates_empty_failure_report(
@@ -234,6 +267,9 @@ def test_run_inspect_flow_creates_empty_failure_report(
     assert isinstance(failures_value, list)
     failures = cast("list[object]", failures_value)
     assert failures == []
+
+    assert report_data.get("artifact_root") is None
+    assert isinstance(report_data.get("payload_checksum"), str)
 
     summary = report_data.get("summary")
     assert isinstance(summary, Mapping)

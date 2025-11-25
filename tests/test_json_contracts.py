@@ -19,6 +19,7 @@ from x_make_github_visitor_x.json_contracts import (
     ERROR_SCHEMA,
     INPUT_SCHEMA,
     OUTPUT_SCHEMA,
+    VISITOR_REPORT_SCHEMA,
 )
 
 _P = ParamSpec("_P")
@@ -81,7 +82,7 @@ def sample_error() -> dict[str, object]:
 
 
 def test_schemas_are_valid() -> None:
-    for schema in (INPUT_SCHEMA, OUTPUT_SCHEMA, ERROR_SCHEMA):
+    for schema in (INPUT_SCHEMA, OUTPUT_SCHEMA, ERROR_SCHEMA, VISITOR_REPORT_SCHEMA):
         validate_schema(schema)
 
 

@@ -21,7 +21,12 @@ from typing import TYPE_CHECKING, cast
 
 from jsonschema import ValidationError as _JsonSchemaValidationError
 
-from .json_contracts import INPUT_SCHEMA, OUTPUT_SCHEMA
+from .json_contracts import (
+    INPUT_SCHEMA,
+    OUTPUT_SCHEMA,
+    VISITOR_REPORT_SCHEMA,
+    VISITOR_REPORT_SCHEMA_VERSION,
+)
 
 JSONSchemaValidationError = cast("type[Exception]", _JsonSchemaValidationError)
 
@@ -197,6 +202,7 @@ REQUIRED_PACKAGES: tuple[str, ...] = (
 )
 SUMMARY_MESSAGE_LIMIT = 240
 REPORTS_DIR_NAME = "reports"
+REPORT_ARTIFACTS_DIR_NAME = "artifacts"
 
 _DIR_SCAN_YIELD_INTERVAL = 4
 _FILE_SCAN_YIELD_INTERVAL = 8
@@ -422,6 +428,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         # root.
         self.package_root = Path(__file__).resolve().parent
         self._reports_dir = self.package_root / REPORTS_DIR_NAME
+        self._report_artifacts_dir = self._reports_dir / REPORT_ARTIFACTS_DIR_NAME
 
         self.cache_dir = self.package_root / ".tool_cache"
         if self.enable_cache:
@@ -635,6 +642,85 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             with suppress(OSError):
                 os.fsync(fh.fileno())
         tmp.replace(path)
+
+    def _artifact_run_dir(self, base_name: str) -> Path:
+        artifact_dir = self._report_artifacts_dir / base_name
+        artifact_dir.mkdir(parents=True, exist_ok=True)
+        return artifact_dir
+
+    @staticmethod
+    def _safe_slug(value: str, fallback: str) -> str:
+        if not value:
+            return fallback
+        normalized = "".join(
+            ch.lower() if ch.isalnum() else "-" for ch in value.strip()
+        )
+        parts = [part for part in normalized.split("-") if part]
+        slug = "-".join(parts)
+        return slug[:48] or fallback
+
+    def _persist_failure_artifact(
+        self,
+        *,
+        directory: Path,
+        index: int,
+        repo: str,
+        tool: str,
+        kind: str,
+        content: str,
+    ) -> dict[str, JSONValue] | None:
+        text = content if isinstance(content, str) else str(content)
+        if not text:
+            return None
+        repo_slug = self._safe_slug(repo, "repo")
+        tool_slug = self._safe_slug(tool, "tool")
+        filename = f"{index:04d}_{repo_slug}_{tool_slug}_{kind}.log"
+        artifact_path = directory / filename
+        artifact_path.parent.mkdir(parents=True, exist_ok=True)
+        encoded = text.encode("utf-8")
+        with artifact_path.open("w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            with suppress(OSError):
+                os.fsync(handle.fileno())
+        digest = hashlib.sha256(encoded).hexdigest()
+        return {
+            "path": str(artifact_path),
+            "sha256": digest,
+            "bytes": len(encoded),
+        }
+
+    def _sanitize_failure_detail(
+        self,
+        detail: Mapping[str, object],
+    ) -> dict[str, JSONValue]:
+        sanitized: dict[str, JSONValue] = {}
+        for key, value in detail.items():
+            if key in {"stdout", "stderr"}:
+                continue
+            sanitized[str(key)] = _json_ready(value)
+        return sanitized
+
+    @staticmethod
+    def _hash_report_payload(payload: Mapping[str, object]) -> str:
+        canonical = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode(
+            "utf-8"
+        )
+        return hashlib.sha256(canonical).hexdigest()
+
+    def _validate_report_payload(self, payload: Mapping[str, object]) -> None:
+        try:
+            validate_payload(payload, VISITOR_REPORT_SCHEMA)
+        except JSONSchemaValidationError as exc:  # pragma: no cover - defensive
+            details = _validation_error_details(exc)
+            message = details.get("error", "report failed schema validation")
+            raise AssertionError(message) from exc
+
+    def _write_checksum_sidecar(self, report_path: Path) -> None:
+        digest = hashlib.sha256(report_path.read_bytes()).hexdigest()
+        checksum_path = report_path.with_suffix(report_path.suffix + ".sha256")
+        with checksum_path.open("w", encoding="utf-8") as handle:
+            handle.write(f"{digest}  {report_path.name}\n")
 
     @staticmethod
     def _ensure_text(value: object) -> str:
@@ -1586,9 +1672,11 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     def _serialize_failures(
         self,
         detail_pairs: Sequence[tuple[Mapping[str, object], str]],
+        *,
+        artifact_dir: Path | None = None,
     ) -> list[dict[str, JSONValue]]:
         entries: list[dict[str, JSONValue]] = []
-        for detail, message in detail_pairs:
+        for index, (detail, message) in enumerate(detail_pairs, 1):
             repo = self._detail_value(detail, "repo", "repo_path", default="")
             tool = self._detail_value(detail, "tool", "tool_module", default="")
             preview = self._summarize_failure_message(message)
@@ -1607,6 +1695,25 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             tool_version = self._detail_value(detail, "tool_version") or None
             stdout_preview = self._preview_output(detail, "stdout") or None
             stderr_preview = self._preview_output(detail, "stderr") or None
+            stdout_artifact = None
+            stderr_artifact = None
+            if artifact_dir is not None:
+                stdout_artifact = self._persist_failure_artifact(
+                    directory=artifact_dir,
+                    index=index,
+                    repo=repo or repo_path or "repo",
+                    tool=tool or "tool",
+                    kind="stdout",
+                    content=self._ensure_text(detail.get("stdout", "")),
+                )
+                stderr_artifact = self._persist_failure_artifact(
+                    directory=artifact_dir,
+                    index=index,
+                    repo=repo or repo_path or "repo",
+                    tool=tool or "tool",
+                    kind="stderr",
+                    content=self._ensure_text(detail.get("stderr", "")),
+                )
             entries.append(
                 {
                     "repo": repo or None,
@@ -1621,7 +1728,9 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                     "suggested_action": suggestion,
                     "stdout_preview": stdout_preview,
                     "stderr_preview": stderr_preview,
-                    "detail": _json_ready(detail),
+                    "stdout_artifact": stdout_artifact,
+                    "stderr_artifact": stderr_artifact,
+                    "detail": self._sanitize_failure_detail(detail),
                 }
             )
         entries.sort(
@@ -1659,19 +1768,25 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         detail_pairs = list(
             zip(self._failure_details, self._failure_messages, strict=False)
         )
-        failures = self._serialize_failures(detail_pairs)
+        artifact_dir = self._artifact_run_dir(base_name) if detail_pairs else None
+        failures = self._serialize_failures(detail_pairs, artifact_dir=artifact_dir)
 
         payload: dict[str, JSONValue] = {
-            "schema_version": "1.0",
+            "schema_version": VISITOR_REPORT_SCHEMA_VERSION,
             "generated_at": now.isoformat(),
             "workspace_root": str(self.root),
             "runtime": _json_ready(dict(self._runtime_snapshot)),
             "tool_versions": _json_ready(dict(self._tool_versions)),
             "summary": _json_ready(summary),
             "failures": _json_ready(failures),
+            "artifact_root": str(artifact_dir) if artifact_dir else None,
         }
+        payload_checksum = self._hash_report_payload(payload)
+        payload["payload_checksum"] = payload_checksum
+        self._validate_report_payload(payload)
 
         self._atomic_write_json(json_path, payload)
+        self._write_checksum_sidecar(json_path)
         markdown_text = self._render_markdown_failure_report(
             generated_at=now,
             summary=summary,
@@ -1689,7 +1804,13 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     ) -> VisitorRunResult:
         had_failures = bool(self._last_run_failures)
         messages = tuple(self._failure_messages)
-        details = tuple(dict(detail) for detail in self._failure_details)
+        details = tuple(
+            {
+                key: cast("object", value)
+                for key, value in self._sanitize_failure_detail(detail).items()
+            }
+            for detail in self._failure_details
+        )
 
         if had_failures:
             preview_chunks = list(messages[:FAILURE_PREVIEW_LIMIT])
@@ -2292,14 +2413,17 @@ def _build_success_payload(
     generated_at: datetime,
 ) -> dict[str, object]:
     detail_pairs = list(
-        zip(result.failure_details, result.failure_messages, strict=False)
+        zip(visitor._failure_details, result.failure_messages, strict=False)
     )
     failure_entries = visitor.serialize_failures(detail_pairs)
     summary = visitor.generate_summary_report()
     runtime_snapshot = _json_ready(visitor.runtime_snapshot())
     tool_versions = _json_ready(visitor.tool_versions())
     failure_details_json = _json_ready(
-        [dict(detail) for detail in result.failure_details]
+        [
+            visitor._sanitize_failure_detail(detail)
+            for detail in result.failure_details
+        ]
     )
 
     return {

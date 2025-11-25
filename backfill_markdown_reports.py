@@ -110,7 +110,12 @@ def backfill_markdown_reports(
             generated_at = _parse_generated_at(
                 payload.get("generated_at"), fallback_timestamp=stat.st_mtime
             )
-            workspace_root = payload.get("workspace_root") or reports_path.parent
+            workspace_root_value = payload.get("workspace_root")
+            workspace_root = reports_path.parent
+            if isinstance(workspace_root_value, Path):
+                workspace_root = workspace_root_value
+            elif isinstance(workspace_root_value, str) and workspace_root_value.strip():
+                workspace_root = Path(workspace_root_value).expanduser().resolve()
             markdown_text = render_markdown_todo_report(
                 workspace_root=workspace_root,
                 generated_at=generated_at,
