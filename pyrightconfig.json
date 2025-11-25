@@ -1,7 +1,7 @@
-{
+﻿{
   "include": ["."],
   "extraPaths": [".."],
-  "stubPath": "../typings",
+  "stubPath": "../x_make_common_x/shared_typings",
   "venvPath": "..",
   "venv": ".venv",
   "reportMissingImports": "error",
@@ -9,3 +9,4 @@
     "reportMissingModuleSource": "none"
   }
 }
+

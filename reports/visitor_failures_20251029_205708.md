@@ -1,0 +1,72 @@
+# Visitor TODO Report
+
+- Generated: 2025-10-29T20:57:08.653131+00:00
+- Workspace: C:\x_runner_x
+- Schema: x_make_github_visitor_x.run/1.0
+- Total repositories: 19
+- Failing tools: 4
+- Recorded failures: 4
+
+- [ ] x_make_slack_dump_and_reset_z — mypy
+  - Summary: mypy failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\x_runner_x\x_make_slack_dump_and_reset_z command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --sho…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_slack_dump_and_reset_z
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-29T20:56:50.699325+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    x_cls_make_slack_dump_and_reset_x.py:558: error: Expression type contains "Any" (has type "list[Any]")  [misc]
+    x_cls_make_slack_dump_and_reset_x.py:727: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    x_cls_make_slack_dump_and_reset_x.py:727: error: Expression has type "Any"  [misc]
+    x_cls_make_slack_dump_and_reset_x.py:778: error: Expression has type "Any"  [misc]
+    x_cls_make_slack_dump_and_reset_x.py:781: error: Expression has type "Any"  [misc]
+    …
+
+- [ ] x_make_slack_dump_and_reset_z — pyright
+  - Summary: pyright failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\x_runner_x\x_make_slack_dump_and_reset_z command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-10-29T20:56:50.712195+00:00 duration: 2.…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_slack_dump_and_reset_z
+  - Tool version: pyright 1.1.407
+  - Captured: 2025-10-29T20:56:53.667097+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    c:\x_runner_x\x_make_slack_dump_and_reset_z\__main__.py
+      c:\x_runner_x\x_make_slack_dump_and_reset_z\__main__.py:3:6 - error: Import "x_make_slack_dump_and_reset_z.x_cls_make_slack_dump_and_reset_x" could not be resolved (reportMissingImports)
+    c:\x_runner_x\x_make_slack_dump_and_reset_z\tests\test_json_contracts.py
+      c:\x_runner_x\x_make_slack_dump_and_reset_z\tests\test_json_contracts.py:3:6 - error: Import "x_make_common_x.json_contracts" could not be resolved (reportMissingImports)
+      c:\x_runner_x\x_make_slack_dump_and_reset_z\tests\test_json_contracts.py:5:6 - error: Import "x_make_slack_dump_and_reset_z.json_contracts" could not be resolved (reportMissingImports)
+    …
+
+- [ ] x_make_slack_dump_and_reset_z — ruff_check
+  - Summary: ruff_check failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\x_runner_x\x_make_slack_dump_and_reset_z command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targ…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_slack_dump_and_reset_z
+  - Tool version: ruff 0.14.2
+  - Captured: 2025-10-29T20:56:49.737948+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    ARG005 Unused lambda argument: `token`
+      --> tests\test_slack_dump_and_reset.py:72:31
+       |
+    70 | def _make_runner(fake_client: FakeSlackClient) -> SlackDumpAndReset:
+    71 |     return SlackDumpAndReset(
+    …
+
+- [ ] x_make_slack_dump_and_reset_z — ruff_fix
+  - Summary: ruff_fix failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\x_runner_x\x_make_slack_dump_and_reset_z command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_slack_dump_and_reset_z
+  - Tool version: ruff 0.14.2
+  - Captured: 2025-10-29T20:56:48.175811+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    ARG005 Unused lambda argument: `token`
+      --> tests\test_slack_dump_and_reset.py:72:31
+       |
+    70 | def _make_runner(fake_client: FakeSlackClient) -> SlackDumpAndReset:
+    71 |     return SlackDumpAndReset(
+    …

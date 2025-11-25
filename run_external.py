@@ -103,6 +103,11 @@ def main(argv: list[str] | None = None) -> int:
         "report_path": (
             str(result.report_path) if result.report_path is not None else None
         ),
+        "markdown_report_path": (
+            str(result.markdown_report_path)
+            if result.markdown_report_path is not None
+            else None
+        ),
         "had_failures": result.had_failures,
         "failure_messages": _serialize_sequence(result.failure_messages),
         "failure_details": _serialize_sequence(result.failure_details),

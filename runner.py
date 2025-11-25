@@ -68,6 +68,89 @@ def _info(*args: object) -> None:
         _LOGGER.info("%s", msg)
 
 
+def render_markdown_todo_report(
+    *,
+    workspace_root: str | Path,
+    generated_at: datetime,
+    summary: Mapping[str, object] | None,
+    failures: Sequence[Mapping[str, JSONValue]],
+) -> str:
+    """Render a Markdown TODO report from visitor summary/failure payloads."""
+
+    def _display(value: object, fallback: str = "") -> str:
+        if isinstance(value, Path):
+            text = str(value)
+        elif isinstance(value, str):
+            text = value
+        elif value is None:
+            text = ""
+        else:
+            text = str(value)
+        stripped = text.strip()
+        return stripped or fallback
+
+    workspace_display = _display(workspace_root, "<unknown workspace>")
+    lines: list[str] = []
+    lines.append("# Visitor TODO Report")
+    lines.append("")
+    lines.append(f"- Generated: {generated_at.isoformat()}")
+    lines.append(f"- Workspace: {workspace_display}")
+    lines.append(f"- Schema: {SCHEMA_VERSION}")
+    if isinstance(summary, Mapping):
+        total_repos = summary.get("total_repos")
+        if isinstance(total_repos, int):
+            lines.append(f"- Total repositories: {total_repos}")
+        overall_stats = summary.get("overall_stats")
+        if isinstance(overall_stats, Mapping):
+            failed_tools = overall_stats.get("failed_tools")
+            if isinstance(failed_tools, int):
+                lines.append(f"- Failing tools: {failed_tools}")
+    lines.append(f"- Recorded failures: {len(failures)}")
+    lines.append("")
+
+    if not failures:
+        lines.append("- [x] All tools succeeded; no TODO items recorded.")
+        return "\n".join(lines) + "\n"
+
+    for entry in failures:
+        if not isinstance(entry, Mapping):
+            continue
+        repo = _display(entry.get("repo"), "<unknown repo>")
+        tool = _display(entry.get("tool"), "<unknown tool>")
+        summary_text = _display(
+            entry.get("summary") or entry.get("message"),
+            "Review tool output for details.",
+        )
+        command = _display(entry.get("command"), "<command unavailable>")
+        exit_display = _display(entry.get("exit"), "<exit unavailable>")
+        repo_path = _display(entry.get("repo_path"), "<path unavailable>")
+        suggestion = _display(entry.get("suggested_action"), "Investigate")
+        captured_at = _display(entry.get("captured_at"), "<not recorded>")
+        tool_version = _display(entry.get("tool_version"), "<version unknown>")
+        stdout_preview = _display(entry.get("stdout_preview"))
+        stderr_preview = _display(entry.get("stderr_preview"))
+
+        lines.append(f"- [ ] {repo} — {tool}")
+        lines.append(f"  - Summary: {summary_text}")
+        lines.append(f"  - Command: {command}")
+        lines.append(f"  - Exit: {exit_display}")
+        lines.append(f"  - Repo path: {repo_path}")
+        lines.append(f"  - Tool version: {tool_version}")
+        lines.append(f"  - Captured: {captured_at}")
+        lines.append(f"  - Suggested action: {suggestion}")
+        if stdout_preview:
+            lines.append("  - Stdout preview:")
+            for preview_line in stdout_preview.splitlines():
+                lines.append(f"    {preview_line}")
+        if stderr_preview:
+            lines.append("  - Stderr preview:")
+            for preview_line in stderr_preview.splitlines():
+                lines.append(f"    {preview_line}")
+        lines.append("")
+
+    return "\n".join(lines).rstrip() + "\n"
+
+
 """Visitor to run ruff/black/mypy/pyright on immediate child git clones.
 
 Hidden and cache directories (for example: .mypy_cache, .ruff_cache,
@@ -330,6 +413,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "workspace_root": str(self.root),
         }
         self._last_report_path: Path | None = None
+        self._last_markdown_report_path: Path | None = None
         self._last_run_result: VisitorRunResult | None = None
         self.progress_writer: RepoProgressReporter | None = progress_writer
 
@@ -538,6 +622,15 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         tmp = path.with_name(path.name + ".tmp")
         with tmp.open("w", encoding="utf-8") as fh:
             json.dump(data, fh, indent=4, sort_keys=True)
+            fh.flush()
+            with suppress(OSError):
+                os.fsync(fh.fileno())
+        tmp.replace(path)
+
+    def _atomic_write_text(self, path: Path, content: str) -> None:
+        tmp = path.with_name(path.name + ".tmp")
+        with tmp.open("w", encoding="utf-8") as fh:
+            fh.write(content)
             fh.flush()
             with suppress(OSError):
                 os.fsync(fh.fileno())
@@ -1140,9 +1233,14 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     def _build_tool_environment(self, *, repo: RepoContext) -> dict[str, str]:
         env = os.environ.copy()
         pythonpath_entries: list[str] = [str(repo.path), str(self.root)]
-        shared_typings = self.root / "typings"
-        if shared_typings.exists():
-            pythonpath_entries.append(str(shared_typings))
+        shared_typings_candidates = [
+            self.root / "x_make_common_x" / "shared_typings",
+            self.root / "typings",
+        ]
+        for shared_typings in shared_typings_candidates:
+            if shared_typings.exists():
+                pythonpath_entries.append(str(shared_typings))
+                break
         repo_typings = repo.path / "typings"
         if repo_typings.exists():
             pythonpath_entries.append(str(repo_typings))
@@ -1535,17 +1633,33 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         )
         return entries
 
-    def _write_json_failure_report(self) -> Path:
+    def _render_markdown_failure_report(
+        self,
+        *,
+        generated_at: datetime,
+        summary: Mapping[str, object],
+        failures: Sequence[Mapping[str, JSONValue]],
+    ) -> str:
+        return render_markdown_todo_report(
+            workspace_root=self.root,
+            generated_at=generated_at,
+            summary=summary,
+            failures=failures,
+        )
+
+    def _write_failure_reports(self) -> tuple[Path, Path]:
         reports_dir = self._ensure_reports_dir()
         now = datetime.now(UTC)
         timestamp = now.strftime("%Y%m%d_%H%M%S")
-        filename = f"visitor_failures_{timestamp}.json"
-        report_path = reports_dir / filename
+        base_name = f"visitor_failures_{timestamp}"
+        json_path = reports_dir / f"{base_name}.json"
+        markdown_path = reports_dir / f"{base_name}.md"
 
         summary = self.generate_summary_report()
         detail_pairs = list(
             zip(self._failure_details, self._failure_messages, strict=False)
         )
+        failures = self._serialize_failures(detail_pairs)
 
         payload: dict[str, JSONValue] = {
             "schema_version": "1.0",
@@ -1554,14 +1668,25 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "runtime": _json_ready(dict(self._runtime_snapshot)),
             "tool_versions": _json_ready(dict(self._tool_versions)),
             "summary": _json_ready(summary),
-            "failures": _json_ready(self._serialize_failures(detail_pairs)),
+            "failures": _json_ready(failures),
         }
 
-        self._atomic_write_json(report_path, payload)
-        self._last_report_path = report_path
-        return report_path
+        self._atomic_write_json(json_path, payload)
+        markdown_text = self._render_markdown_failure_report(
+            generated_at=now,
+            summary=summary,
+            failures=failures,
+        )
+        self._atomic_write_text(markdown_path, markdown_text)
+        self._last_report_path = json_path
+        self._last_markdown_report_path = markdown_path
+        return json_path, markdown_path
 
-    def _finalize_run_result(self, report_path: Path | None) -> VisitorRunResult:
+    def _finalize_run_result(
+        self,
+        report_path: Path | None,
+        markdown_path: Path | None,
+    ) -> VisitorRunResult:
         had_failures = bool(self._last_run_failures)
         messages = tuple(self._failure_messages)
         details = tuple(dict(detail) for detail in self._failure_details)
@@ -1576,12 +1701,15 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             if len(messages) > FAILURE_PREVIEW_LIMIT:
                 _info("…additional failures omitted…")
             if report_path is not None:
-                _info("toolchain failures recorded in:", str(report_path))
-            else:
-                _info("toolchain failures recorded; JSON report path unavailable")
+                _info("toolchain JSON report:", str(report_path))
+            if markdown_path is not None:
+                _info("toolchain Markdown report:", str(markdown_path))
+            if report_path is None and markdown_path is None:
+                _info("toolchain failures recorded; report paths unavailable")
 
         result = VisitorRunResult(
             report_path=report_path,
+            markdown_report_path=markdown_path,
             had_failures=had_failures,
             failure_messages=messages,
             failure_details=details,
@@ -1882,7 +2010,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         return self._serialize_failures(detail_pairs)
 
     def run_inspect_flow(self) -> None:
-        """Run discovery, execute tools, and emit a JSON TODO report."""
+        """Run discovery, execute tools, and emit JSON + Markdown TODO reports."""
 
         children = self._child_dirs()
         if not children:
@@ -1909,9 +2037,9 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
         self._remove_legacy_json_reports()
         self.body(children=children)
-        report_path = self._write_json_failure_report()
+        report_path, markdown_path = self._write_failure_reports()
         self.cleanup()
-        self._finalize_run_result(report_path)
+        self._finalize_run_result(report_path, markdown_path)
         # Streaming run complete with overall summary
         try:
             overall_summary = self.generate_summary_report()
@@ -1925,6 +2053,10 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     @property
     def last_report_path(self) -> Path | None:
         return self._last_report_path
+
+    @property
+    def last_markdown_report_path(self) -> Path | None:
+        return self._last_markdown_report_path
 
     @property
     def last_run_result(self) -> VisitorRunResult | None:
@@ -2176,6 +2308,9 @@ def _build_success_payload(
         "generated_at": generated_at.isoformat(),
         "workspace_root": str(visitor.root),
         "report_path": _stringify_report_path(result.report_path),
+        "markdown_report_path": _stringify_report_path(
+            result.markdown_report_path
+        ),
         "had_failures": bool(result.had_failures),
         "skipped": bool(result.skipped),
         "failures": _json_ready(failure_entries),
@@ -2201,6 +2336,7 @@ def _build_skip_payload(
         "generated_at": generated_at.isoformat(),
         "workspace_root": str(visitor.root),
         "report_path": None,
+        "markdown_report_path": None,
         "had_failures": False,
         "skipped": True,
         "failures": [],
@@ -2251,6 +2387,7 @@ def main_json(
         if not isinstance(result, VisitorRunResult):
             result = VisitorRunResult(
                 report_path=visitor.last_report_path,
+                markdown_report_path=visitor.last_markdown_report_path,
                 had_failures=False,
             )
 
@@ -2447,6 +2584,7 @@ def run_workspace_inspection(
     report_path = visitor.last_report_path
     return VisitorRunResult(
         report_path=report_path,
+        markdown_report_path=visitor.last_markdown_report_path,
         had_failures=False,
     )
 

@@ -8,6 +8,10 @@ Rendered: 2025-11-21T22:12:15+00:00
 
 I record every material change to this visitor here. The format mirrors [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and Semantic Versioning so future audits can trace cause and effect without inference.
 
+## [Unreleased]
+### Added
+- Every inspection now emits a Markdown TODO report (`reports/visitor_failures_{timestamp}.md`) alongside the JSON dossier, and the visitor API surfaces the Markdown path for downstream automation.
+
 ## [0.20.4] - 2025-10-15
 ### Changed
 - README updated for the Road to 0.20.4 campaign, detailing how visitor reports feed the Static Gauntlet Kanban column and orchestrator summary.

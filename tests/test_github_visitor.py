@@ -136,6 +136,10 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
     assert list(result.failure_messages) == failure_messages
     result_details = [dict(detail) for detail in result.failure_details]
     assert result_details == failure_details
+    markdown_path = visitor.last_markdown_report_path
+    assert markdown_path is not None
+    assert markdown_path.suffix == ".md"
+    assert result.markdown_report_path == markdown_path
 
     report_path = visitor.last_report_path
     assert report_path is not None
@@ -236,6 +240,11 @@ def test_run_inspect_flow_creates_empty_failure_report(
     summary_map = cast("Mapping[str, object]", summary)
     assert summary_map.get("total_repos") == 1
 
+    markdown_path = visitor.last_markdown_report_path
+    assert markdown_path is not None
+    text = markdown_path.read_text(encoding="utf-8")
+    assert "All tools succeeded" in text
+
 
 def test_workspace_root_can_be_git_repo(tmp_path: pathlib.Path) -> None:
     workspace = pathlib.Path(tmp_path)
@@ -244,3 +253,62 @@ def test_workspace_root_can_be_git_repo(tmp_path: pathlib.Path) -> None:
 
     visitor = x_cls_make_github_visitor_x(workspace)
     assert visitor.root == workspace
+
+
+def test_markdown_todo_emission(tmp_path: pathlib.Path) -> None:
+    workspace = pathlib.Path(tmp_path) / "workspace"
+    workspace.mkdir()
+    repo = _create_repo(workspace, "repo_markdown")
+
+    reports_dir = pathlib.Path(tmp_path) / "reports"
+
+    tool_reports: dict[str, dict[str, object]] = {
+        "repo_markdown": {
+            "repo_hash": "hash-md",
+            "timestamp": "2025-10-12T12:17:00+00:00",
+            "files": ["m.py"],
+            "tool_reports": {
+                "pyright": {
+                    "exit": 3,
+                    "cached": False,
+                    "stdout": "",
+                    "stderr": "Type error!",
+                }
+            },
+        }
+    }
+    failure_messages = ["pyright failed for repo_markdown (exit 3)"]
+    failure_details = [
+        {
+            "repo": "repo_markdown",
+            "repo_path": str(repo),
+            "tool": "pyright",
+            "cmd_display": "python -m pyright .",
+            "exit": 3,
+            "stdout": "",
+            "stderr": "Type error!",
+            "ended_at": "2025-10-12T12:17:00+00:00",
+            "tool_version": "pyright 1.2.3",
+        }
+    ]
+
+    visitor = DummyVisitor(
+        workspace,
+        reports_dir=reports_dir,
+        tool_reports=tool_reports,
+        failure_messages=failure_messages,
+        failure_details=failure_details,
+        had_failures=True,
+        run_started="2025-10-12T12:15:00+00:00",
+        run_completed="2025-10-12T12:18:00+00:00",
+    )
+
+    visitor.run_inspect_flow()
+
+    markdown_path = visitor.last_markdown_report_path
+    assert markdown_path is not None
+    text = markdown_path.read_text(encoding="utf-8")
+    assert "Visitor TODO Report" in text
+    assert "repo_markdown" in text
+    assert "pyright" in text
+    assert "Suggested action" in text

@@ -4,6 +4,7 @@
   "generated_at": "2024-03-01T10:00:00Z",
   "workspace_root": "C:/workspace",
   "report_path": "C:/workspace/reports/visitor.json",
+  "markdown_report_path": "C:/workspace/reports/visitor.md",
   "had_failures": false,
   "skipped": false,
   "failures": [],

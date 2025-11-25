@@ -6,12 +6,12 @@ Rendered: 2025-11-21T22:12:16+00:00
 -->
 # x_make_github_visitor_x — Auditor's Field Manual
 
-I built this visitor to walk every clone, interrogate it with Ruff, Black, MyPy, and Pyright, and file the evidence before the orchestrator moves a muscle. Every run produces JSON ledgers the GUI and change board trust. No repo graduates without the stamp from this inspector.
+I built this visitor to walk every clone, interrogate it with Ruff, Black, MyPy, and Pyright, and file the evidence before the orchestrator moves a muscle. Every run produces JSON and Markdown ledgers the GUI and change board trust. No repo graduates without the stamp from this inspector.
 
 ## Mission Log
 - Walk every child repository discovered under the designated workspace root.
 - Cache prior results so repeat offenders do not waste the lab's time.
-- Emit per-tool diagnostics and aggregate summaries the orchestrator ingests without post-processing.
+- Emit per-tool diagnostics, aggregate summaries, and Markdown TODO logs the orchestrator ingests without post-processing.
 - Capture runtime, environment, and failure detail in a report the Change Control index can audit months later.
 
 ## Instrumentation
@@ -43,7 +43,7 @@ python -m x_make_github_visitor_x.runner --quick --skip-content-hash --skip-tool
 
 The active fast paths appear in generated JSON under `runtime.fast_paths` and in the summary as `fast_paths_active`.
 
-The runner discovers immediate child clones, executes the tool suite, and drops a timestamped JSON dossier under `reports/`. The orchestrator and GUI expect those artefacts in that location.
+The runner discovers immediate child clones, executes the tool suite, and drops timestamped JSON + Markdown dossiers under `reports/`. The orchestrator and GUI expect those artefacts in that location.
 
 ### Streaming Mode (Incremental Events)
 In streaming mode the visitor emits **line-delimited JSON (NDJSON)** events while parsing instead of waiting to produce one monolithic end-of-run report. This accelerates GUI feedback and enables real-time orchestration decisions.
@@ -105,5 +105,5 @@ I designed, built, and hardened this inspector alone. Tool orchestration, cache 
 ## Technical Footprint
 - Language Core: Python 3.11+, standard library concurrency, and deterministic filesystem sweeps.
 - Toolchain: Ruff, Black, MyPy, Pyright, pytest, and PowerShell entry points for Windows operators.
-- Reports: JSON dossiers stored under `reports/`, schema validation enforced by `x_make_common_x`.
+- Reports: JSON + Markdown dossiers stored under `reports/`, schema validation enforced by `x_make_common_x`.
 - Integration Surface: CLI entry point (`python -m x_make_github_visitor_x.runner`) with orchestrator hooks and structured logging routed through `x_make_common_x`.

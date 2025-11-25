@@ -31,6 +31,7 @@ MessagePayload = dict[str, object]
 class VisitorRunResult:
     report_path: Path | None
     had_failures: bool
+    markdown_report_path: Path | None = None
     failure_messages: tuple[str, ...] = ()
     failure_details: tuple[dict[str, object], ...] = ()
     skipped: bool = False
@@ -180,8 +181,19 @@ def _visitor_process_main(  # noqa: C901, PLR0912, PLR0915
                     report_value = Path(report_attr)
                 else:
                     report_value = None
+                markdown_attr = cast(
+                    "object | None",
+                    getattr(visitor, "last_markdown_report_path", None),
+                )
+                if isinstance(markdown_attr, Path):
+                    markdown_value: Path | None = markdown_attr
+                elif isinstance(markdown_attr, str):
+                    markdown_value = Path(markdown_attr)
+                else:
+                    markdown_value = None
                 run_result = VisitorRunResult(
                     report_path=report_value,
+                    markdown_report_path=markdown_value,
                     had_failures=False,
                 )
 
@@ -192,6 +204,11 @@ def _visitor_process_main(  # noqa: C901, PLR0912, PLR0915
                     "report": (
                         str(run_result.report_path)
                         if isinstance(run_result.report_path, Path)
+                        else None
+                    ),
+                    "markdown_report": (
+                        str(run_result.markdown_report_path)
+                        if isinstance(run_result.markdown_report_path, Path)
                         else None
                     ),
                     "had_failures": run_result.had_failures,
@@ -241,6 +258,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
                 status = message.get("status")
                 if status == "ok":
                     raw_report = message.get("report")
+                    raw_markdown = message.get("markdown_report")
                     failure_messages_raw = message.get("failure_messages")
                     failure_details_raw = message.get("failure_details")
                     had_failures_raw = message.get("had_failures")
@@ -250,6 +268,11 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
                         report_value: str | None = raw_report
                     else:
                         report_value = None
+
+                    if isinstance(raw_markdown, str) and raw_markdown:
+                        markdown_value: str | None = raw_markdown
+                    else:
+                        markdown_value = None
 
                     if isinstance(failure_messages_raw, (list, tuple)):
                         messages_seq = cast("Sequence[object]", failure_messages_raw)
@@ -271,6 +294,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
 
                     result_payload = {
                         "report": report_value,
+                        "markdown_report": markdown_value,
                         "failure_messages": tuple(messages),
                         "failure_details": tuple(details),
                         "had_failures": bool(had_failures_raw),
@@ -307,6 +331,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
     if result_payload is None:
         result_payload = {
             "report": None,
+            "markdown_report": None,
             "failure_messages": (),
             "failure_details": (),
             "had_failures": False,
@@ -316,6 +341,10 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
     report_obj = result_payload.get("report")
     report_path = (
         Path(report_obj) if isinstance(report_obj, str) and report_obj else None
+    )
+    markdown_obj = result_payload.get("markdown_report")
+    markdown_path = (
+        Path(markdown_obj) if isinstance(markdown_obj, str) and markdown_obj else None
     )
     failure_messages_raw = result_payload.get("failure_messages")
     failure_details_raw = result_payload.get("failure_details")
@@ -344,6 +373,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
 
     return VisitorRunResult(
         report_path=report_path,
+        markdown_report_path=markdown_path,
         had_failures=had_failures,
         failure_messages=failure_messages,
         failure_details=failure_details,

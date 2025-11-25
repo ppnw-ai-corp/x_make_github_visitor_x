@@ -1,0 +1,991 @@
+# Visitor TODO Report
+
+- Generated: 2025-10-20T16:45:07.515450+00:00
+- Workspace: C:\x_runner_x
+- Schema: x_make_github_visitor_x.run/1.0
+- Total repositories: 15
+- Failing tools: 56
+- Recorded failures: 56
+
+- [ ] x_0_make_all_x — black
+  - Summary: black failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:40:07.043971+00:00 durat…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_0_make_all_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:40:10.570843+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_0_make_all_x\interface\gui\progress_board.py	2025-10-20 16:40:06.961069+00:00
+    +++ C:\x_runner_x\x_0_make_all_x\interface\gui\progress_board.py	2025-10-20 16:40:09.945795+00:00
+    @@ -34,11 +34,13 @@
+             worker_done_event: threading.Event,
+             parent: QtWidgets.QWidget | None = None,
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_0_make_all_x\interface\gui\progress_board.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    1 file would be reformatted, 28 files would be left unchanged.
+
+- [ ] x_0_make_all_x — mypy
+  - Summary: mypy failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-un…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_0_make_all_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:40:12.466232+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    interface\gui\prototypes\shared.py:319: error: Explicit "Any" is not allowed  [explicit-any]
+    interface\gui\prototypes\shared.py:320: error: Expression type contains "Any" (has type "Mapping[str, Any]")  [misc]
+    interface\gui\prototypes\shared.py:320: error: Expression type contains "Any" (has type "Any | None")  [misc]
+    interface\gui\prototypes\shared.py:322: error: Expression type contains "Any" (has type "Any | None")  [misc]
+    interface\gui\prototypes\shared.py:348: error: Explicit "Any" is not allowed  [explicit-any]
+    …
+
+- [ ] x_0_make_all_x — pyright
+  - Summary: pyright failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-10-20T16:40:12.474230+00:00 duration: 6.399s tool_version: pyright 1.1…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_0_make_all_x
+  - Tool version: pyright 1.1.406
+  - Captured: 2025-10-20T16:40:18.864826+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    c:\x_runner_x\x_0_make_all_x\interface\gui\progress_board.py
+      c:\x_runner_x\x_0_make_all_x\interface\gui\progress_board.py:11:29 - error: "load_progress_snapshot" is unknown import symbol (reportAttributeAccessIssue)
+      c:\x_runner_x\x_0_make_all_x\interface\gui\progress_board.py:35:17 - error: Variable not allowed in type expression (reportInvalidTypeForm)
+      c:\x_runner_x\x_0_make_all_x\interface\gui\progress_board.py:41:32 - error: Variable not allowed in type expression (reportInvalidTypeForm)
+      c:\x_runner_x\x_0_make_all_x\interface\gui\progress_board.py:171:15 - error: Variable not allowed in type expression (reportInvalidTypeForm)
+    …
+  - Stderr preview:
+    Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+    Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+- [ ] x_0_make_all_x — ruff_check
+  - Summary: ruff_check failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at: 2…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_0_make_all_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:40:10.756499+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Callable` into a type-checking block
+     --> interface\gui\commit.py:7:29
+      |
+    5 | import json
+    6 | import subprocess
+    …
+
+- [ ] x_0_make_all_x — ruff_fix
+  - Summary: ruff_fix failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_a…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_0_make_all_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:40:07.018844+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Callable` into a type-checking block
+     --> interface\gui\commit.py:7:29
+      |
+    5 | import json
+    6 | import subprocess
+    …
+
+- [ ] x_legatus_acta_schedae_x — mypy
+  - Summary: mypy failed for x_legatus_acta_schedae_x (exit 1) cwd: C:\x_runner_x\x_legatus_acta_schedae_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachab…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_legatus_acta_schedae_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:41:12.358324+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:379: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:379: error: Expression has type "Any"  [misc]
+    Found 4 errors in 1 file (checked 95 source files)
+
+- [ ] x_legatus_acta_schedae_x — ruff_check
+  - Summary: ruff_check failed for x_legatus_acta_schedae_x (exit 1) cwd: C:\x_runner_x\x_legatus_acta_schedae_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_legatus_acta_schedae_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:41:10.028391+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Callable` into a type-checking block
+     --> tests\test_automation_service.py:4:29
+      |
+    3 | import json
+    4 | from collections.abc import Callable
+    …
+
+- [ ] x_legatus_acta_schedae_x — ruff_fix
+  - Summary: ruff_fix failed for x_legatus_acta_schedae_x (exit 1) cwd: C:\x_runner_x\x_legatus_acta_schedae_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-ver…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_legatus_acta_schedae_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:41:07.797735+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Callable` into a type-checking block
+     --> tests\test_automation_service.py:4:29
+      |
+    3 | import json
+    4 | from collections.abc import Callable
+    …
+
+- [ ] x_make_common_x — black
+  - Summary: black failed for x_make_common_x (exit 1) cwd: C:\x_runner_x\x_make_common_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:41:38.063461+00:00 dur…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_common_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:41:40.153507+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_common_x\progress_snapshot.py	2025-10-20 16:41:38.027232+00:00
+    +++ C:\x_runner_x\x_make_common_x\progress_snapshot.py	2025-10-20 16:41:39.740655+00:00
+    @@ -85,12 +85,16 @@
+             status_obj = payload.get("status")
+             status_raw = status_obj if isinstance(status_obj, str) else "pending"
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_common_x\progress_snapshot.py
+    would reformat C:\x_runner_x\x_make_common_x\telemetry.py
+    would reformat C:\x_runner_x\x_make_common_x\stage_progress.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    …
+
+- [ ] x_make_common_x — mypy
+  - Summary: mypy failed for x_make_common_x (exit 1) cwd: C:\x_runner_x\x_make_common_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_common_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:41:41.592338+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    stage_progress.py:380: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    stage_progress.py:380: error: Expression has type "Any"  [misc]
+    Found 4 errors in 2 files (checked 18 source files)
+
+- [ ] x_make_common_x — ruff_check
+  - Summary: ruff_check failed for x_make_common_x (exit 1) cwd: C:\x_runner_x\x_make_common_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at:…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_common_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:41:40.315036+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C901 `_resolve_binary` is too complex (11 > 10)
+      --> exporters.py:65:5
+       |
+    65 | def _resolve_binary(
+       |     ^^^^^^^^^^^^^^^
+    …
+
+- [ ] x_make_common_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_common_x (exit 1) cwd: C:\x_runner_x\x_make_common_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_common_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:41:38.052483+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C901 `_resolve_binary` is too complex (11 > 10)
+      --> exporters.py:65:5
+       |
+    65 | def _resolve_binary(
+       |     ^^^^^^^^^^^^^^^
+    …
+
+- [ ] x_make_github_clones_x — black
+  - Summary: black failed for x_make_github_clones_x (exit 1) cwd: C:\x_runner_x\x_make_github_clones_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:41:46.43…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_github_clones_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:41:48.874580+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_github_clones_x\__init__.py	2025-10-20 03:42:36.181660+00:00
+    +++ C:\x_runner_x\x_make_github_clones_x\__init__.py	2025-10-20 16:41:47.615790+00:00
+    @@ -1,19 +1,19 @@
+     """x_make_github_clones_x package."""
+     
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_github_clones_x\__init__.py
+    would reformat C:\x_runner_x\x_make_github_clones_x\x_cls_make_github_clones_x.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    2 files would be reformatted, 11 files would be left unchanged.
+
+- [ ] x_make_github_clones_x — mypy
+  - Summary: mypy failed for x_make_github_clones_x (exit 1) cwd: C:\x_runner_x\x_make_github_clones_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable -…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_github_clones_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:41:49.785680+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    x_make_github_clones_x\__init__.py:3: error: Cannot find implementation or library stub for module named ".x_cls_make_github_clones_x"  [import-not-found]
+    __init__.py:5: error: Cannot find implementation or library stub for module named "__main__.x_cls_make_github_clones_x"  [import-not-found]
+    __init__.py:5: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
+    x_cls_make_github_clones_x.py:35: error: Cannot find implementation or library stub for module named "x_make_common_x.stage_progress"  [import]
+    x_cls_make_github_clones_x.py:38: error: Cannot find implementation or library stub for module named "x_make_common_x.json_contracts"  [import]
+    …
+
+- [ ] x_make_github_clones_x — ruff_check
+  - Summary: ruff_check failed for x_make_github_clones_x (exit 1) cwd: C:\x_runner_x\x_make_github_clones_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py3…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_github_clones_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:41:49.009105+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    W191 Indentation contains tabs
+     --> __init__.py:6:1
+      |
+    5 | from .x_cls_make_github_clones_x import (  # re-export public surface
+    6 |     RepoRecord,
+    …
+
+- [ ] x_make_github_clones_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_github_clones_x (exit 1) cwd: C:\x_runner_x\x_make_github_clones_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_github_clones_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:41:46.425744+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    W191 Indentation contains tabs
+     --> __init__.py:6:1
+      |
+    5 | from .x_cls_make_github_clones_x import (  # re-export public surface
+    6 |     RepoRecord,
+    …
+
+- [ ] x_make_github_visitor_x — black
+  - Summary: black failed for x_make_github_visitor_x (exit 1) cwd: C:\x_runner_x\x_make_github_visitor_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:41:55.…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_github_visitor_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:41:59.024896+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_github_visitor_x\runner.py	2025-10-20 16:41:55.743923+00:00
+    +++ C:\x_runner_x\x_make_github_visitor_x\runner.py	2025-10-20 16:41:58.826773+00:00
+    @@ -45,10 +45,11 @@
+                 emit_event,
+                 get_logger,
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_github_visitor_x\runner.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    1 file would be reformatted, 9 files would be left unchanged.
+
+- [ ] x_make_github_visitor_x — mypy
+  - Summary: mypy failed for x_make_github_visitor_x (exit 1) cwd: C:\x_runner_x\x_make_github_visitor_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_github_visitor_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:42:00.464129+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression has type "Any"  [misc]
+    inspection_flow.py:501: error: Explicit "Any" is not allowed  [explicit-any]
+    …
+
+- [ ] x_make_github_visitor_x — ruff_check
+  - Summary: ruff_check failed for x_make_github_visitor_x (exit 1) cwd: C:\x_runner_x\x_make_github_visitor_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version p…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_github_visitor_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:41:59.161670+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC002 Move third-party import `x_make_common_x.stage_progress.RepoProgressReporter` into a type-checking block
+      --> inspection_flow.py:16:44
+       |
+    15 | from x_make_common_x import ensure_workspace_on_syspath, get_logger
+    16 | from x_make_common_x.stage_progress import RepoProgressReporter
+    …
+
+- [ ] x_make_github_visitor_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_github_visitor_x (exit 1) cwd: C:\x_runner_x\x_make_github_visitor_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-versi…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_github_visitor_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:41:55.765190+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC002 Move third-party import `x_make_common_x.stage_progress.RepoProgressReporter` into a type-checking block
+      --> inspection_flow.py:16:44
+       |
+    15 | from x_make_common_x import ensure_workspace_on_syspath, get_logger
+    16 | from x_make_common_x.stage_progress import RepoProgressReporter
+    …
+
+- [ ] x_make_graphviz_x — black
+  - Summary: black failed for x_make_graphviz_x (exit 1) cwd: C:\x_runner_x\x_make_graphviz_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:42:15.775294+00:00…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_graphviz_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:42:17.749745+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_graphviz_x\json_contracts.py	2025-10-20 03:42:41.118634+00:00
+    +++ C:\x_runner_x\x_make_graphviz_x\json_contracts.py	2025-10-20 16:42:17.132730+00:00
+    @@ -5,25 +5,25 @@
+     _NODE_SCHEMA: dict[str, object] = {
+         "type": "object",
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_graphviz_x\json_contracts.py
+    would reformat C:\x_runner_x\x_make_graphviz_x\tests\test_json_contracts.py
+    would reformat C:\x_runner_x\x_make_graphviz_x\x_cls_make_graphviz_x.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    …
+
+- [ ] x_make_graphviz_x — mypy
+  - Summary: mypy failed for x_make_graphviz_x (exit 1) cwd: C:\x_runner_x\x_make_graphviz_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_graphviz_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:42:18.521006+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    __init__.py:5: error: Cannot find implementation or library stub for module named "__main__.x_cls_make_graphviz_x"  [import-not-found]
+    __init__.py:5: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
+    tests\test_json_contracts.py:8: error: Cannot find implementation or library stub for module named "x_make_common_x.json_contracts"  [import]
+    tests\test_json_contracts.py:10: error: Cannot find implementation or library stub for module named "x_make_graphviz_x.json_contracts"  [import]
+    tests\test_json_contracts.py:15: error: Cannot find implementation or library stub for module named "x_make_graphviz_x.x_cls_make_graphviz_x"  [import]
+    …
+
+- [ ] x_make_graphviz_x — ruff_check
+  - Summary: ruff_check failed for x_make_graphviz_x (exit 1) cwd: C:\x_runner_x\x_make_graphviz_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_graphviz_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:42:17.880856+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    S101 Use of `assert` detected
+      --> tests\test_json_contracts.py:70:5
+       |
+    68 |     validate_payload(result, OUTPUT_SCHEMA)
+    69 |     status_value = result.get("status")
+    …
+
+- [ ] x_make_graphviz_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_graphviz_x (exit 1) cwd: C:\x_runner_x\x_make_graphviz_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 sta…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_graphviz_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:42:15.769808+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    S101 Use of `assert` detected
+      --> tests\test_json_contracts.py:70:5
+       |
+    68 |     validate_payload(result, OUTPUT_SCHEMA)
+    69 |     status_value = result.get("status")
+    …
+
+- [ ] x_make_markdown_x — black
+  - Summary: black failed for x_make_markdown_x (exit 1) cwd: C:\x_runner_x\x_make_markdown_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:42:38.447685+00:00…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_markdown_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:42:39.972276+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_markdown_x\tests\test_json_contracts.py	2025-10-20 04:07:46.869483+00:00
+    +++ C:\x_runner_x\x_make_markdown_x\tests\test_json_contracts.py	2025-10-20 16:42:39.440461+00:00
+    @@ -78,11 +78,13 @@
+         status_value = result.get("status")
+         assert isinstance(status_value, str)
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_markdown_x\tests\test_json_contracts.py
+    would reformat C:\x_runner_x\x_make_markdown_x\x_cls_make_markdown_x.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    2 files would be reformatted, 4 files would be left unchanged.
+
+- [ ] x_make_markdown_x — mypy
+  - Summary: mypy failed for x_make_markdown_x (exit 1) cwd: C:\x_runner_x\x_make_markdown_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_markdown_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:42:41.218606+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression has type "Any"  [misc]
+    x_cls_make_markdown_x.py:22: error: Unused "type: ignore" comment  [unused-ignore]
+    …
+
+- [ ] x_make_markdown_x — ruff_check
+  - Summary: ruff_check failed for x_make_markdown_x (exit 1) cwd: C:\x_runner_x\x_make_markdown_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_markdown_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:42:40.095391+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    S101 Use of `assert` detected
+      --> tests\test_json_contracts.py:79:5
+       |
+    77 |     validate_payload(result, OUTPUT_SCHEMA)
+    78 |     status_value = result.get("status")
+    …
+
+- [ ] x_make_markdown_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_markdown_x (exit 1) cwd: C:\x_runner_x\x_make_markdown_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 sta…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_markdown_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:42:38.440679+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    S101 Use of `assert` detected
+      --> tests\test_json_contracts.py:79:5
+       |
+    77 |     validate_payload(result, OUTPUT_SCHEMA)
+    78 |     status_value = result.get("status")
+    …
+
+- [ ] x_make_mermaid_x — black
+  - Summary: black failed for x_make_mermaid_x (exit 1) cwd: C:\x_runner_x\x_make_mermaid_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:43:00.467178+00:00 d…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_mermaid_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:43:02.854455+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_mermaid_x\x_cls_make_mermaid_x.py	2025-10-20 03:42:46.161963+00:00
+    +++ C:\x_runner_x\x_make_mermaid_x\x_cls_make_mermaid_x.py	2025-10-20 16:43:02.694973+00:00
+    @@ -90,16 +90,11 @@
+     
+     SCHEMA_VERSION = "x_make_mermaid_x.run/1.0"
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_mermaid_x\x_cls_make_mermaid_x.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    1 file would be reformatted, 5 files would be left unchanged.
+
+- [ ] x_make_mermaid_x — mypy
+  - Summary: mypy failed for x_make_mermaid_x (exit 1) cwd: C:\x_runner_x\x_make_mermaid_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-an…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_mermaid_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:43:04.222071+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression has type "Any"  [misc]
+    x_cls_make_mermaid_x.py:22: error: Unused "type: ignore" comment  [unused-ignore]
+    …
+
+- [ ] x_make_mermaid_x — ruff_check
+  - Summary: ruff_check failed for x_make_mermaid_x (exit 1) cwd: C:\x_runner_x\x_make_mermaid_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_a…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_mermaid_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:43:02.999070+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    PLR0913 Too many arguments in function definition (6 > 5)
+      --> tests\test_json_contracts.py:89:9
+       |
+    87 |     payload["parameters"]["mermaid_cli_path"] = str(fake_cli)
+    88 |
+    …
+
+- [ ] x_make_mermaid_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_mermaid_x (exit 1) cwd: C:\x_runner_x\x_make_mermaid_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 start…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_mermaid_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:43:00.461334+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    PLR0913 Too many arguments in function definition (6 > 5)
+      --> tests\test_json_contracts.py:89:9
+       |
+    87 |     payload["parameters"]["mermaid_cli_path"] = str(fake_cli)
+    88 |
+    …
+
+- [ ] x_make_persistent_env_var_x — black
+  - Summary: black failed for x_make_persistent_env_var_x (exit 1) cwd: C:\x_runner_x\x_make_persistent_env_var_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T1…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_persistent_env_var_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:43:26.489303+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_persistent_env_var_x\tests\test_json_contracts.py	2025-10-20 04:07:47.910098+00:00
+    +++ C:\x_runner_x\x_make_persistent_env_var_x\tests\test_json_contracts.py	2025-10-20 16:43:25.709142+00:00
+    @@ -147,11 +147,13 @@
+         assert isinstance(user_obj, dict)
+         assert provided_obj.get("API_TOKEN") == "<hidden>"
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_persistent_env_var_x\tests\test_json_contracts.py
+    would reformat C:\x_runner_x\x_make_persistent_env_var_x\tests\test_persistent_env.py
+    would reformat C:\x_runner_x\x_make_persistent_env_var_x\x_cls_make_persistent_env_var_x.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    …
+
+- [ ] x_make_persistent_env_var_x — mypy
+  - Summary: mypy failed for x_make_persistent_env_var_x (exit 1) cwd: C:\x_runner_x\x_make_persistent_env_var_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unr…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_persistent_env_var_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:43:27.779860+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression has type "Any"  [misc]
+    x_cls_make_persistent_env_var_x.py:268: error: Expression type contains "Any" (has type "type[ValidationError]")  [misc]
+    …
+
+- [ ] x_make_persistent_env_var_x — ruff_check
+  - Summary: ruff_check failed for x_make_persistent_env_var_x (exit 1) cwd: C:\x_runner_x\x_make_persistent_env_var_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-v…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_persistent_env_var_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:43:26.614909+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    PLR0915 Too many statements (51 > 50)
+      --> tests\test_json_contracts.py:69:5
+       |
+    69 | def test_main_json_persist_values_success(
+       |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    …
+
+- [ ] x_make_persistent_env_var_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_persistent_env_var_x (exit 1) cwd: C:\x_runner_x\x_make_persistent_env_var_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targ…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_persistent_env_var_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:43:24.564158+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    PLR0915 Too many statements (51 > 50)
+      --> tests\test_json_contracts.py:69:5
+       |
+    69 | def test_main_json_persist_values_success(
+       |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    …
+
+- [ ] x_make_pip_updates_x — black
+  - Summary: black failed for x_make_pip_updates_x (exit 1) cwd: C:\x_runner_x\x_make_pip_updates_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:43:42.182470…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pip_updates_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:43:43.994275+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_pip_updates_x\tests\test_json_contracts.py	2025-10-20 03:42:51.701996+00:00
+    +++ C:\x_runner_x\x_make_pip_updates_x\tests\test_json_contracts.py	2025-10-20 16:43:43.281667+00:00
+    @@ -64,11 +64,13 @@
+         result = main_json(sample_input)
+         validate_payload(result, OUTPUT_SCHEMA)
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_pip_updates_x\tests\test_json_contracts.py
+    would reformat C:\x_runner_x\x_make_pip_updates_x\x_cls_make_pip_updates_x.py
+    would reformat C:\x_runner_x\x_make_pip_updates_x\update_flow.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    …
+
+- [ ] x_make_pip_updates_x — mypy
+  - Summary: mypy failed for x_make_pip_updates_x (exit 1) cwd: C:\x_runner_x\x_make_pip_updates_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --dis…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pip_updates_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:43:44.814213+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    update_flow.py:16: error: Unused "type: ignore" comment  [unused-ignore]
+    update_flow.py:654: error: Expression type contains "Any" (has type "dict[Any, Any]")  [misc]
+    x_cls_make_pip_updates_x.py:305: error: Expression has type "Any"  [misc]
+    x_cls_make_pip_updates_x.py:308: error: Expression has type "Any"  [misc]
+    x_cls_make_pip_updates_x.py:308: error: Expression type contains "Any" (has type "Any | None")  [misc]
+    …
+
+- [ ] x_make_pip_updates_x — ruff_check
+  - Summary: ruff_check failed for x_make_pip_updates_x (exit 1) cwd: C:\x_runner_x\x_make_pip_updates_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 s…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pip_updates_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:43:44.122895+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    S101 Use of `assert` detected
+      --> tests\test_json_contracts.py:56:5
+       |
+    54 | def test_existing_reports_align_with_schema() -> None:
+    55 |     report_files = sorted(REPORTS_DIR.glob("x_make_pip_updates_x_run_*.json"))
+    …
+
+- [ ] x_make_pip_updates_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_pip_updates_x (exit 1) cwd: C:\x_runner_x\x_make_pip_updates_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py3…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pip_updates_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:43:42.173146+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    S101 Use of `assert` detected
+      --> tests\test_json_contracts.py:56:5
+       |
+    54 | def test_existing_reports_align_with_schema() -> None:
+    55 |     report_files = sorted(REPORTS_DIR.glob("x_make_pip_updates_x_run_*.json"))
+    …
+
+- [ ] x_make_py_mod_sideload_x — black
+  - Summary: black failed for x_make_py_mod_sideload_x (exit 1) cwd: C:\x_runner_x\x_make_py_mod_sideload_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:44:0…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_py_mod_sideload_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:44:06.787551+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_py_mod_sideload_x\x_cls_make_py_mod_sideload_x.py	2025-10-20 03:42:57.115646+00:00
+    +++ C:\x_runner_x\x_make_py_mod_sideload_x\x_cls_make_py_mod_sideload_x.py	2025-10-20 16:44:06.566434+00:00
+    @@ -154,11 +154,13 @@
+             obj: optional attribute name to return from the module
+             """
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_py_mod_sideload_x\x_cls_make_py_mod_sideload_x.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    1 file would be reformatted, 6 files would be left unchanged.
+
+- [ ] x_make_py_mod_sideload_x — mypy
+  - Summary: mypy failed for x_make_py_mod_sideload_x (exit 1) cwd: C:\x_runner_x\x_make_py_mod_sideload_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachab…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_py_mod_sideload_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:44:08.177956+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression has type "Any"  [misc]
+    x_cls_make_py_mod_sideload_x.py:165: error: Expression type contains "Any" (has type "type[ValidationError]")  [misc]
+    …
+
+- [ ] x_make_py_mod_sideload_x — ruff_check
+  - Summary: ruff_check failed for x_make_py_mod_sideload_x (exit 1) cwd: C:\x_runner_x\x_make_py_mod_sideload_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_py_mod_sideload_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:44:06.929630+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    S101 Use of `assert` detected
+      --> tests\test_json_contracts.py:95:5
+       |
+    94 |     parameters_obj = payload.get("parameters")
+    95 |     assert isinstance(parameters_obj, dict)
+    …
+
+- [ ] x_make_py_mod_sideload_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_py_mod_sideload_x (exit 1) cwd: C:\x_runner_x\x_make_py_mod_sideload_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-ver…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_py_mod_sideload_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:44:05.302449+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    S101 Use of `assert` detected
+      --> tests\test_json_contracts.py:95:5
+       |
+    94 |     parameters_obj = payload.get("parameters")
+    95 |     assert isinstance(parameters_obj, dict)
+    …
+
+- [ ] x_make_py_venv_x — mypy
+  - Summary: mypy failed for x_make_py_venv_x (exit 1) cwd: C:\x_runner_x\x_make_py_venv_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-an…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_py_venv_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:44:17.224699+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    x_cls_make_py_venv_x.py:267: error: Expression has type "Any"  [misc]
+    x_cls_make_py_venv_x.py:396: error: Expression type contains "Any" (has type "list[Any]")  [misc]
+    x_cls_make_py_venv_x.py:402: error: Expression type contains "Any" (has type "list[Any]")  [misc]
+    x_cls_make_py_venv_x.py:409: error: Expression type contains "Any" (has type "list[Any]")  [misc]
+    x_cls_make_py_venv_x.py:460: error: Expression has type "Any"  [misc]
+    …
+
+- [ ] x_make_py_venv_x — ruff_check
+  - Summary: ruff_check failed for x_make_py_venv_x (exit 1) cwd: C:\x_runner_x\x_make_py_venv_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_a…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_py_venv_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:44:15.773174+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Iterable` into a type-checking block
+      --> x_cls_make_py_venv_x.py:12:29
+       |
+    10 | import subprocess
+    11 | import sys
+    …
+
+- [ ] x_make_py_venv_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_py_venv_x (exit 1) cwd: C:\x_runner_x\x_make_py_venv_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 start…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_py_venv_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:44:14.943432+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Iterable` into a type-checking block
+      --> x_cls_make_py_venv_x.py:12:29
+       |
+    10 | import subprocess
+    11 | import sys
+    …
+
+- [ ] x_make_pypi_x — black
+  - Summary: black failed for x_make_pypi_x (exit 1) cwd: C:\x_runner_x\x_make_pypi_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:44:38.657552+00:00 duratio…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pypi_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:44:40.549871+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_pypi_x\tests\test_main_json.py	2025-10-20 04:07:48.963368+00:00
+    +++ C:\x_runner_x\x_make_pypi_x\tests\test_main_json.py	2025-10-20 16:44:39.916415+00:00
+    @@ -163,12 +163,16 @@
+         status_value = result.get("status")
+         assert isinstance(status_value, str)
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_pypi_x\tests\test_main_json.py
+    would reformat C:\x_runner_x\x_make_pypi_x\x_cls_make_pypi_x.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    2 files would be reformatted, 6 files would be left unchanged.
+
+- [ ] x_make_pypi_x — mypy
+  - Summary: mypy failed for x_make_pypi_x (exit 1) cwd: C:\x_runner_x\x_make_pypi_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unim…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pypi_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:44:41.938967+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    C:\x_runner_x\x_make_common_x\stage_progress.py:380: error: Expression has type "Any"  [misc]
+    x_cls_make_pypi_x.py:27: error: Unused "type: ignore" comment  [unused-ignore]
+    …
+
+- [ ] x_make_pypi_x — pyright
+  - Summary: pyright failed for x_make_pypi_x (exit 1) cwd: C:\x_runner_x\x_make_pypi_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-10-20T16:44:41.955825+00:00 duration: 2.798s tool_version: pyright 1.1.4…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pypi_x
+  - Tool version: pyright 1.1.406
+  - Captured: 2025-10-20T16:44:44.747827+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    c:\x_runner_x\x_make_pypi_x\tests\test_main_json.py
+      c:\x_runner_x\x_make_pypi_x\tests\test_main_json.py:86:17 - error: Cannot assign to attribute "FakePublisher" for class "ModuleType"
+      Â Â Attribute "FakePublisher" is unknown (reportAttributeAccessIssue)
+      c:\x_runner_x\x_make_pypi_x\tests\test_main_json.py:172:13 - error: Cannot assign to attribute "run_report_path" for class "RuntimeError"
+      Â Â Attribute "run_report_path" is unknown (reportAttributeAccessIssue)
+    …
+  - Stderr preview:
+    Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+    Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+- [ ] x_make_pypi_x — ruff_check
+  - Summary: ruff_check failed for x_make_pypi_x (exit 1) cwd: C:\x_runner_x\x_make_pypi_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at: 202…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pypi_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:44:40.686658+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Mapping` into a type-checking block
+     --> tests\test_main_json.py:6:29
+      |
+    4 | import json
+    5 | import sys
+    …
+
+- [ ] x_make_pypi_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_pypi_x (exit 1) cwd: C:\x_runner_x\x_make_pypi_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at:…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_pypi_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:44:38.652900+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Mapping` into a type-checking block
+     --> tests\test_main_json.py:6:29
+      |
+    4 | import json
+    5 | import sys
+    …
+
+- [ ] x_make_yahw_x — black
+  - Summary: black failed for x_make_yahw_x (exit 1) cwd: C:\x_runner_x\x_make_yahw_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-20T16:45:02.568700+00:00 duratio…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_yahw_x
+  - Tool version: python -m black, 25.9.0 (compiled: yes)
+Python (CPython) 3.12.6
+  - Captured: 2025-10-20T16:45:04.128769+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    --- C:\x_runner_x\x_make_yahw_x\x_cls_make_yahw_x.py	2025-10-20 03:42:59.635792+00:00
+    +++ C:\x_runner_x\x_make_yahw_x\x_cls_make_yahw_x.py	2025-10-20 16:45:03.917873+00:00
+    @@ -28,31 +28,37 @@
+     
+     
+    …
+  - Stderr preview:
+    would reformat C:\x_runner_x\x_make_yahw_x\x_cls_make_yahw_x.py
+    
+    Oh no! \U0001f4a5 \U0001f494 \U0001f4a5
+    1 file would be reformatted, 7 files would be left unchanged.
+
+- [ ] x_make_yahw_x — mypy
+  - Summary: mypy failed for x_make_yahw_x (exit 1) cwd: C:\x_runner_x\x_make_yahw_x command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unim…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_yahw_x
+  - Tool version: mypy 1.18.2 (compiled: yes)
+  - Captured: 2025-10-20T16:45:05.490834+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    __init__.py:7: error: Expression has type "Any"  [misc]
+    __init__.py:8: error: Expression has type "Any"  [misc]
+    __init__.py:9: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:201: error: Expression has type "Any"  [misc]
+    C:\x_runner_x\x_make_common_x\progress_snapshot.py:202: error: Expression has type "Any"  [misc]
+    …
+
+- [ ] x_make_yahw_x — ruff_check
+  - Summary: ruff_check failed for x_make_yahw_x (exit 1) cwd: C:\x_runner_x\x_make_yahw_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at: 202…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_yahw_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:45:04.274819+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Mapping` into a type-checking block
+     --> tests\test_main_json.py:4:29
+      |
+    3 | import importlib
+    4 | from collections.abc import Mapping
+    …
+
+- [ ] x_make_yahw_x — ruff_fix
+  - Summary: ruff_fix failed for x_make_yahw_x (exit 1) cwd: C:\x_runner_x\x_make_yahw_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at:…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_make_yahw_x
+  - Tool version: ruff 0.14.1
+  - Captured: 2025-10-20T16:45:02.563758+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    TC003 Move standard library import `collections.abc.Mapping` into a type-checking block
+     --> tests\test_main_json.py:4:29
+      |
+    3 | import importlib
+    4 | from collections.abc import Mapping
+    …

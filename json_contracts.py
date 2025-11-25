@@ -171,6 +171,7 @@ OUTPUT_SCHEMA: dict[str, object] = {
         "generated_at": {"type": "string", "format": "date-time"},
         "workspace_root": {"type": "string", "minLength": 1},
         "report_path": {"type": ["string", "null"], "minLength": 1},
+        "markdown_report_path": {"type": ["string", "null"], "minLength": 1},
         "had_failures": {"type": "boolean"},
         "skipped": {"type": "boolean"},
         "failures": {
