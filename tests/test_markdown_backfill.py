@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+# ruff: noqa: S101
 import json
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 from x_make_github_visitor_x.backfill_markdown_reports import backfill_markdown_reports
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def _write_report(path: Path, payload: dict[str, object]) -> None:

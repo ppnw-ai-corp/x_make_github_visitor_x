@@ -73,34 +73,31 @@ def _info(*args: object) -> None:
         _LOGGER.info("%s", msg)
 
 
-def render_markdown_todo_report(
+def _display_text(value: object, fallback: str = "") -> str:
+    if isinstance(value, Path):
+        text = str(value)
+    elif isinstance(value, str):
+        text = value
+    elif value is None:
+        text = ""
+    else:
+        text = str(value)
+    stripped = text.strip()
+    return stripped or fallback
+
+
+def _build_header_lines(
     *,
-    workspace_root: str | Path,
+    workspace_display: str,
     generated_at: datetime,
     summary: Mapping[str, object] | None,
-    failures: Sequence[Mapping[str, JSONValue]],
-) -> str:
-    """Render a Markdown TODO report from visitor summary/failure payloads."""
-
-    def _display(value: object, fallback: str = "") -> str:
-        if isinstance(value, Path):
-            text = str(value)
-        elif isinstance(value, str):
-            text = value
-        elif value is None:
-            text = ""
-        else:
-            text = str(value)
-        stripped = text.strip()
-        return stripped or fallback
-
-    workspace_display = _display(workspace_root, "<unknown workspace>")
-    lines: list[str] = []
-    lines.append("# Visitor TODO Report")
-    lines.append("")
+    failure_count: int,
+    schema_version: str,
+) -> list[str]:
+    lines = ["# Visitor TODO Report", ""]
     lines.append(f"- Generated: {generated_at.isoformat()}")
     lines.append(f"- Workspace: {workspace_display}")
-    lines.append(f"- Schema: {SCHEMA_VERSION}")
+    lines.append(f"- Schema: {schema_version}")
     if isinstance(summary, Mapping):
         total_repos = summary.get("total_repos")
         if isinstance(total_repos, int):
@@ -110,50 +107,81 @@ def render_markdown_todo_report(
             failed_tools = overall_stats.get("failed_tools")
             if isinstance(failed_tools, int):
                 lines.append(f"- Failing tools: {failed_tools}")
-    lines.append(f"- Recorded failures: {len(failures)}")
+    lines.append(f"- Recorded failures: {failure_count}")
     lines.append("")
+    return lines
+
+
+def _preview_section(label: str, preview: str) -> list[str]:
+    if not preview:
+        return []
+    section = [f"  - {label}:"]
+    section.extend(f"    {line}" for line in preview.splitlines())
+    return section
+
+
+def _failure_section_lines(entry: Mapping[str, JSONValue]) -> list[str]:
+    repo = _display_text(entry.get("repo"), "<unknown repo>")
+    tool = _display_text(entry.get("tool"), "<unknown tool>")
+    summary_text = _display_text(
+        entry.get("summary") or entry.get("message"),
+        "Review tool output for details.",
+    )
+    command = _display_text(entry.get("command"), "<command unavailable>")
+    exit_display = _display_text(entry.get("exit"), "<exit unavailable>")
+    repo_path = _display_text(entry.get("repo_path"), "<path unavailable>")
+    suggestion = _display_text(entry.get("suggested_action"), "Investigate")
+    captured_at = _display_text(entry.get("captured_at"), "<not recorded>")
+    tool_version = _display_text(entry.get("tool_version"), "<version unknown>")
+    stdout_preview = _display_text(entry.get("stdout_preview"))
+    stderr_preview = _display_text(entry.get("stderr_preview"))
+
+    lines = [f"- [ ] {repo} — {tool}"]
+    lines.append(f"  - Summary: {summary_text}")
+    lines.append(f"  - Command: {command}")
+    lines.append(f"  - Exit: {exit_display}")
+    lines.append(f"  - Repo path: {repo_path}")
+    lines.append(f"  - Tool version: {tool_version}")
+    lines.append(f"  - Captured: {captured_at}")
+    lines.append(f"  - Suggested action: {suggestion}")
+    lines.extend(_preview_section("Stdout preview", stdout_preview))
+    lines.extend(_preview_section("Stderr preview", stderr_preview))
+    return lines
+
+
+def _join_markdown_lines(lines: Sequence[str]) -> str:
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def render_markdown_todo_report(
+    *,
+    workspace_root: str | Path,
+    generated_at: datetime,
+    summary: Mapping[str, object] | None,
+    failures: Sequence[Mapping[str, JSONValue]],
+) -> str:
+    """Render a Markdown TODO report from visitor summary/failure payloads."""
+    workspace_display = _display_text(workspace_root, "<unknown workspace>")
+    lines = _build_header_lines(
+        workspace_display=workspace_display,
+        generated_at=generated_at,
+        summary=summary,
+        failure_count=len(failures),
+        schema_version=SCHEMA_VERSION,
+    )
 
     if not failures:
         lines.append("- [x] All tools succeeded; no TODO items recorded.")
-        return "\n".join(lines) + "\n"
+        return _join_markdown_lines(lines)
 
     for entry in failures:
-        if not isinstance(entry, Mapping):
-            continue
-        repo = _display(entry.get("repo"), "<unknown repo>")
-        tool = _display(entry.get("tool"), "<unknown tool>")
-        summary_text = _display(
-            entry.get("summary") or entry.get("message"),
-            "Review tool output for details.",
-        )
-        command = _display(entry.get("command"), "<command unavailable>")
-        exit_display = _display(entry.get("exit"), "<exit unavailable>")
-        repo_path = _display(entry.get("repo_path"), "<path unavailable>")
-        suggestion = _display(entry.get("suggested_action"), "Investigate")
-        captured_at = _display(entry.get("captured_at"), "<not recorded>")
-        tool_version = _display(entry.get("tool_version"), "<version unknown>")
-        stdout_preview = _display(entry.get("stdout_preview"))
-        stderr_preview = _display(entry.get("stderr_preview"))
+        if isinstance(entry, Mapping):
+            lines.extend(_failure_section_lines(entry))
+            lines.append("")
 
-        lines.append(f"- [ ] {repo} — {tool}")
-        lines.append(f"  - Summary: {summary_text}")
-        lines.append(f"  - Command: {command}")
-        lines.append(f"  - Exit: {exit_display}")
-        lines.append(f"  - Repo path: {repo_path}")
-        lines.append(f"  - Tool version: {tool_version}")
-        lines.append(f"  - Captured: {captured_at}")
-        lines.append(f"  - Suggested action: {suggestion}")
-        if stdout_preview:
-            lines.append("  - Stdout preview:")
-            for preview_line in stdout_preview.splitlines():
-                lines.append(f"    {preview_line}")
-        if stderr_preview:
-            lines.append("  - Stderr preview:")
-            for preview_line in stderr_preview.splitlines():
-                lines.append(f"    {preview_line}")
-        lines.append("")
-
-    return "\n".join(lines).rstrip() + "\n"
+    if lines and not lines[-1]:
+        lines.pop()
+    return _join_markdown_lines(lines)
 
 
 """Visitor to run ruff/black/mypy/pyright on immediate child git clones.
@@ -283,6 +311,15 @@ class _ToolEventPayload:
     result: Mapping[str, object]
     summary: str | None = None
     failures: Sequence[Mapping[str, str]] | None = None
+
+
+@dataclass(frozen=True)
+class _ArtifactRequest:
+    directory: Path
+    index: int
+    repo: str
+    tool: str
+    kind: str
 
 
 def _coerce_exit_code(value: object) -> int | None:
@@ -662,20 +699,16 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     def _persist_failure_artifact(
         self,
         *,
-        directory: Path,
-        index: int,
-        repo: str,
-        tool: str,
-        kind: str,
+        request: _ArtifactRequest,
         content: str,
     ) -> dict[str, JSONValue] | None:
         text = content if isinstance(content, str) else str(content)
         if not text:
             return None
-        repo_slug = self._safe_slug(repo, "repo")
-        tool_slug = self._safe_slug(tool, "tool")
-        filename = f"{index:04d}_{repo_slug}_{tool_slug}_{kind}.log"
-        artifact_path = directory / filename
+        repo_slug = self._safe_slug(request.repo, "repo")
+        tool_slug = self._safe_slug(request.tool, "tool")
+        filename = f"{request.index:04d}_{repo_slug}_{tool_slug}_{request.kind}.log"
+        artifact_path = request.directory / filename
         artifact_path.parent.mkdir(parents=True, exist_ok=True)
         encoded = text.encode("utf-8")
         with artifact_path.open("w", encoding="utf-8") as handle:
@@ -1698,20 +1731,26 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             stdout_artifact = None
             stderr_artifact = None
             if artifact_dir is not None:
+                repo_label = repo or repo_path or "repo"
+                tool_label = tool or "tool"
                 stdout_artifact = self._persist_failure_artifact(
-                    directory=artifact_dir,
-                    index=index,
-                    repo=repo or repo_path or "repo",
-                    tool=tool or "tool",
-                    kind="stdout",
+                    request=_ArtifactRequest(
+                        directory=artifact_dir,
+                        index=index,
+                        repo=repo_label,
+                        tool=tool_label,
+                        kind="stdout",
+                    ),
                     content=self._ensure_text(detail.get("stdout", "")),
                 )
                 stderr_artifact = self._persist_failure_artifact(
-                    directory=artifact_dir,
-                    index=index,
-                    repo=repo or repo_path or "repo",
-                    tool=tool or "tool",
-                    kind="stderr",
+                    request=_ArtifactRequest(
+                        directory=artifact_dir,
+                        index=index,
+                        repo=repo_label,
+                        tool=tool_label,
+                        kind="stderr",
+                    ),
                     content=self._ensure_text(detail.get("stderr", "")),
                 )
             entries.append(
@@ -1741,6 +1780,14 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             )
         )
         return entries
+
+    def failure_detail_pairs(self) -> list[tuple[dict[str, object], str]]:
+        return list(zip(self._failure_details, self._failure_messages, strict=False))
+
+    def sanitized_failure_details(self) -> list[dict[str, JSONValue]]:
+        return [
+            self._sanitize_failure_detail(detail) for detail in self._failure_details
+        ]
 
     def _render_markdown_failure_report(
         self,
@@ -2412,19 +2459,12 @@ def _build_success_payload(
     *,
     generated_at: datetime,
 ) -> dict[str, object]:
-    detail_pairs = list(
-        zip(visitor._failure_details, result.failure_messages, strict=False)
-    )
+    detail_pairs = visitor.failure_detail_pairs()
     failure_entries = visitor.serialize_failures(detail_pairs)
     summary = visitor.generate_summary_report()
     runtime_snapshot = _json_ready(visitor.runtime_snapshot())
     tool_versions = _json_ready(visitor.tool_versions())
-    failure_details_json = _json_ready(
-        [
-            visitor._sanitize_failure_detail(detail)
-            for detail in result.failure_details
-        ]
-    )
+    failure_details_json = _json_ready(list(result.failure_details))
 
     return {
         "status": "failure" if result.had_failures else "success",
@@ -2432,9 +2472,7 @@ def _build_success_payload(
         "generated_at": generated_at.isoformat(),
         "workspace_root": str(visitor.root),
         "report_path": _stringify_report_path(result.report_path),
-        "markdown_report_path": _stringify_report_path(
-            result.markdown_report_path
-        ),
+        "markdown_report_path": _stringify_report_path(result.markdown_report_path),
         "had_failures": bool(result.had_failures),
         "skipped": bool(result.skipped),
         "failures": _json_ready(failure_entries),

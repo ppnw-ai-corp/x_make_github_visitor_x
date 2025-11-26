@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+# ruff: noqa: S101
 import hashlib
 import json
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 from x_make_github_visitor_x.json_contracts import VISITOR_REPORT_SCHEMA_VERSION
 from x_make_github_visitor_x.report_validator import (
@@ -10,6 +11,9 @@ from x_make_github_visitor_x.report_validator import (
     validate_report_path,
     validate_reports_dir,
 )
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def _write_sample_report(tmp_path: Path) -> Path:

@@ -10,14 +10,18 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+from .json_contracts import VISITOR_REPORT_SCHEMA
+
 if TYPE_CHECKING:
     from jsonschema import ValidationError as _JsonSchemaValidationError
 else:  # pragma: no cover - runtime fallback
     try:
         from jsonschema import ValidationError as _JsonSchemaValidationError
     except ModuleNotFoundError:
+
         class _JsonSchemaValidationError(Exception):
             """Raised when jsonschema dependency is unavailable."""
+
 
 if TYPE_CHECKING:
     from x_make_common_x.json_contracts import validate_payload as _validate_payload
@@ -31,9 +35,11 @@ else:  # pragma: no cover - runtime fallback
 
 validate_payload = _validate_payload
 
-from .json_contracts import VISITOR_REPORT_SCHEMA
-
 JSONValue = str | int | float | bool | None | dict[str, "JSONValue"] | list["JSONValue"]
+
+_CHECKSUM_DIGEST_LENGTH = 64
+_CHECKSUM_EMPTY_MESSAGE = "checksum file empty"
+_CHECKSUM_MALFORMED_MESSAGE = "checksum entry malformed"
 
 
 @dataclass(slots=True)
@@ -80,10 +86,12 @@ def _load_report_payload(path: Path) -> Mapping[str, object]:
 def _read_sidecar_checksum(sidecar_path: Path) -> str:
     text = sidecar_path.read_text(encoding="utf-8").strip()
     if not text:
-        raise ValueError("checksum file empty")
+        message = _CHECKSUM_EMPTY_MESSAGE
+        raise ValueError(message)
     digest = text.split()[0]
-    if len(digest) != 64:
-        raise ValueError("checksum entry malformed")
+    if len(digest) != _CHECKSUM_DIGEST_LENGTH:
+        message = _CHECKSUM_MALFORMED_MESSAGE
+        raise ValueError(message)
     return digest
 
 
@@ -119,88 +127,131 @@ def _validate_artifact_ref(
     data = artifact_path.read_bytes()
     actual_bytes = len(data)
     actual_sha = hashlib.sha256(data).hexdigest()
-    if isinstance(expected_bytes, int) and expected_bytes >= 0:
-        if expected_bytes != actual_bytes:
-            errors.append(
-                f"{field} byte length mismatch: expected {expected_bytes}, got {actual_bytes}"
+    if (
+        isinstance(expected_bytes, int)
+        and expected_bytes >= 0
+        and expected_bytes != actual_bytes
+    ):
+        errors.append(
+            f"{field} byte length mismatch: expected {expected_bytes}, "
+            f"got {actual_bytes}"
+        )
+    if isinstance(expected_sha, str) and expected_sha.lower() != actual_sha:
+        errors.append(
+            f"{field} sha256 mismatch: expected {expected_sha}, " f"got {actual_sha}"
+        )
+    return errors
+
+
+def _load_valid_payload(path: Path) -> tuple[Mapping[str, object] | None, list[str]]:
+    try:
+        payload = _load_report_payload(path)
+    except (OSError, ValueError, TypeError) as exc:
+        return None, [f"failed to load report: {exc}"]
+
+    try:
+        validate_payload(payload, VISITOR_REPORT_SCHEMA)
+    except _JsonSchemaValidationError as exc:
+        return None, [f"schema validation failed: {exc.message}"]
+
+    return payload, []
+
+
+def _validate_payload_checksum_field(payload: Mapping[str, object]) -> list[str]:
+    checksum_value = payload.get("payload_checksum")
+    if not isinstance(checksum_value, str):
+        return ["payload_checksum missing or invalid"]
+
+    expected_checksum = compute_payload_checksum(payload)
+    if checksum_value != expected_checksum:
+        return [
+            "payload_checksum mismatch:"
+            f" expected {expected_checksum}, got {checksum_value}",
+        ]
+    return []
+
+
+def _validate_checksum_sidecar(path: Path) -> list[str]:
+    sidecar_path = path.with_suffix(path.suffix + ".sha256")
+    try:
+        recorded_digest = _read_sidecar_checksum(sidecar_path)
+    except (OSError, ValueError) as exc:
+        return [f"checksum sidecar invalid: {exc}"]
+
+    actual_digest = _hash_file_bytes(path)
+    if recorded_digest != actual_digest:
+        return [
+            "checksum sidecar mismatch:"
+            f" expected {recorded_digest}, got {actual_digest}",
+        ]
+    return []
+
+
+def _resolve_artifact_root(
+    payload: Mapping[str, object],
+) -> tuple[Path | None, list[str]]:
+    artifact_root_value = payload.get("artifact_root")
+    if isinstance(artifact_root_value, str) and artifact_root_value:
+        artifact_root = Path(artifact_root_value)
+        errors: list[str] = []
+        if not artifact_root.exists():
+            errors.append(f"artifact_root missing: {artifact_root}")
+        return artifact_root, errors
+    return None, []
+
+
+def _validate_failures(
+    payload: Mapping[str, object],
+    *,
+    artifact_root: Path | None,
+) -> list[str]:
+    failures_obj = payload.get("failures")
+    if not isinstance(failures_obj, Sequence):
+        return []
+    errors: list[str] = []
+    for index, entry in enumerate(failures_obj, 1):
+        if not isinstance(entry, Mapping):
+            errors.append(f"failure #{index} is not an object")
+            continue
+        errors.extend(
+            _validate_artifact_ref(
+                ref=entry.get("stdout_artifact"),
+                field=f"failure #{index} stdout_artifact",
+                artifact_root=artifact_root,
             )
-    if isinstance(expected_sha, str):
-        if expected_sha.lower() != actual_sha:
-            errors.append(
-                f"{field} sha256 mismatch: expected {expected_sha}, got {actual_sha}"
+        )
+        errors.extend(
+            _validate_artifact_ref(
+                ref=entry.get("stderr_artifact"),
+                field=f"failure #{index} stderr_artifact",
+                artifact_root=artifact_root,
             )
+        )
     return errors
 
 
 def validate_report_path(path: Path) -> list[str]:
     """Validate a single visitor report and return a list of issues."""
+    payload, load_errors = _load_valid_payload(path)
+    if load_errors:
+        return load_errors
+    if payload is None:  # pragma: no cover - defensive guard
+        return load_errors
 
     errors: list[str] = []
-    try:
-        payload = _load_report_payload(path)
-    except (OSError, ValueError, TypeError) as exc:
-        return [f"failed to load report: {exc}"]
-
-    try:
-        validate_payload(payload, VISITOR_REPORT_SCHEMA)
-    except _JsonSchemaValidationError as exc:
-        return [f"schema validation failed: {exc.message}"]
-
-    checksum_value = payload.get("payload_checksum")
-    if not isinstance(checksum_value, str):
-        errors.append("payload_checksum missing or invalid")
-    else:
-        expected_checksum = compute_payload_checksum(payload)
-        if checksum_value != expected_checksum:
-            errors.append(
-                "payload_checksum mismatch:"
-                f" expected {expected_checksum}, got {checksum_value}"
-            )
-
-    sidecar_path = path.with_suffix(path.suffix + ".sha256")
-    try:
-        recorded_digest = _read_sidecar_checksum(sidecar_path)
-    except (OSError, ValueError) as exc:
-        errors.append(f"checksum sidecar invalid: {exc}")
-        recorded_digest = None
-    actual_digest = _hash_file_bytes(path)
-    if recorded_digest and recorded_digest != actual_digest:
-        errors.append(
-            "checksum sidecar mismatch:"
-            f" expected {recorded_digest}, got {actual_digest}"
-        )
-
-    artifact_root_value = payload.get("artifact_root")
-    artifact_root = None
-    if isinstance(artifact_root_value, str) and artifact_root_value:
-        artifact_root = Path(artifact_root_value)
-        if not artifact_root.exists():
-            errors.append(f"artifact_root missing: {artifact_root}")
-
-    failures_obj = payload.get("failures")
-    if isinstance(failures_obj, Sequence):
-        for index, entry in enumerate(failures_obj, 1):
-            if not isinstance(entry, Mapping):
-                errors.append(f"failure #{index} is not an object")
-                continue
-            errors.extend(
-                _validate_artifact_ref(
-                    ref=entry.get("stdout_artifact"),
-                    field=f"failure #{index} stdout_artifact",
-                    artifact_root=artifact_root,
-                )
-            )
-            errors.extend(
-                _validate_artifact_ref(
-                    ref=entry.get("stderr_artifact"),
-                    field=f"failure #{index} stderr_artifact",
-                    artifact_root=artifact_root,
-                )
-            )
+    errors.extend(_validate_payload_checksum_field(payload))
+    errors.extend(_validate_checksum_sidecar(path))
+    artifact_root, artifact_root_errors = _resolve_artifact_root(payload)
+    errors.extend(artifact_root_errors)
+    errors.extend(_validate_failures(payload, artifact_root=artifact_root))
     return errors
 
 
-def validate_reports_dir(reports_dir: Path, *, limit: int | None = None) -> ValidationOutcome:
+def validate_reports_dir(
+    reports_dir: Path,
+    *,
+    limit: int | None = None,
+) -> ValidationOutcome:
     reports_path = reports_dir.resolve()
     if not reports_path.exists():
         message = f"reports directory does not exist: {reports_path}"
@@ -212,8 +263,8 @@ def validate_reports_dir(reports_dir: Path, *, limit: int | None = None) -> Vali
     errors: list[tuple[Path, str]] = []
     for report_path in json_files:
         checked.append(report_path)
-        for error in validate_report_path(report_path):
-            errors.append((report_path, error))
+        report_errors = validate_report_path(report_path)
+        errors.extend((report_path, error) for error in report_errors)
     return ValidationOutcome(checked=checked, errors=errors)
 
 
@@ -229,7 +280,10 @@ def _build_parser() -> argparse.ArgumentParser:
         "--reports-dir",
         type=Path,
         default=_default_reports_dir(),
-        help="Path containing visitor_failures_*.json files (defaults to package reports dir).",
+        help=(
+            "Path containing visitor_failures_*.json files"
+            " (defaults to package reports dir)."
+        ),
     )
     parser.add_argument(
         "--limit",

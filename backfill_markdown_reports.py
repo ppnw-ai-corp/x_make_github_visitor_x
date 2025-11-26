@@ -71,7 +71,9 @@ def _coerce_failures(value: object) -> list[Mapping[str, JSONValue]]:
     failures: list[Mapping[str, JSONValue]] = []
     for entry in value:
         if isinstance(entry, Mapping):
-            normalized = {str(key): cast("JSONValue", val) for key, val in entry.items()}
+            normalized = {
+                str(key): cast("JSONValue", val) for key, val in entry.items()
+            }
             failures.append(normalized)
     return failures
 
@@ -134,13 +136,18 @@ def backfill_markdown_reports(
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="x_make_github_visitor_backfill",
-        description="Backfill Markdown TODO reports from existing visitor JSON outputs.",
+        description=(
+            "Backfill Markdown TODO reports from existing visitor JSON outputs."
+        ),
     )
     parser.add_argument(
         "--reports-dir",
         type=Path,
         default=_default_reports_dir(),
-        help="Path containing visitor_failures_*.json files (defaults to package reports dir).",
+        help=(
+            "Path containing visitor_failures_*.json files"
+            " (defaults to package reports dir)."
+        ),
     )
     parser.add_argument(
         "--force",

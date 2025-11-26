@@ -210,7 +210,9 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
     assert stdout_artifact_path.exists()
     stdout_bytes = stdout_artifact_path.read_bytes()
     assert stdout_artifact_entry.get("bytes") == len(stdout_bytes)
-    assert stdout_artifact_entry.get("sha256") == hashlib.sha256(stdout_bytes).hexdigest()
+    assert (
+        stdout_artifact_entry.get("sha256") == hashlib.sha256(stdout_bytes).hexdigest()
+    )
 
     checksum_path = report_path.with_suffix(".json.sha256")
     assert checksum_path.exists()
