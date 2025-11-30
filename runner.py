@@ -711,8 +711,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         artifact_path = request.directory / filename
         artifact_path.parent.mkdir(parents=True, exist_ok=True)
         encoded = text.encode("utf-8")
-        with artifact_path.open("w", encoding="utf-8") as handle:
-            handle.write(text)
+        with artifact_path.open("wb") as handle:
+            handle.write(encoded)
             handle.flush()
             with suppress(OSError):
                 os.fsync(handle.fileno())
