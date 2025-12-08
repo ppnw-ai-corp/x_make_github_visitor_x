@@ -1,24 +1,24 @@
 # Visitor TODO Report
 
-- Generated: 2025-12-07T23:30:30.438454+00:00
+- Generated: 2025-12-08T00:40:42.058057+00:00
 - Workspace: C:\x_runner_x
 - Schema: x_make_github_visitor_x.run/1.0
 - Total repositories: 46
-- Failing tools: 48
-- Recorded failures: 48
+- Failing tools: 51
+- Recorded failures: 51
 
 - [ ] x_0_make_all_x — black
-  - Summary: black failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-07T23:13:41.139064+00:00 durat…
+  - Summary: black failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-08T00:26:00.541599+00:00 durat…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_0_make_all_x
   - Tool version: python -m black, 25.11.0 (compiled: yes)
 Python (CPython) 3.12.6
-  - Captured: 2025-12-07T23:13:47.594784+00:00
+  - Captured: 2025-12-08T00:26:06.761910+00:00
   - Suggested action: Investigate
   - Stdout preview:
     --- C:\x_runner_x\x_0_make_all_x\tools\list_missing_wrappers.py	2025-12-07 23:13:41.083896+00:00
-    +++ C:\x_runner_x\x_0_make_all_x\tools\list_missing_wrappers.py	2025-12-07 23:13:43.313572+00:00
+    +++ C:\x_runner_x\x_0_make_all_x\tools\list_missing_wrappers.py	2025-12-08 00:26:02.611774+00:00
     @@ -3,10 +3,11 @@
      import json
      from pathlib import Path
@@ -32,12 +32,12 @@ Python (CPython) 3.12.6
     …
 
 - [ ] x_0_make_all_x — pyright
-  - Summary: pyright failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-07T23:13:49.116800+00:00 duration: 5.157s tool_version: pyright 1.1…
+  - Summary: pyright failed for x_0_make_all_x (exit 1) cwd: C:\x_runner_x\x_0_make_all_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-08T00:26:08.602338+00:00 duration: 5.191s tool_version: pyright 1.1…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_0_make_all_x
   - Tool version: pyright 1.1.407
-  - Captured: 2025-12-07T23:13:54.264755+00:00
+  - Captured: 2025-12-08T00:26:13.793096+00:00
   - Suggested action: Investigate
   - Stdout preview:
     c:\x_runner_x\x_0_make_all_x\x_cls_make_all_x.py
@@ -53,7 +53,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_0_make_all_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:13:47.787480+00:00
+  - Captured: 2025-12-08T00:26:06.949801+00:00
   - Suggested action: Investigate
   - Stdout preview:
     E501 Line too long (91 > 88)
@@ -69,7 +69,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_0_make_all_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:13:41.130875+00:00
+  - Captured: 2025-12-08T00:26:00.520051+00:00
   - Suggested action: Investigate
   - Stdout preview:
     E501 Line too long (91 > 88)
@@ -86,11 +86,11 @@ Python (CPython) 3.12.6
   - Repo path: C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x
   - Tool version: python -m black, 25.11.0 (compiled: yes)
 Python (CPython) 3.12.6
-  - Captured: 2025-12-07T23:14:07.833021+00:00
+  - Captured: 2025-12-08T00:26:27.888620+00:00
   - Suggested action: Investigate
   - Stdout preview:
     --- C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x\tools\rename_ppnw_repo.py	2025-12-07 23:14:05.756238+00:00
-    +++ C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x\tools\rename_ppnw_repo.py	2025-12-07 23:14:07.618577+00:00
+    +++ C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x\tools\rename_ppnw_repo.py	2025-12-08 00:26:27.717660+00:00
     @@ -1,6 +1,7 @@
      """Rename x_0_make_ppnw_dot_ai_x to x_0_make_ppnw_dot_ai_hr_x both remotely and locally."""
     +
@@ -107,7 +107,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:14:09.615174+00:00
+  - Captured: 2025-12-08T00:26:28.500831+00:00
   - Suggested action: Investigate
   - Stdout preview:
     tools\probes\translate_scenarios.py:19: error: Explicit "Any" is not allowed  [explicit-any]
@@ -118,12 +118,12 @@ Python (CPython) 3.12.6
     …
 
 - [ ] x_0_make_ppnw_dot_ai_change_control_x — pyright
-  - Summary: pyright failed for x_0_make_ppnw_dot_ai_change_control_x (exit 1) cwd: C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-07T23:14:09.619237+00…
+  - Summary: pyright failed for x_0_make_ppnw_dot_ai_change_control_x (exit 1) cwd: C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-08T00:26:28.503855+00…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x
   - Tool version: pyright 1.1.407
-  - Captured: 2025-12-07T23:14:11.819420+00:00
+  - Captured: 2025-12-08T00:26:30.625409+00:00
   - Suggested action: Investigate
   - Stdout preview:
     c:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x\tools\run_factory_hooks.py
@@ -136,7 +136,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:14:07.997712+00:00
+  - Captured: 2025-12-08T00:26:28.062511+00:00
   - Suggested action: Investigate
   - Stdout preview:
     INP001 File `tools\probes\translate_scenarios.py` is part of an implicit namespace package. Add an `__init__.py`.
@@ -152,7 +152,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_0_make_ppnw_dot_ai_change_control_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:14:05.774553+00:00
+  - Captured: 2025-12-08T00:26:25.609182+00:00
   - Suggested action: Investigate
   - Stdout preview:
     INP001 File `tools\probes\translate_scenarios.py` is part of an implicit namespace package. Add an `__init__.py`.
@@ -162,6 +162,36 @@ Python (CPython) 3.12.6
       --> tools\probes\translate_scenarios.py:15:9
     …
 
+- [ ] x_legatus_capsula_calculus_x — pyright
+  - Summary: pyright failed for x_legatus_capsula_calculus_x (exit 1) cwd: C:\x_runner_x\x_legatus_capsula_calculus_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-08T00:31:41.163024+00:00 duration: 1.90…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_legatus_capsula_calculus_x
+  - Tool version: pyright 1.1.407
+  - Captured: 2025-12-08T00:31:43.064847+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    c:\x_runner_x\x_legatus_capsula_calculus_x\tests\test_service.py
+      c:\x_runner_x\x_legatus_capsula_calculus_x\tests\test_service.py:4:6 - error: Import "fastapi.testclient" could not be resolved (reportMissingImports)
+    c:\x_runner_x\x_legatus_capsula_calculus_x\x_legatus_capsula_calculus_x\inference\capture.py
+      c:\x_runner_x\x_legatus_capsula_calculus_x\x_legatus_capsula_calculus_x\inference\capture.py:21:8 - error: Import "cv2" could not be resolved (reportMissingImports)
+      c:\x_runner_x\x_legatus_capsula_calculus_x\x_legatus_capsula_calculus_x\inference\capture.py:55:30 - error: "isOpened" is not a known attribute of "None" (reportOptionalMemberAccess)
+    …
+
+- [ ] x_legatus_inceptio_praesidium_x — pyright
+  - Summary: pyright failed for x_legatus_inceptio_praesidium_x (exit 1) cwd: C:\x_runner_x\x_legatus_inceptio_praesidium_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-08T00:32:01.151221+00:00 duration…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_legatus_inceptio_praesidium_x
+  - Tool version: pyright 1.1.407
+  - Captured: 2025-12-08T00:32:03.468094+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    c:\x_runner_x\x_legatus_inceptio_praesidium_x\tests\test_tui.py
+      c:\x_runner_x\x_legatus_inceptio_praesidium_x\tests\test_tui.py:8:6 - error: Import "x_legatus_inceptio_praesidium_x.recon" could not be resolved (reportMissingImports)
+      c:\x_runner_x\x_legatus_inceptio_praesidium_x\tests\test_tui.py:9:6 - error: Import "x_legatus_inceptio_praesidium_x.tui" could not be resolved (reportMissingImports)
+    2 errors, 0 warnings, 0 informations
+
 - [ ] x_legatus_politia_tabularium_x — black
   - Summary: black failed for x_legatus_politia_tabularium_x (exit 1) cwd: C:\x_runner_x\x_legatus_politia_tabularium_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-1…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
@@ -169,11 +199,11 @@ Python (CPython) 3.12.6
   - Repo path: C:\x_runner_x\x_legatus_politia_tabularium_x
   - Tool version: python -m black, 25.11.0 (compiled: yes)
 Python (CPython) 3.12.6
-  - Captured: 2025-12-07T23:19:36.560975+00:00
+  - Captured: 2025-12-08T00:32:40.136908+00:00
   - Suggested action: Investigate
   - Stdout preview:
     --- C:\x_runner_x\x_legatus_politia_tabularium_x\tools\transfer_repo_owner.py	2025-12-07 23:19:34.922637+00:00
-    +++ C:\x_runner_x\x_legatus_politia_tabularium_x\tools\transfer_repo_owner.py	2025-12-07 23:19:36.343863+00:00
+    +++ C:\x_runner_x\x_legatus_politia_tabularium_x\tools\transfer_repo_owner.py	2025-12-08 00:32:39.961797+00:00
     @@ -1,6 +1,7 @@
      """Transfer the politia repo into the ppnw-ai-corp org and retarget the local clone."""
     +
@@ -190,7 +220,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_politia_tabularium_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:19:37.753409+00:00
+  - Captured: 2025-12-08T00:32:40.688773+00:00
   - Suggested action: Investigate
   - Stdout preview:
     tools\transfer_repo_owner.py:106: error: Expression has type "Any"  [misc]
@@ -206,7 +236,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_politia_tabularium_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:19:36.734074+00:00
+  - Captured: 2025-12-08T00:32:40.283123+00:00
   - Suggested action: Investigate
   - Stdout preview:
     E501 Line too long (109 > 88)
@@ -222,7 +252,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_politia_tabularium_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:19:34.952815+00:00
+  - Captured: 2025-12-08T00:32:38.833138+00:00
   - Suggested action: Investigate
   - Stdout preview:
     E501 Line too long (109 > 88)
@@ -233,17 +263,17 @@ Python (CPython) 3.12.6
     …
 
 - [ ] x_legatus_scriba_machina_x — black
-  - Summary: black failed for x_legatus_scriba_machina_x (exit 1) cwd: C:\x_runner_x\x_legatus_scriba_machina_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-07T23:…
+  - Summary: black failed for x_legatus_scriba_machina_x (exit 1) cwd: C:\x_runner_x\x_legatus_scriba_machina_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-08T00:…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_scriba_machina_x
   - Tool version: python -m black, 25.11.0 (compiled: yes)
 Python (CPython) 3.12.6
-  - Captured: 2025-12-07T23:20:20.782129+00:00
+  - Captured: 2025-12-08T00:33:08.416352+00:00
   - Suggested action: Investigate
   - Stdout preview:
     --- C:\x_runner_x\x_legatus_scriba_machina_x\tools\generate_markdown_manifest.py	2025-12-07 23:20:17.941622+00:00
-    +++ C:\x_runner_x\x_legatus_scriba_machina_x\tools\generate_markdown_manifest.py	2025-12-07 23:20:20.210300+00:00
+    +++ C:\x_runner_x\x_legatus_scriba_machina_x\tools\generate_markdown_manifest.py	2025-12-08 00:33:07.874640+00:00
     @@ -16,13 +16,11 @@
      MANIFEST_DIR = REPO_ROOT / "docs" / "workspace_manifests"
      MANIFEST_DIR.mkdir(parents=True, exist_ok=True)
@@ -261,7 +291,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_scriba_machina_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:20:22.950134+00:00
+  - Captured: 2025-12-08T00:33:09.545787+00:00
   - Suggested action: Investigate
   - Stdout preview:
     scripts\verify_factory_outputs.py:63: error: Expression type contains "Any" (has type "dict[str, Any]")  [misc]
@@ -272,12 +302,12 @@ Python (CPython) 3.12.6
     …
 
 - [ ] x_legatus_scriba_machina_x — pyright
-  - Summary: pyright failed for x_legatus_scriba_machina_x (exit 1) cwd: C:\x_runner_x\x_legatus_scriba_machina_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-07T23:20:22.962037+00:00 duration: 4.512s t…
+  - Summary: pyright failed for x_legatus_scriba_machina_x (exit 1) cwd: C:\x_runner_x\x_legatus_scriba_machina_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-08T00:33:09.571278+00:00 duration: 3.314s t…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_scriba_machina_x
   - Tool version: pyright 1.1.407
-  - Captured: 2025-12-07T23:20:27.473167+00:00
+  - Captured: 2025-12-08T00:33:12.884489+00:00
   - Suggested action: Investigate
   - Stdout preview:
     c:\x_runner_x\x_legatus_scriba_machina_x\crud\processor.py
@@ -293,7 +323,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_scriba_machina_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:20:20.981641+00:00
+  - Captured: 2025-12-08T00:33:08.604364+00:00
   - Suggested action: Investigate
   - Stdout preview:
     TC002 Move third-party import `x_legatus_scriba_machina_x.json_types.JsonDict` into a type-checking block
@@ -309,7 +339,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_scriba_machina_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:20:17.987693+00:00
+  - Captured: 2025-12-08T00:33:05.866341+00:00
   - Suggested action: Investigate
   - Stdout preview:
     TC002 Move third-party import `x_legatus_scriba_machina_x.json_types.JsonDict` into a type-checking block
@@ -325,7 +355,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_segmentum_judicium_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:21:06.409650+00:00
+  - Captured: 2025-12-08T00:33:38.245397+00:00
   - Suggested action: Investigate
   - Stdout preview:
     tools\install_ffmpeg_prebuilt.py:48: error: Expression has type "Any"  [misc]
@@ -341,7 +371,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_senatus_machina_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:21:25.183134+00:00
+  - Captured: 2025-12-08T00:33:52.780146+00:00
   - Suggested action: Investigate
   - Stdout preview:
     x_legatus_senatus_machina_x\models.py:31: error: Explicit "Any" is not allowed  [explicit-any]
@@ -351,13 +381,29 @@ Python (CPython) 3.12.6
     x_legatus_senatus_machina_x\models.py:36: error: Expression type contains "Any" (has type "Mapping[str, Any]")  [misc]
     …
 
+- [ ] x_legatus_senatus_machina_x — pyright
+  - Summary: pyright failed for x_legatus_senatus_machina_x (exit 1) cwd: C:\x_runner_x\x_legatus_senatus_machina_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-08T00:33:52.789867+00:00 duration: 2.709s…
+  - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
+  - Exit: exit 1
+  - Repo path: C:\x_runner_x\x_legatus_senatus_machina_x
+  - Tool version: pyright 1.1.407
+  - Captured: 2025-12-08T00:33:55.496865+00:00
+  - Suggested action: Investigate
+  - Stdout preview:
+    c:\x_runner_x\x_legatus_senatus_machina_x\models.py
+      c:\x_runner_x\x_legatus_senatus_machina_x\models.py:10:10 - error: Import "x_legatus_senatus_machina_x.x_legatus_senatus_machina_x" could not be resolved (reportMissingImports)
+    c:\x_runner_x\x_legatus_senatus_machina_x\tools\generate_layout_preview.py
+      c:\x_runner_x\x_legatus_senatus_machina_x\tools\generate_layout_preview.py:19:6 - error: Import "x_legatus_senatus_machina_x.tools" could not be resolved (reportMissingImports)
+    c:\x_runner_x\x_legatus_senatus_machina_x\tools\graphviz_layout_service.py
+    …
+
 - [ ] x_legatus_senatus_machina_x — ruff_check
   - Summary: ruff_check failed for x_legatus_senatus_machina_x (exit 1) cwd: C:\x_runner_x\x_legatus_senatus_machina_x command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-v…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_senatus_machina_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:21:24.336549+00:00
+  - Captured: 2025-12-08T00:33:52.318774+00:00
   - Suggested action: Investigate
   - Stdout preview:
     PERF401 Use `list.extend` to create a transformed list
@@ -373,7 +419,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_senatus_machina_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:21:23.975789+00:00
+  - Captured: 2025-12-08T00:33:50.628934+00:00
   - Suggested action: Investigate
   - Stdout preview:
     PERF401 Use `list.extend` to create a transformed list
@@ -389,7 +435,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_tactica_impetus_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:21:44.827096+00:00
+  - Captured: 2025-12-08T00:34:09.237234+00:00
   - Suggested action: Investigate
   - Stdout preview:
     typings\ujson.pyi:3: error: Explicit "Any" is not allowed  [explicit-any]
@@ -405,7 +451,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_tactica_impetus_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:21:44.333945+00:00
+  - Captured: 2025-12-08T00:34:08.825774+00:00
   - Suggested action: Investigate
   - Stdout preview:
     FBT001 Boolean-typed positional argument in function definition
@@ -421,7 +467,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_tactica_impetus_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:21:44.125903+00:00
+  - Captured: 2025-12-08T00:34:07.273454+00:00
   - Suggested action: Investigate
   - Stdout preview:
     FBT001 Boolean-typed positional argument in function definition
@@ -437,7 +483,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_vigil_nexus_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:22:48.682530+00:00
+  - Captured: 2025-12-08T00:34:49.837476+00:00
   - Suggested action: Investigate
   - Stdout preview:
     control_plane\config.py:22: error: Expression type contains "Any" (has type "Callable[[Callable[..., _T]], _lru_cache_wrapper[_T]]")  [misc]
@@ -448,12 +494,12 @@ Python (CPython) 3.12.6
     …
 
 - [ ] x_legatus_vigil_nexus_x — pyright
-  - Summary: pyright failed for x_legatus_vigil_nexus_x (exit 1) cwd: C:\x_runner_x\x_legatus_vigil_nexus_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-07T23:22:48.686798+00:00 duration: 2.791s tool_ve…
+  - Summary: pyright failed for x_legatus_vigil_nexus_x (exit 1) cwd: C:\x_runner_x\x_legatus_vigil_nexus_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-08T00:34:49.840405+00:00 duration: 2.366s tool_ve…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_legatus_vigil_nexus_x
   - Tool version: pyright 1.1.407
-  - Captured: 2025-12-07T23:22:51.470758+00:00
+  - Captured: 2025-12-08T00:34:52.204067+00:00
   - Suggested action: Investigate
   - Stdout preview:
     c:\x_runner_x\x_legatus_vigil_nexus_x\clients\session_client.py
@@ -464,17 +510,17 @@ Python (CPython) 3.12.6
     …
 
 - [ ] x_make_common_x — black
-  - Summary: black failed for x_make_common_x (exit 1) cwd: C:\x_runner_x\x_make_common_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-07T23:23:30.054689+00:00 dur…
+  - Summary: black failed for x_make_common_x (exit 1) cwd: C:\x_runner_x\x_make_common_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-08T00:35:16.732185+00:00 dur…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_common_x
   - Tool version: python -m black, 25.11.0 (compiled: yes)
 Python (CPython) 3.12.6
-  - Captured: 2025-12-07T23:23:32.337015+00:00
+  - Captured: 2025-12-08T00:35:18.781029+00:00
   - Suggested action: Investigate
   - Stdout preview:
     --- C:\x_runner_x\x_make_common_x\shared_typings\_pytest\__init__.pyi	2025-12-07 23:23:29.794745+00:00
-    +++ C:\x_runner_x\x_make_common_x\shared_typings\_pytest\__init__.pyi	2025-12-07 23:23:31.426578+00:00
+    +++ C:\x_runner_x\x_make_common_x\shared_typings\_pytest\__init__.pyi	2025-12-08 00:35:17.880412+00:00
     @@ -1,4 +1,3 @@
     -
      from . import capture, monkeypatch
@@ -483,8 +529,8 @@ Python (CPython) 3.12.6
     would reformat C:\x_runner_x\x_make_common_x\shared_typings\_pytest\__init__.pyi
     would reformat C:\x_runner_x\x_make_common_x\shared_typings\_pytest\capture.pyi
     would reformat C:\x_runner_x\x_make_common_x\shared_typings\cv2.pyi
-    would reformat C:\x_runner_x\x_make_common_x\shared_typings\fastapi\cli.pyi
     would reformat C:\x_runner_x\x_make_common_x\shared_typings\_pytest\monkeypatch.pyi
+    would reformat C:\x_runner_x\x_make_common_x\shared_typings\fastapi\cli.pyi
     …
 
 - [ ] x_make_common_x — ruff_check
@@ -493,7 +539,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_common_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:23:32.636348+00:00
+  - Captured: 2025-12-08T00:35:19.016514+00:00
   - Suggested action: Investigate
   - Stdout preview:
     N999 Invalid module name: 'QtCore'
@@ -509,7 +555,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_common_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:23:29.941827+00:00
+  - Captured: 2025-12-08T00:35:16.635966+00:00
   - Suggested action: Investigate
   - Stdout preview:
     N999 Invalid module name: 'QtCore'
@@ -520,17 +566,17 @@ Python (CPython) 3.12.6
     …
 
 - [ ] x_make_github_clones_x — black
-  - Summary: black failed for x_make_github_clones_x (exit 1) cwd: C:\x_runner_x\x_make_github_clones_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-07T23:24:07.43…
+  - Summary: black failed for x_make_github_clones_x (exit 1) cwd: C:\x_runner_x\x_make_github_clones_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-08T00:35:43.18…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_github_clones_x
   - Tool version: python -m black, 25.11.0 (compiled: yes)
 Python (CPython) 3.12.6
-  - Captured: 2025-12-07T23:24:09.255945+00:00
+  - Captured: 2025-12-08T00:35:44.794569+00:00
   - Suggested action: Investigate
   - Stdout preview:
     --- C:\x_runner_x\x_make_github_clones_x\tools\throwaway_git_maker.py	2025-12-07 23:24:07.392241+00:00
-    +++ C:\x_runner_x\x_make_github_clones_x\tools\throwaway_git_maker.py	2025-12-07 23:24:08.823212+00:00
+    +++ C:\x_runner_x\x_make_github_clones_x\tools\throwaway_git_maker.py	2025-12-08 00:35:44.444265+00:00
     @@ -1,22 +1,27 @@
      """Automate pushing a local repo to a fresh GitHub remote."""
     +
@@ -547,7 +593,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_github_clones_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:24:09.443456+00:00
+  - Captured: 2025-12-08T00:35:44.993461+00:00
   - Suggested action: Investigate
   - Stdout preview:
     TC003 Move standard library import `collections.abc.Sequence` into a type-checking block
@@ -563,7 +609,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_github_clones_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:24:07.432093+00:00
+  - Captured: 2025-12-08T00:35:43.177378+00:00
   - Suggested action: Investigate
   - Stdout preview:
     TC003 Move standard library import `collections.abc.Sequence` into a type-checking block
@@ -579,7 +625,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_github_visitor_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:25:47.375866+00:00
+  - Captured: 2025-12-08T00:36:41.477729+00:00
   - Suggested action: Investigate
   - Stdout preview:
     tools\list_visitor_failures.py:18: error: Expression type contains "Any" (has type "str | Any")  [misc]
@@ -595,7 +641,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_github_visitor_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:25:45.966085+00:00
+  - Captured: 2025-12-08T00:36:40.567136+00:00
   - Suggested action: Investigate
   - Stdout preview:
     C901 `main` is too complex (11 > 10)
@@ -611,7 +657,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_github_visitor_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:25:42.564352+00:00
+  - Captured: 2025-12-08T00:36:37.584512+00:00
   - Suggested action: Investigate
   - Stdout preview:
     C901 `main` is too complex (11 > 10)
@@ -622,12 +668,12 @@ Python (CPython) 3.12.6
     …
 
 - [ ] x_make_gitignore_sync_x — pyright
-  - Summary: pyright failed for x_make_gitignore_sync_x (exit 1) cwd: C:\x_runner_x\x_make_gitignore_sync_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-07T23:25:58.048969+00:00 duration: 1.883s tool_ve…
+  - Summary: pyright failed for x_make_gitignore_sync_x (exit 1) cwd: C:\x_runner_x\x_make_gitignore_sync_x command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error started_at: 2025-12-08T00:36:47.928292+00:00 duration: 1.453s tool_ve…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m pyright . --level error
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_gitignore_sync_x
   - Tool version: pyright 1.1.407
-  - Captured: 2025-12-07T23:25:59.930167+00:00
+  - Captured: 2025-12-08T00:36:49.378597+00:00
   - Suggested action: Investigate
   - Stdout preview:
     c:\x_runner_x\x_make_gitignore_sync_x\tests\test_sync.py
@@ -635,17 +681,17 @@ Python (CPython) 3.12.6
     1 error, 0 warnings, 0 informations
 
 - [ ] x_make_persistent_env_var_x — black
-  - Summary: black failed for x_make_persistent_env_var_x (exit 1) cwd: C:\x_runner_x\x_make_persistent_env_var_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-07T2…
+  - Summary: black failed for x_make_persistent_env_var_x (exit 1) cwd: C:\x_runner_x\x_make_persistent_env_var_x command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-08T0…
   - Command: C:\x_runner_x\.venv\Scripts\python.exe -m black . --line-length 88 --target-version py311 --check --diff
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_persistent_env_var_x
   - Tool version: python -m black, 25.11.0 (compiled: yes)
 Python (CPython) 3.12.6
-  - Captured: 2025-12-07T23:27:50.622860+00:00
+  - Captured: 2025-12-08T00:38:04.099767+00:00
   - Suggested action: Investigate
   - Stdout preview:
     --- C:\x_runner_x\x_make_persistent_env_var_x\tools\top_secret_loader.py	2025-12-07 23:27:48.848420+00:00
-    +++ C:\x_runner_x\x_make_persistent_env_var_x\tools\top_secret_loader.py	2025-12-07 23:27:50.105859+00:00
+    +++ C:\x_runner_x\x_make_persistent_env_var_x\tools\top_secret_loader.py	2025-12-08 00:38:03.636137+00:00
     @@ -1,6 +1,7 @@
      """Launch the persistent environment vault GUI in one shot."""
     +
@@ -662,7 +708,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_persistent_env_var_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:27:50.778900+00:00
+  - Captured: 2025-12-08T00:38:04.248268+00:00
   - Suggested action: Investigate
   - Stdout preview:
     E402 Module level import not at top of file
@@ -678,7 +724,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_persistent_env_var_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:27:48.871000+00:00
+  - Captured: 2025-12-08T00:38:02.555976+00:00
   - Suggested action: Investigate
   - Stdout preview:
     E402 Module level import not at top of file
@@ -694,14 +740,14 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_slack_dump_and_reset_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:29:44.937008+00:00
+  - Captured: 2025-12-08T00:39:46.407970+00:00
   - Suggested action: Investigate
   - Stdout preview:
     tests\test_persistent_env_isolation.py:14: error: Expression type contains "Any" (has type "Any | None")  [misc]
-    x_cls_make_slack_dump_and_reset_x.py:675: error: Expression type contains "Any" (has type "list[Any]")  [misc]
-    x_cls_make_slack_dump_and_reset_x.py:953: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
-    x_cls_make_slack_dump_and_reset_x.py:953: error: Expression has type "Any"  [misc]
-    x_cls_make_slack_dump_and_reset_x.py:1070: error: Expression has type "Any"  [misc]
+    x_cls_make_slack_dump_and_reset_x.py:676: error: Expression type contains "Any" (has type "list[Any]")  [misc]
+    x_cls_make_slack_dump_and_reset_x.py:954: error: Expression type contains "Any" (has type "Callable[[Any], Any]")  [misc]
+    x_cls_make_slack_dump_and_reset_x.py:954: error: Expression has type "Any"  [misc]
+    x_cls_make_slack_dump_and_reset_x.py:1071: error: Expression has type "Any"  [misc]
     …
 
 - [ ] x_make_telemetry_vector_x — mypy
@@ -710,7 +756,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_telemetry_vector_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:30:02.189124+00:00
+  - Captured: 2025-12-08T00:40:05.714142+00:00
   - Suggested action: Investigate
   - Stdout preview:
     src\x_make_telemetry_vector_x\__init__.py:29: error: Explicit "Any" is not allowed  [explicit-any]
@@ -726,7 +772,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_telemetry_vector_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:30:01.623097+00:00
+  - Captured: 2025-12-08T00:40:05.319436+00:00
   - Suggested action: Investigate
   - Stdout preview:
     TC003 Move standard library import `collections.abc.Sequence` into a type-checking block
@@ -742,7 +788,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_telemetry_vector_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:30:00.169893+00:00
+  - Captured: 2025-12-08T00:40:03.981214+00:00
   - Suggested action: Investigate
   - Stdout preview:
     TC003 Move standard library import `collections.abc.Sequence` into a type-checking block
@@ -758,7 +804,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_who_is_John_Connor_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:30:09.867263+00:00
+  - Captured: 2025-12-08T00:40:14.996441+00:00
   - Suggested action: Investigate
   - Stdout preview:
     SETUP_COPILOT_CLI.py:71: error: Expression type contains "Any" (has type "tuple[str, str, str, str, str, str, str, str, str]")  [misc]
@@ -774,7 +820,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_who_is_John_Connor_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:30:09.438254+00:00
+  - Captured: 2025-12-08T00:40:14.578818+00:00
   - Suggested action: Investigate
   - Stdout preview:
     N999 Invalid module name: 'SETUP_COPILOT_CLI'
@@ -790,7 +836,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_who_is_John_Connor_x
   - Tool version: ruff 0.14.8
-  - Captured: 2025-12-07T23:30:09.273713+00:00
+  - Captured: 2025-12-08T00:40:13.167004+00:00
   - Suggested action: Investigate
   - Stdout preview:
     N999 Invalid module name: 'SETUP_COPILOT_CLI'
@@ -806,7 +852,7 @@ Python (CPython) 3.12.6
   - Exit: exit 1
   - Repo path: C:\x_runner_x\x_make_yahw_x
   - Tool version: mypy 1.19.0 (compiled: yes)
-  - Captured: 2025-12-07T23:30:29.969835+00:00
+  - Captured: 2025-12-08T00:40:38.982649+00:00
   - Suggested action: Investigate
   - Stdout preview:
     projection.py:85: error: Expression type contains "Any" (has type "dict[str, Any]")  [misc]
