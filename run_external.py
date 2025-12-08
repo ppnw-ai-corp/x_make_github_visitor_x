@@ -108,6 +108,9 @@ def main(argv: list[str] | None = None) -> int:
             if result.markdown_report_path is not None
             else None
         ),
+        "context_path": (
+            str(result.context_path) if result.context_path is not None else None
+        ),
         "had_failures": result.had_failures,
         "failure_messages": _serialize_sequence(result.failure_messages),
         "failure_details": _serialize_sequence(result.failure_details),

@@ -5,6 +5,7 @@
   "workspace_root": "C:/workspace",
   "report_path": "C:/workspace/reports/visitor.json",
   "markdown_report_path": "C:/workspace/reports/visitor.md",
+  "context_path": "C:/workspace/artifacts/make_github_visitor/visitor_failures_context.json",
   "had_failures": false,
   "skipped": false,
   "failures": [],

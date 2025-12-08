@@ -142,10 +142,16 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
     assert [detail.get("repo") for detail in result_details] == [
         entry["repo"] for entry in failure_details
     ]
-    markdown_path = visitor.last_markdown_report_path
-    assert markdown_path is not None
-    assert markdown_path.suffix == ".md"
-    assert result.markdown_report_path == markdown_path
+    assert visitor.last_markdown_report_path is None
+    assert result.markdown_report_path is None
+
+    context_path = visitor.last_context_path
+    assert context_path is not None
+    assert context_path.exists()
+    assert result.context_path == context_path
+    context_payload = json.loads(context_path.read_text(encoding="utf-8"))
+    assert "repo_a" in str(context_payload.get("repo_table", ""))
+    assert "ruff" in str(context_payload.get("tool_table", ""))
 
     report_path = visitor.last_report_path
     assert report_path is not None
@@ -278,10 +284,13 @@ def test_run_inspect_flow_creates_empty_failure_report(
     summary_map = cast("Mapping[str, object]", summary)
     assert summary_map.get("total_repos") == 1
 
-    markdown_path = visitor.last_markdown_report_path
-    assert markdown_path is not None
-    text = markdown_path.read_text(encoding="utf-8")
-    assert "All tools succeeded" in text
+    assert visitor.last_markdown_report_path is None
+    context_path = visitor.last_context_path
+    assert context_path is not None
+    payload = json.loads(context_path.read_text(encoding="utf-8"))
+    repo_table = str(payload.get("repo_table"))
+    assert "_None_" in repo_table
+    assert isinstance(payload.get("doc_guard_status"), str)
 
 
 def test_workspace_root_can_be_git_repo(tmp_path: pathlib.Path) -> None:
@@ -293,7 +302,7 @@ def test_workspace_root_can_be_git_repo(tmp_path: pathlib.Path) -> None:
     assert visitor.root == workspace
 
 
-def test_markdown_todo_emission(tmp_path: pathlib.Path) -> None:
+def test_failure_context_emission(tmp_path: pathlib.Path) -> None:
     workspace = pathlib.Path(tmp_path) / "workspace"
     workspace.mkdir()
     repo = _create_repo(workspace, "repo_markdown")
@@ -343,10 +352,10 @@ def test_markdown_todo_emission(tmp_path: pathlib.Path) -> None:
 
     visitor.run_inspect_flow()
 
-    markdown_path = visitor.last_markdown_report_path
-    assert markdown_path is not None
-    text = markdown_path.read_text(encoding="utf-8")
-    assert "Visitor TODO Report" in text
-    assert "repo_markdown" in text
-    assert "pyright" in text
-    assert "Suggested action" in text
+    assert visitor.last_markdown_report_path is None
+    context_path = visitor.last_context_path
+    assert context_path is not None
+    payload = json.loads(context_path.read_text(encoding="utf-8"))
+    assert "repo_markdown" in str(payload.get("repo_table"))
+    assert "pyright" in str(payload.get("tool_table"))
+    assert "Doc Guard" in str(payload.get("doc_guard_status"))

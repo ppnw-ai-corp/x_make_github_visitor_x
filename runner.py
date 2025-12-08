@@ -11,6 +11,7 @@ import subprocess
 import sys
 import time
 import uuid
+from collections import Counter
 from collections.abc import Callable, Iterable, Mapping, MutableMapping, Sequence
 from contextlib import suppress
 from dataclasses import dataclass
@@ -66,6 +67,17 @@ JSONValue = JSONPrimitive | dict[str, "JSONValue"] | list["JSONValue"]
 
 _LOGGER = get_logger("x_make_github_visitor")
 
+VISITOR_CONTEXT_RELATIVE_PATH = (
+    Path("artifacts") / "make_github_visitor" / "visitor_failures_context.json"
+)
+_REPO_TABLE_LIMIT = 5
+_DEFAULT_NEXT_ACTIONS = (
+    "1. Freeze unmanaged visitor artifacts in favor of DocumentFactory.\n"
+    "2. Render `visitor_failure_digest_0_20_14` (or make_all digest) from the"
+    " latest context.\n3. Run Doc Guard / Politia to confirm no unmanaged"
+    " Markdown remains."
+)
+
 
 def _info(*args: object) -> None:
     msg = " ".join(str(a) for a in args)
@@ -73,115 +85,112 @@ def _info(*args: object) -> None:
         _LOGGER.info("%s", msg)
 
 
-def _display_text(value: object, fallback: str = "") -> str:
+def _string_field(value: object, fallback: str) -> str:
+    if isinstance(value, str):
+        stripped = value.strip()
+        if stripped:
+            return stripped
     if isinstance(value, Path):
-        text = str(value)
-    elif isinstance(value, str):
-        text = value
-    elif value is None:
-        text = ""
-    else:
-        text = str(value)
-    stripped = text.strip()
-    return stripped or fallback
+        text = str(value).strip()
+        if text:
+            return text
+    return fallback
 
 
-def _build_header_lines(
-    *,
-    workspace_display: str,
-    generated_at: datetime,
-    summary: Mapping[str, object] | None,
-    failure_count: int,
-    schema_version: str,
-) -> list[str]:
-    lines = ["# Visitor TODO Report", ""]
-    lines.append(f"- Generated: {generated_at.isoformat()}")
-    lines.append(f"- Workspace: {workspace_display}")
-    lines.append(f"- Schema: {schema_version}")
-    if isinstance(summary, Mapping):
-        total_repos = summary.get("total_repos")
-        if isinstance(total_repos, int):
-            lines.append(f"- Total repositories: {total_repos}")
-        overall_stats = summary.get("overall_stats")
-        if isinstance(overall_stats, Mapping):
-            failed_tools = overall_stats.get("failed_tools")
-            if isinstance(failed_tools, int):
-                lines.append(f"- Failing tools: {failed_tools}")
-    lines.append(f"- Recorded failures: {failure_count}")
-    lines.append("")
-    return lines
-
-
-def _preview_section(label: str, preview: str) -> list[str]:
-    if not preview:
-        return []
-    section = [f"  - {label}:"]
-    section.extend(f"    {line}" for line in preview.splitlines())
-    return section
-
-
-def _failure_section_lines(entry: Mapping[str, JSONValue]) -> list[str]:
-    repo = _display_text(entry.get("repo"), "<unknown repo>")
-    tool = _display_text(entry.get("tool"), "<unknown tool>")
-    summary_text = _display_text(
-        entry.get("summary") or entry.get("message"),
-        "Review tool output for details.",
-    )
-    command = _display_text(entry.get("command"), "<command unavailable>")
-    exit_display = _display_text(entry.get("exit"), "<exit unavailable>")
-    repo_path = _display_text(entry.get("repo_path"), "<path unavailable>")
-    suggestion = _display_text(entry.get("suggested_action"), "Investigate")
-    captured_at = _display_text(entry.get("captured_at"), "<not recorded>")
-    tool_version = _display_text(entry.get("tool_version"), "<version unknown>")
-    stdout_preview = _display_text(entry.get("stdout_preview"))
-    stderr_preview = _display_text(entry.get("stderr_preview"))
-
-    lines = [f"- [ ] {repo} — {tool}"]
-    lines.append(f"  - Summary: {summary_text}")
-    lines.append(f"  - Command: {command}")
-    lines.append(f"  - Exit: {exit_display}")
-    lines.append(f"  - Repo path: {repo_path}")
-    lines.append(f"  - Tool version: {tool_version}")
-    lines.append(f"  - Captured: {captured_at}")
-    lines.append(f"  - Suggested action: {suggestion}")
-    lines.extend(_preview_section("Stdout preview", stdout_preview))
-    lines.extend(_preview_section("Stderr preview", stderr_preview))
-    return lines
-
-
-def _join_markdown_lines(lines: Sequence[str]) -> str:
-    return "\n".join(lines).rstrip() + "\n"
-
-
-def render_markdown_todo_report(
-    *,
-    workspace_root: str | Path,
-    generated_at: datetime,
-    summary: Mapping[str, object] | None,
+def _summarize_failures_for_digest(
     failures: Sequence[Mapping[str, JSONValue]],
-) -> str:
-    """Render a Markdown TODO report from visitor summary/failure payloads."""
-    workspace_display = _display_text(workspace_root, "<unknown workspace>")
-    lines = _build_header_lines(
-        workspace_display=workspace_display,
-        generated_at=generated_at,
-        summary=summary,
-        failure_count=len(failures),
-        schema_version=SCHEMA_VERSION,
-    )
-
-    if not failures:
-        lines.append("- [x] All tools succeeded; no TODO items recorded.")
-        return _join_markdown_lines(lines)
-
+) -> tuple[dict[str, Counter[str]], Counter[str]]:
+    repo_counters: dict[str, Counter[str]] = {}
+    tool_counts: Counter[str] = Counter()
     for entry in failures:
-        if isinstance(entry, Mapping):
-            lines.extend(_failure_section_lines(entry))
-            lines.append("")
+        repo = _string_field(entry.get("repo"), "<unknown>")
+        tool = _string_field(entry.get("tool"), "<unknown>")
+        repo_counter = repo_counters.setdefault(repo, Counter())
+        repo_counter[tool] += 1
+        tool_counts[tool] += 1
+    return repo_counters, tool_counts
 
-    if lines and not lines[-1]:
-        lines.pop()
-    return _join_markdown_lines(lines)
+
+def _format_repo_table(repo_counters: Mapping[str, Counter[str]]) -> str:
+    if not repo_counters:
+        return (
+            "| Repo | Failures | Tool mix |\n"
+            "| --- | --- | --- |\n"
+            "| _None_ | 0 | — |"
+        )
+    sorted_entries = sorted(
+        repo_counters.items(),
+        key=lambda item: (-sum(item[1].values()), item[0].casefold()),
+    )[:_REPO_TABLE_LIMIT]
+    lines = ["| Repo | Failures | Tool mix |", "| --- | --- | --- |"]
+    for repo, counter in sorted_entries:
+        total = sum(counter.values())
+        tool_mix = ", ".join(
+            f"{tool} x{count}"
+            for tool, count in sorted(
+                counter.items(), key=lambda pair: (-pair[1], pair[0].casefold())
+            )
+        )
+        lines.append(f"| `{repo}` | {total} | {tool_mix or '—'} |")
+    return "\n".join(lines)
+
+
+def _format_tool_table(tool_counts: Counter[str]) -> str:
+    if not tool_counts:
+        return "| Tool | Failures |\n| --- | --- |\n| _None_ | 0 |"
+    lines = ["| Tool | Failures |", "| --- | --- |"]
+    for tool, count in sorted(
+        tool_counts.items(), key=lambda item: (-item[1], item[0].casefold())
+    ):
+        lines.append(f"| `{tool}` | {count} |")
+    return "\n".join(lines)
+
+
+def _relativize_path(path: Path | None, root: Path) -> str | None:
+    if path is None:
+        return None
+    try:
+        return str(path.resolve().relative_to(root.resolve()))
+    except ValueError:
+        return str(path)
+
+
+def _doc_guard_summary(
+    straggler: Path | None,
+    root: Path,
+) -> tuple[str, str, int]:
+    if straggler is None:
+        return (
+            "Doc Guard clear — Markdown report generation suppressed.",
+            "(none detected)",
+            0,
+        )
+    display = _relativize_path(straggler, root) or str(straggler)
+    return (f"Doc Guard blocked by `{display}`.", display, 1)
+
+
+def _build_summary_block(
+    *,
+    generated_at: datetime,
+    issue_count: int,
+    repo_count: int,
+    doc_guard_status: str,
+    straggler_count: int,
+    artifact_root: str,
+) -> str:
+    lines = [
+        (
+            "- Latest visitor run captured "
+            f"**{issue_count}** issue(s) across **{repo_count}** repo(s) "
+            f"({generated_at.isoformat()})."
+        ),
+        f"- Doc Guard status: **{doc_guard_status}**",
+        (
+            f"- JSON dossiers retained: **{issue_count}**; Markdown stragglers: **{straggler_count}**."
+        ),
+        f"- Artifact root: `{artifact_root}`.",
+    ]
+    return "\n".join(lines)
 
 
 """Visitor to run ruff/black/mypy/pyright on immediate child git clones.
@@ -457,6 +466,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         }
         self._last_report_path: Path | None = None
         self._last_markdown_report_path: Path | None = None
+        self._last_context_path: Path | None = None
         self._last_run_result: VisitorRunResult | None = None
         self.progress_writer: RepoProgressReporter | None = progress_writer
 
@@ -671,19 +681,30 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 os.fsync(fh.fileno())
         tmp.replace(path)
 
-    def _atomic_write_text(self, path: Path, content: str) -> None:
-        tmp = path.with_name(path.name + ".tmp")
-        with tmp.open("w", encoding="utf-8") as fh:
-            fh.write(content)
-            fh.flush()
-            with suppress(OSError):
-                os.fsync(fh.fileno())
-        tmp.replace(path)
+    def _context_output_path(self) -> Path:
+        return (self.root / VISITOR_CONTEXT_RELATIVE_PATH).resolve()
 
     def _artifact_run_dir(self, base_name: str) -> Path:
         artifact_dir = self._report_artifacts_dir / base_name
         artifact_dir.mkdir(parents=True, exist_ok=True)
         return artifact_dir
+
+    def _find_markdown_straggler(self) -> Path | None:
+        try:
+            candidates = list(self._reports_dir.glob("visitor_failures_*.md"))
+        except OSError:
+            return None
+        newest_path: Path | None = None
+        newest_mtime = float("-inf")
+        for candidate in candidates:
+            try:
+                stat = candidate.stat()
+            except OSError:
+                continue
+            if stat.st_mtime >= newest_mtime:
+                newest_mtime = stat.st_mtime
+                newest_path = candidate
+        return newest_path
 
     @staticmethod
     def _safe_slug(value: str, fallback: str) -> str:
@@ -1634,6 +1655,21 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 if stale_path.exists():
                     stale_path.unlink()
 
+    def _purge_markdown_stragglers(self) -> int:
+        reports_dir = self._reports_dir
+        try:
+            candidates = list(reports_dir.glob("visitor_failures_*.md"))
+        except OSError:
+            return 0
+        removed = 0
+        for candidate in candidates:
+            try:
+                candidate.unlink()
+            except OSError:
+                continue
+            removed += 1
+        return removed
+
     def _summarize_failure_message(self, message: str) -> str:
         collapsed = " ".join(message.strip().split())
         if not collapsed:
@@ -1789,19 +1825,47 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             self._sanitize_failure_detail(detail) for detail in self._failure_details
         ]
 
-    def _render_markdown_failure_report(
+    def _write_failure_context(
         self,
         *,
         generated_at: datetime,
         summary: Mapping[str, object],
         failures: Sequence[Mapping[str, JSONValue]],
-    ) -> str:
-        return render_markdown_todo_report(
-            workspace_root=self.root,
-            generated_at=generated_at,
-            summary=summary,
-            failures=failures,
+        report_path: Path,
+        artifact_dir: Path | None,
+    ) -> Path:
+        del summary  # retained for future templating expansion
+        repo_counters, tool_counts = _summarize_failures_for_digest(failures)
+        doc_guard_status, straggler_display, straggler_count = _doc_guard_summary(
+            self._find_markdown_straggler(),
+            self.root,
         )
+        artifact_display = str(artifact_dir) if artifact_dir else "(not captured)"
+        summary_block = _build_summary_block(
+            generated_at=generated_at,
+            issue_count=len(failures),
+            repo_count=len(repo_counters),
+            doc_guard_status=doc_guard_status,
+            straggler_count=straggler_count,
+            artifact_root=artifact_display,
+        )
+        context_payload: dict[str, JSONValue] = {
+            "generated_at": generated_at.isoformat(),
+            "schema_version": VISITOR_REPORT_SCHEMA_VERSION,
+            "source_report": _relativize_path(report_path, self.root)
+            or str(report_path),
+            "artifact_root": artifact_display,
+            "summary_block": summary_block,
+            "repo_table": _format_repo_table(repo_counters),
+            "tool_table": _format_tool_table(tool_counts),
+            "doc_guard_status": doc_guard_status,
+            "straggler_path": straggler_display,
+            "next_actions": _DEFAULT_NEXT_ACTIONS,
+        }
+        context_path = self._context_output_path()
+        context_path.parent.mkdir(parents=True, exist_ok=True)
+        self._atomic_write_json(context_path, context_payload)
+        return context_path
 
     def _write_failure_reports(self) -> tuple[Path, Path]:
         reports_dir = self._ensure_reports_dir()
@@ -1809,7 +1873,6 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         timestamp = now.strftime("%Y%m%d_%H%M%S")
         base_name = f"visitor_failures_{timestamp}"
         json_path = reports_dir / f"{base_name}.json"
-        markdown_path = reports_dir / f"{base_name}.md"
 
         summary = self.generate_summary_report()
         detail_pairs = list(
@@ -1834,20 +1897,24 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
         self._atomic_write_json(json_path, payload)
         self._write_checksum_sidecar(json_path)
-        markdown_text = self._render_markdown_failure_report(
+        context_path = self._write_failure_context(
             generated_at=now,
             summary=summary,
             failures=failures,
+            report_path=json_path,
+            artifact_dir=artifact_dir,
         )
-        self._atomic_write_text(markdown_path, markdown_text)
         self._last_report_path = json_path
-        self._last_markdown_report_path = markdown_path
-        return json_path, markdown_path
+        self._last_markdown_report_path = None
+        self._last_context_path = context_path
+        return json_path, context_path
 
     def _finalize_run_result(
         self,
         report_path: Path | None,
+        *,
         markdown_path: Path | None,
+        context_path: Path | None,
     ) -> VisitorRunResult:
         had_failures = bool(self._last_run_failures)
         messages = tuple(self._failure_messages)
@@ -1870,14 +1937,15 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 _info("…additional failures omitted…")
             if report_path is not None:
                 _info("toolchain JSON report:", str(report_path))
-            if markdown_path is not None:
-                _info("toolchain Markdown report:", str(markdown_path))
-            if report_path is None and markdown_path is None:
+            if context_path is not None:
+                _info("visitor failure context:", str(context_path))
+            if report_path is None and context_path is None:
                 _info("toolchain failures recorded; report paths unavailable")
 
         result = VisitorRunResult(
             report_path=report_path,
             markdown_report_path=markdown_path,
+            context_path=context_path,
             had_failures=had_failures,
             failure_messages=messages,
             failure_details=details,
@@ -2178,7 +2246,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         return self._serialize_failures(detail_pairs)
 
     def run_inspect_flow(self) -> None:
-        """Run discovery, execute tools, and emit JSON + Markdown TODO reports."""
+        """Run discovery, execute tools, and emit JSON + context artifacts."""
 
         children = self._child_dirs()
         if not children:
@@ -2204,10 +2272,17 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         self._emit_run_event(phase="start", repositories=repo_names)
 
         self._remove_legacy_json_reports()
+        purged = self._purge_markdown_stragglers()
+        if purged:
+            _info("removed", purged, "legacy visitor Markdown report(s)")
         self.body(children=children)
-        report_path, markdown_path = self._write_failure_reports()
+        report_path, context_path = self._write_failure_reports()
         self.cleanup()
-        self._finalize_run_result(report_path, markdown_path)
+        self._finalize_run_result(
+            report_path,
+            markdown_path=None,
+            context_path=context_path,
+        )
         # Streaming run complete with overall summary
         try:
             overall_summary = self.generate_summary_report()
@@ -2225,6 +2300,10 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     @property
     def last_markdown_report_path(self) -> Path | None:
         return self._last_markdown_report_path
+
+    @property
+    def last_context_path(self) -> Path | None:
+        return self._last_context_path
 
     @property
     def last_run_result(self) -> VisitorRunResult | None:
@@ -2473,6 +2552,7 @@ def _build_success_payload(
         "workspace_root": str(visitor.root),
         "report_path": _stringify_report_path(result.report_path),
         "markdown_report_path": _stringify_report_path(result.markdown_report_path),
+        "context_path": _stringify_report_path(result.context_path),
         "had_failures": bool(result.had_failures),
         "skipped": bool(result.skipped),
         "failures": _json_ready(failure_entries),
@@ -2499,6 +2579,7 @@ def _build_skip_payload(
         "workspace_root": str(visitor.root),
         "report_path": None,
         "markdown_report_path": None,
+        "context_path": None,
         "had_failures": False,
         "skipped": True,
         "failures": [],
@@ -2550,6 +2631,7 @@ def main_json(
             result = VisitorRunResult(
                 report_path=visitor.last_report_path,
                 markdown_report_path=visitor.last_markdown_report_path,
+                context_path=visitor.last_context_path,
                 had_failures=False,
             )
 
@@ -2747,6 +2829,7 @@ def run_workspace_inspection(
     return VisitorRunResult(
         report_path=report_path,
         markdown_report_path=visitor.last_markdown_report_path,
+        context_path=visitor.last_context_path,
         had_failures=False,
     )
 

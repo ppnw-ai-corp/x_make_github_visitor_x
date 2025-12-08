@@ -1,15 +1,10 @@
 from __future__ import annotations
 
 import argparse
-import json
 import sys
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import UTC, datetime
 from pathlib import Path
-from typing import cast
-
-from .runner import JSONValue, render_markdown_todo_report
 
 
 @dataclass(slots=True)
@@ -23,68 +18,15 @@ def _default_reports_dir() -> Path:
     return Path(__file__).resolve().parent / "reports"
 
 
-def _atomic_write_text(path: Path, content: str) -> None:
-    tmp = path.with_name(path.name + ".tmp")
-    with tmp.open("w", encoding="utf-8") as handle:
-        handle.write(content)
-        handle.flush()
-    tmp.replace(path)
-
-
-def _load_json_payload(path: Path) -> Mapping[str, object]:
-    with path.open("r", encoding="utf-8") as handle:
-        raw: object = json.load(handle)
-    if not isinstance(raw, Mapping):
-        message = f"report must be a JSON object: {path}"
-        raise TypeError(message)
-    normalized: dict[str, object] = {}
-    for key, value in raw.items():
-        normalized[str(key)] = value
-    return normalized
-
-
-def _parse_generated_at(value: object, *, fallback_timestamp: float) -> datetime:
-    if isinstance(value, str):
-        text = value.strip()
-        if text:
-            candidate = text[:-1] + "+00:00" if text.endswith("Z") else text
-            try:
-                parsed = datetime.fromisoformat(candidate)
-            except ValueError:
-                parsed = None
-            if parsed is not None:
-                if parsed.tzinfo is None:
-                    parsed = parsed.replace(tzinfo=UTC)
-                return parsed.astimezone(UTC)
-    return datetime.fromtimestamp(fallback_timestamp, tz=UTC)
-
-
-def _coerce_summary(value: object) -> Mapping[str, object]:
-    if isinstance(value, Mapping):
-        return cast("Mapping[str, object]", value)
-    return {}
-
-
-def _coerce_failures(value: object) -> list[Mapping[str, JSONValue]]:
-    if not isinstance(value, Sequence) or isinstance(value, (str, bytes, bytearray)):
-        return []
-    failures: list[Mapping[str, JSONValue]] = []
-    for entry in value:
-        if isinstance(entry, Mapping):
-            normalized = {
-                str(key): cast("JSONValue", val) for key, val in entry.items()
-            }
-            failures.append(normalized)
-    return failures
-
-
 def backfill_markdown_reports(
     reports_dir: Path,
     *,
     force: bool = False,
     limit: int | None = None,
 ) -> BackfillOutcome:
-    """Generate Markdown TODO reports for JSON visitor outputs."""
+    """Legacy helper retained for compatibility; Markdown generation is disabled."""
+
+    del force  # Markdown artifacts are no longer produced
 
     reports_path = reports_dir.resolve()
     if not reports_path.exists():
@@ -95,49 +37,15 @@ def backfill_markdown_reports(
     if limit is not None and limit >= 0:
         json_files = json_files[:limit]
 
-    created: list[Path] = []
-    skipped: list[Path] = []
-    errors: list[tuple[Path, str]] = []
-
-    for json_path in json_files:
-        markdown_path = json_path.with_suffix(".md")
-        if markdown_path.exists() and not force:
-            skipped.append(markdown_path)
-            continue
-        try:
-            payload = _load_json_payload(json_path)
-            summary = _coerce_summary(payload.get("summary"))
-            failures = _coerce_failures(payload.get("failures"))
-            stat = json_path.stat()
-            generated_at = _parse_generated_at(
-                payload.get("generated_at"), fallback_timestamp=stat.st_mtime
-            )
-            workspace_root_value = payload.get("workspace_root")
-            workspace_root = reports_path.parent
-            if isinstance(workspace_root_value, Path):
-                workspace_root = workspace_root_value
-            elif isinstance(workspace_root_value, str) and workspace_root_value.strip():
-                workspace_root = Path(workspace_root_value).expanduser().resolve()
-            markdown_text = render_markdown_todo_report(
-                workspace_root=workspace_root,
-                generated_at=generated_at,
-                summary=summary,
-                failures=failures,
-            )
-            _atomic_write_text(markdown_path, markdown_text)
-        except Exception as exc:  # noqa: BLE001 - defensive for report parsing
-            errors.append((json_path, str(exc)))
-        else:
-            created.append(markdown_path)
-
-    return BackfillOutcome(created=created, skipped=skipped, errors=errors)
+    skipped = [json_path.with_suffix(".md") for json_path in json_files]
+    return BackfillOutcome(created=[], skipped=skipped, errors=[])
 
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="x_make_github_visitor_backfill",
         description=(
-            "Backfill Markdown TODO reports from existing visitor JSON outputs."
+            "Legacy compatibility shim for the retired Markdown backfill."
         ),
     )
     parser.add_argument(
@@ -152,7 +60,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Regenerate Markdown even when a .md file already exists.",
+        help="Historical flag (no longer applicable).",
     )
     parser.add_argument(
         "--limit",
@@ -177,7 +85,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     summary_line = (
         f"created={len(outcome.created)} skipped={len(outcome.skipped)} "
-        f"errors={len(outcome.errors)}"
+        f"errors={len(outcome.errors)} (markdown disabled)"
     )
     print(summary_line)
     if outcome.errors:

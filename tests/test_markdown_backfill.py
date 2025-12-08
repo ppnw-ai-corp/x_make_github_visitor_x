@@ -14,7 +14,7 @@ def _write_report(path: Path, payload: dict[str, object]) -> None:
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-def test_backfill_generates_markdown(tmp_path: Path) -> None:
+def test_backfill_is_noop(tmp_path: Path) -> None:
     reports_dir = tmp_path / "reports"
     reports_dir.mkdir()
 
@@ -47,12 +47,10 @@ def test_backfill_generates_markdown(tmp_path: Path) -> None:
 
     outcome = backfill_markdown_reports(reports_dir)
     markdown_path = json_path.with_suffix(".md")
-    assert markdown_path.exists()
-    text = markdown_path.read_text(encoding="utf-8")
-    assert "Visitor TODO Report" in text
-    assert "repo_a" in text
-    assert "ruff" in text
-    assert len(outcome.created) == 1
+    assert not markdown_path.exists()
+    assert len(outcome.created) == 0
+    assert len(outcome.skipped) == 1
+    assert outcome.skipped[0] == markdown_path
     assert not outcome.errors
 
     second = backfill_markdown_reports(reports_dir)
@@ -62,6 +60,5 @@ def test_backfill_generates_markdown(tmp_path: Path) -> None:
     payload["failures"][0]["summary"] = "updated lint failure"  # type: ignore[index]
     _write_report(json_path, payload)
     forced = backfill_markdown_reports(reports_dir, force=True)
-    assert len(forced.created) == 1
-    updated_text = markdown_path.read_text(encoding="utf-8")
-    assert "updated lint failure" in updated_text
+    assert len(forced.created) == 0
+    assert len(forced.skipped) == 1

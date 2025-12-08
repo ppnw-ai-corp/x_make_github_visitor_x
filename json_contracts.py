@@ -224,6 +224,7 @@ OUTPUT_SCHEMA: dict[str, object] = {
         "workspace_root": {"type": "string", "minLength": 1},
         "report_path": {"type": ["string", "null"], "minLength": 1},
         "markdown_report_path": {"type": ["string", "null"], "minLength": 1},
+        "context_path": {"type": ["string", "null"], "minLength": 1},
         "had_failures": {"type": "boolean"},
         "skipped": {"type": "boolean"},
         "failures": {
@@ -251,6 +252,7 @@ OUTPUT_SCHEMA: dict[str, object] = {
         "generated_at",
         "workspace_root",
         "report_path",
+        "context_path",
         "had_failures",
         "skipped",
         "failures",

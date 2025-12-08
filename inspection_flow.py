@@ -32,6 +32,7 @@ class VisitorRunResult:
     report_path: Path | None
     had_failures: bool
     markdown_report_path: Path | None = None
+    context_path: Path | None = None
     failure_messages: tuple[str, ...] = ()
     failure_details: tuple[dict[str, object], ...] = ()
     skipped: bool = False
@@ -191,9 +192,20 @@ def _visitor_process_main(  # noqa: C901, PLR0912, PLR0915
                     markdown_value = Path(markdown_attr)
                 else:
                     markdown_value = None
+                context_attr = cast(
+                    "object | None",
+                    getattr(visitor, "last_context_path", None),
+                )
+                if isinstance(context_attr, Path):
+                    context_value: Path | None = context_attr
+                elif isinstance(context_attr, str):
+                    context_value = Path(context_attr)
+                else:
+                    context_value = None
                 run_result = VisitorRunResult(
                     report_path=report_value,
                     markdown_report_path=markdown_value,
+                    context_path=context_value,
                     had_failures=False,
                 )
 
@@ -209,6 +221,11 @@ def _visitor_process_main(  # noqa: C901, PLR0912, PLR0915
                     "markdown_report": (
                         str(run_result.markdown_report_path)
                         if isinstance(run_result.markdown_report_path, Path)
+                        else None
+                    ),
+                    "context_path": (
+                        str(run_result.context_path)
+                        if isinstance(run_result.context_path, Path)
                         else None
                     ),
                     "had_failures": run_result.had_failures,
@@ -259,6 +276,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
                 if status == "ok":
                     raw_report = message.get("report")
                     raw_markdown = message.get("markdown_report")
+                    context_raw = message.get("context_path")
                     failure_messages_raw = message.get("failure_messages")
                     failure_details_raw = message.get("failure_details")
                     had_failures_raw = message.get("had_failures")
@@ -292,9 +310,15 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
                                 }
                                 details.append(normalized_detail)
 
+                    if isinstance(context_raw, str) and context_raw:
+                        context_value: str | None = context_raw
+                    else:
+                        context_value = None
+
                     result_payload = {
                         "report": report_value,
                         "markdown_report": markdown_value,
+                        "context_path": context_value,
                         "failure_messages": tuple(messages),
                         "failure_details": tuple(details),
                         "had_failures": bool(had_failures_raw),
@@ -332,6 +356,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
         result_payload = {
             "report": None,
             "markdown_report": None,
+            "context_path": None,
             "failure_messages": (),
             "failure_details": (),
             "had_failures": False,
@@ -346,10 +371,16 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
     markdown_path = (
         Path(markdown_obj) if isinstance(markdown_obj, str) and markdown_obj else None
     )
+    context_obj = result_payload.get("context_path")
     failure_messages_raw = result_payload.get("failure_messages")
     failure_details_raw = result_payload.get("failure_details")
     had_failures = bool(result_payload.get("had_failures"))
     skipped = bool(result_payload.get("skipped"))
+
+    if isinstance(context_obj, str) and context_obj:
+        context_path = Path(context_obj)
+    else:
+        context_path = None
 
     if isinstance(failure_messages_raw, (list, tuple)):
         failure_messages_seq = cast("Sequence[object]", failure_messages_raw)
@@ -374,6 +405,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
     return VisitorRunResult(
         report_path=report_path,
         markdown_report_path=markdown_path,
+        context_path=context_path,
         had_failures=had_failures,
         failure_messages=failure_messages,
         failure_details=failure_details,
@@ -383,6 +415,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
 
 class VisitorProtocol(Protocol):
     last_report_path: Path | None
+    last_context_path: Path | None
 
     @property
     def last_run_result(self) -> VisitorRunResult | None: ...
@@ -538,6 +571,8 @@ def _run_visitor_flow(visitor: VisitorProtocol) -> VisitorRunResult:
     report_path = visitor.last_report_path
     return VisitorRunResult(
         report_path=report_path,
+        markdown_report_path=visitor.last_markdown_report_path,
+        context_path=visitor.last_context_path,
         had_failures=False,
     )
 
