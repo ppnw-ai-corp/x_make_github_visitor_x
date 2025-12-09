@@ -5,6 +5,7 @@ import multiprocessing as mp
 import os
 import pickle
 import queue
+import sys
 from contextlib import suppress
 from dataclasses import dataclass
 from os import PathLike
@@ -329,7 +330,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
                         message.get(
                             "message",
                             "Visitor subprocess reported failure",
-                        )
+                        ),
                     )
                     if status == "assertion":
                         error_exc = AssertionError(msg_text)
@@ -457,14 +458,14 @@ def _info(*parts: object) -> None:
     message = " ".join(str(p) for p in parts)
     _LOGGER.info("%s", message)
     if not _LOGGER.handlers:
-        print(message)
+        sys.stdout.write(message + "\n")
 
 
 def _error(*parts: object) -> None:
     message = " ".join(str(p) for p in parts)
     _LOGGER.error("%s", message)
     if not _LOGGER.handlers:
-        print(message)
+        sys.stderr.write(message + "\n")
 
 
 def _load_workspace_root_resolver(

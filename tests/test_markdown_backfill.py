@@ -40,7 +40,7 @@ def test_backfill_is_noop(tmp_path: Path) -> None:
                 "suggested_action": "Fix lint",
                 "stdout_preview": "stdout",
                 "stderr_preview": "stderr",
-            }
+            },
         ],
     }
     _write_report(json_path, payload)

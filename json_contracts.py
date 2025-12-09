@@ -29,7 +29,7 @@ _FILE_ALLOWLIST_SCHEMA: dict[str, object] = {
             "type": "array",
             "items": {"type": "string", "minLength": 1},
             "minItems": 1,
-        }
+        },
     },
     "additionalProperties": False,
 }
@@ -46,7 +46,7 @@ _TOOLS_SUMMARY_SCHEMA: dict[str, object] = {
             },
             "required": ["exit", "cached", "timed_out"],
             "additionalProperties": False,
-        }
+        },
     },
     "additionalProperties": False,
 }

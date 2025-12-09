@@ -88,10 +88,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"created={len(outcome.created)} skipped={len(outcome.skipped)} "
         f"errors={len(outcome.errors)} (markdown disabled)"
     )
-    print(summary_line)
+    sys.stdout.write(summary_line + "\n")
     if outcome.errors:
         for path, message in outcome.errors:
-            print(f"ERROR {path}: {message}", file=sys.stderr)
+            sys.stderr.write(f"ERROR {path}: {message}\n")
         return 1
     return 0
 

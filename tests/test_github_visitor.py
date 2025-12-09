@@ -72,7 +72,7 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
                     "cached": False,
                     "stdout": "lint error",
                     "stderr": "E999 broken",
-                }
+                },
             },
         },
         "repo_b": {
@@ -85,7 +85,7 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
                     "cached": False,
                     "stdout": "",
                     "stderr": "error: incompatible types",
-                }
+                },
             },
         },
     }
@@ -166,7 +166,7 @@ def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR09
     payload_copy = dict(report_data)
     payload_copy.pop("payload_checksum", None)
     canonical = json.dumps(payload_copy, sort_keys=True, separators=(",", ":")).encode(
-        "utf-8"
+        "utf-8",
     )
     assert payload_checksum == hashlib.sha256(canonical).hexdigest()
 
@@ -247,9 +247,9 @@ def test_run_inspect_flow_creates_empty_failure_report(
                     "cached": False,
                     "stdout": "",
                     "stderr": "",
-                }
+                },
             },
-        }
+        },
     }
 
     visitor = DummyVisitor(
@@ -320,9 +320,9 @@ def test_failure_context_emission(tmp_path: pathlib.Path) -> None:
                     "cached": False,
                     "stdout": "",
                     "stderr": "Type error!",
-                }
+                },
             },
-        }
+        },
     }
     failure_messages = ["pyright failed for repo_markdown (exit 3)"]
     failure_details = [
@@ -336,7 +336,7 @@ def test_failure_context_emission(tmp_path: pathlib.Path) -> None:
             "stderr": "Type error!",
             "ended_at": "2025-10-12T12:17:00+00:00",
             "tool_version": "pyright 1.2.3",
-        }
+        },
     ]
 
     visitor = DummyVisitor(

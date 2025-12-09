@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import sys
 from collections import OrderedDict
 from pathlib import Path
 
@@ -18,9 +19,9 @@ def main() -> None:
         repo = match.group(1).replace("\r", "").replace("\n", "")
         order.setdefault(repo, 0)
         order[repo] += 1
-    print(f"unique repos with failures: {len(order)}")
+    sys.stdout.write(f"unique repos with failures: {len(order)}\n")
     for idx, (repo, count) in enumerate(order.items(), start=1):
-        print(f"{idx:2d}. {repo} ({count} hits)")
+        sys.stdout.write(f"{idx:2d}. {repo} ({count} hits)\n")
 
 
 if __name__ == "__main__":

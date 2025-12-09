@@ -128,7 +128,7 @@ def _format_repo_table(repo_counters: Mapping[str, Counter[str]]) -> str:
         tool_mix = ", ".join(
             f"{tool} x{count}"
             for tool, count in sorted(
-                counter.items(), key=lambda pair: (-pair[1], pair[0].casefold())
+                counter.items(), key=lambda pair: (-pair[1], pair[0].casefold()),
             )
         )
         lines.append(f"| `{repo}` | {total} | {tool_mix or '—'} |")
@@ -140,7 +140,7 @@ def _format_tool_table(tool_counts: Counter[str]) -> str:
         return "| Tool | Failures |\n| --- | --- |\n| _None_ | 0 |"
     lines = ["| Tool | Failures |", "| --- | --- |"]
     for tool, count in sorted(
-        tool_counts.items(), key=lambda item: (-item[1], item[0].casefold())
+        tool_counts.items(), key=lambda item: (-item[1], item[0].casefold()),
     ):
         lines.append(f"| `{tool}` | {count} |")
     return "\n".join(lines)
@@ -759,7 +759,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     @staticmethod
     def _hash_report_payload(payload: Mapping[str, object]) -> str:
         canonical = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode(
-            "utf-8"
+            "utf-8",
         )
         return hashlib.sha256(canonical).hexdigest()
 
@@ -921,7 +921,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                         "error",
                     ],
                     skip_if_no_python=True,
-                )
+                ),
             ]
         return [
             ToolConfig(
@@ -1065,7 +1065,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 {
                     "file": rel_path,
                     "message": "\n".join(snippets[:OUTPUT_PREVIEW_LIMIT]),
-                }
+                },
             )
         return entries
 
@@ -1120,7 +1120,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                             "message": (
                                 message_obj if isinstance(message_obj, str) else ""
                             ),
-                        }
+                        },
                     )
         return failure_entries, failed_files
 
@@ -1391,7 +1391,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 part for part in existing.split(os.pathsep) if part
             )
         env["PYTHONPATH"] = os.pathsep.join(
-            _dedupe_preserving_order(pythonpath_entries)
+            _dedupe_preserving_order(pythonpath_entries),
         )
         return env
 
@@ -1476,7 +1476,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                     "cached": False,
                     "skipped": False,
                 },
-            )
+            ),
         )
 
         if config.skip_if_no_python and not repo.has_python:
@@ -1495,7 +1495,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                     status="skipped",
                     result=outcome.result,
                     summary="No Python files detected; skipping",
-                )
+                ),
             )
             return outcome
 
@@ -1514,7 +1514,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                     status="succeeded",
                     result=cached_outcome.result,
                     summary="Result loaded from cache",
-                )
+                ),
             )
             return cached_outcome
 
@@ -1578,7 +1578,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                     result=result,
                     summary=message,
                     failures=tuple(failure_entries),
-                )
+                ),
             )
             return ToolOutcome(result, message, detail)
 
@@ -1590,7 +1590,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 module_name=module_name,
                 status="succeeded",
                 result=result,
-            )
+            ),
         )
         return ToolOutcome(result)
 
@@ -1807,14 +1807,14 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                     "stdout_artifact": stdout_artifact,
                     "stderr_artifact": stderr_artifact,
                     "detail": self._sanitize_failure_detail(detail),
-                }
+                },
             )
         entries.sort(
             key=lambda entry: (
                 str(entry.get("repo") or "").casefold(),
                 str(entry.get("tool") or "").casefold(),
                 str(entry.get("summary") or ""),
-            )
+            ),
         )
         return entries
 
@@ -1877,7 +1877,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
         summary = self.generate_summary_report()
         detail_pairs = list(
-            zip(self._failure_details, self._failure_messages, strict=False)
+            zip(self._failure_details, self._failure_messages, strict=False),
         )
         artifact_dir = self._artifact_run_dir(base_name) if detail_pairs else None
         failures = self._serialize_failures(detail_pairs, artifact_dir=artifact_dir)
@@ -2371,7 +2371,7 @@ def _coerce_file_allowlist(
         ]
         if normalized_files:
             allowlist[normalized_repo] = tuple(
-                _dedupe_preserving_order(normalized_files)
+                _dedupe_preserving_order(normalized_files),
             )
     return allowlist or None
 
@@ -2854,7 +2854,7 @@ if __name__ == "__main__":
             description=(
                 "x_make_github_visitor_x workspace inspection runner "
                 "with acceleration flags"
-            )
+            ),
         )
         parser.add_argument(
             "--quick",

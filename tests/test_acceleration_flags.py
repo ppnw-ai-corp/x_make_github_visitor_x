@@ -34,7 +34,7 @@ class _MonkeyPatch(Protocol):  # minimal protocol for the single usage
 
 
 def test_runtime_snapshot_records_fast_paths(
-    monkeypatch: _MonkeyPatch, tmp_path: Path
+    monkeypatch: _MonkeyPatch, tmp_path: Path,
 ) -> None:
     """Fast path environment flags should appear in runtime snapshot & summary."""
 

@@ -77,7 +77,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         result: VisitorRunResult = run_workspace_inspection(
-            root, enable_cache=enable_cache
+            root, enable_cache=enable_cache,
         )
     except AssertionError as err:
         _emit_payload(
@@ -85,7 +85,7 @@ def main(argv: list[str] | None = None) -> int:
                 "status": "error",
                 "message": str(err),
                 "report_path": None,
-            }
+            },
         )
         return 1
     except Exception as err:  # noqa: BLE001 - defensive fallback
@@ -94,7 +94,7 @@ def main(argv: list[str] | None = None) -> int:
                 "status": "error",
                 "message": str(err),
                 "report_path": None,
-            }
+            },
         )
         return 1
 

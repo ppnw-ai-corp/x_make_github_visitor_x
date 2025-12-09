@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -134,11 +135,11 @@ def _validate_artifact_ref(
     ):
         errors.append(
             f"{field} byte length mismatch: expected {expected_bytes}, "
-            f"got {actual_bytes}"
+            f"got {actual_bytes}",
         )
     if isinstance(expected_sha, str) and expected_sha.lower() != actual_sha:
         errors.append(
-            f"{field} sha256 mismatch: expected {expected_sha}, " f"got {actual_sha}"
+            f"{field} sha256 mismatch: expected {expected_sha}, got {actual_sha}",
         )
     return errors
 
@@ -218,14 +219,14 @@ def _validate_failures(
                 ref=entry.get("stdout_artifact"),
                 field=f"failure #{index} stdout_artifact",
                 artifact_root=artifact_root,
-            )
+            ),
         )
         errors.extend(
             _validate_artifact_ref(
                 ref=entry.get("stderr_artifact"),
                 field=f"failure #{index} stderr_artifact",
                 artifact_root=artifact_root,
-            )
+            ),
         )
     return errors
 
@@ -302,10 +303,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         parser.error(str(exc))
         return 2
 
-    print(f"checked={len(outcome.checked)} errors={len(outcome.errors)}")
+    sys.stdout.write(
+        f"checked={len(outcome.checked)} errors={len(outcome.errors)}\n",
+    )
     if outcome.errors:
         for path, message in outcome.errors:
-            print(f"ERROR {path}: {message}")
+            sys.stderr.write(f"ERROR {path}: {message}\n")
         return 1
     return 0
 

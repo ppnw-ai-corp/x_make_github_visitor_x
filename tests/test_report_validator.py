@@ -55,11 +55,11 @@ def _write_sample_report(tmp_path: Path) -> Path:
                         "exit": 1,
                         "cached": False,
                         "timed_out": False,
-                    }
+                    },
                 },
                 "cached": 0,
                 "failed": 1,
-            }
+            },
         },
         "fast_paths": {},
         "fast_paths_active": [],
@@ -97,7 +97,7 @@ def _write_sample_report(tmp_path: Path) -> Path:
                     "bytes": len(stderr_bytes),
                 },
                 "detail": {"repo": "demo"},
-            }
+            },
         ],
         "artifact_root": str(artifacts_dir),
     }

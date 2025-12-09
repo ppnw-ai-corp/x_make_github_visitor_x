@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -61,15 +62,15 @@ def main() -> None:
     lines = LOG_PATH.read_text(encoding="utf-16", errors="ignore").splitlines()
     failures = _gather_failures(lines)
 
-    print(f"Total failures: {len(failures)}")
+    sys.stdout.write(f"Total failures: {len(failures)}\n")
     per_repo: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for tool, repo, reason in failures:
         per_repo[repo].append((tool, reason))
 
     for repo in sorted(per_repo):
-        print(f"--- {repo}")
+        sys.stdout.write(f"--- {repo}\n")
         for tool, reason in per_repo[repo]:
-            print(f"   {tool}: {reason}")
+            sys.stdout.write(f"   {tool}: {reason}\n")
 
 
 if __name__ == "__main__":
