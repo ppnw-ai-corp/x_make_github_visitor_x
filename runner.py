@@ -169,7 +169,7 @@ def _doc_guard_summary(
     return (f"Doc Guard blocked by `{display}`.", display, 1)
 
 
-def _build_summary_block(
+def _build_summary_block(  # noqa: PLR0913 - summary metadata requires explicit fields
     *,
     generated_at: datetime,
     issue_count: int,
@@ -186,7 +186,8 @@ def _build_summary_block(
         ),
         f"- Doc Guard status: **{doc_guard_status}**",
         (
-            f"- JSON dossiers retained: **{issue_count}**; Markdown stragglers: **{straggler_count}**."
+            "- JSON dossiers retained: "
+            f"**{issue_count}**; Markdown stragglers: **{straggler_count}**."
         ),
         f"- Artifact root: `{artifact_root}`.",
     ]

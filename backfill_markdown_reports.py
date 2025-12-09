@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import argparse
 import sys
-from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 
 @dataclass(slots=True)
@@ -44,9 +47,7 @@ def backfill_markdown_reports(
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="x_make_github_visitor_backfill",
-        description=(
-            "Legacy compatibility shim for the retired Markdown backfill."
-        ),
+        description=("Legacy compatibility shim for the retired Markdown backfill."),
     )
     parser.add_argument(
         "--reports-dir",

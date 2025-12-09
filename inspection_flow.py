@@ -415,6 +415,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
 
 class VisitorProtocol(Protocol):
     last_report_path: Path | None
+    last_markdown_report_path: Path | None
     last_context_path: Path | None
 
     @property
