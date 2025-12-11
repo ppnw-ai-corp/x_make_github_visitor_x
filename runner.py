@@ -128,7 +128,8 @@ def _format_repo_table(repo_counters: Mapping[str, Counter[str]]) -> str:
         tool_mix = ", ".join(
             f"{tool} x{count}"
             for tool, count in sorted(
-                counter.items(), key=lambda pair: (-pair[1], pair[0].casefold()),
+                counter.items(),
+                key=lambda pair: (-pair[1], pair[0].casefold()),
             )
         )
         lines.append(f"| `{repo}` | {total} | {tool_mix or '—'} |")
@@ -140,7 +141,8 @@ def _format_tool_table(tool_counts: Counter[str]) -> str:
         return "| Tool | Failures |\n| --- | --- |\n| _None_ | 0 |"
     lines = ["| Tool | Failures |", "| --- | --- |"]
     for tool, count in sorted(
-        tool_counts.items(), key=lambda item: (-item[1], item[0].casefold()),
+        tool_counts.items(),
+        key=lambda item: (-item[1], item[0].casefold()),
     ):
         lines.append(f"| `{tool}` | {count} |")
     return "\n".join(lines)

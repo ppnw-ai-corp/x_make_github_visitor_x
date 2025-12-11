@@ -39,13 +39,15 @@ else:  # pragma: no cover - runtime typing fallback
 if TYPE_CHECKING:
 
     def typed_fixture(
-        *_args: object, **_kwargs: object,
+        *_args: object,
+        **_kwargs: object,
     ) -> Callable[[Callable[_P, _T]], Callable[_P, _T]]: ...
 
 else:
 
     def typed_fixture(
-        *args: object, **kwargs: object,
+        *args: object,
+        **kwargs: object,
     ) -> Callable[[Callable[_P, _T]], Callable[_P, _T]]:
         def _decorate(func: Callable[_P, _T]) -> Callable[_P, _T]:
             decorated = pytest.fixture(*args, **kwargs)(func)

@@ -77,7 +77,8 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         result: VisitorRunResult = run_workspace_inspection(
-            root, enable_cache=enable_cache,
+            root,
+            enable_cache=enable_cache,
         )
     except AssertionError as err:
         _emit_payload(
