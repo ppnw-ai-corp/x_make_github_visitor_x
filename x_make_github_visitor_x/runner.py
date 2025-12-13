@@ -31,7 +31,7 @@ from .json_contracts import (
 
 JSONSchemaValidationError = cast("type[Exception]", _JsonSchemaValidationError)
 
-_WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
+_WORKSPACE_ROOT = Path(__file__).resolve().parent.parent.parent
 _workspace_root_str = str(_WORKSPACE_ROOT)
 
 try:
@@ -2737,8 +2737,8 @@ def _workspace_root() -> str:
     for anc in here.parents:
         if (anc / ".git").exists():  # repo root
             return str(anc.parent)
-    # Fallback: two levels up
-    return str(here.parent.parent)
+    # Fallback: three levels up
+    return str(here.parent.parent.parent)
 
 
 def init_name(

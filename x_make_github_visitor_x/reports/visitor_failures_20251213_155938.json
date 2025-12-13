@@ -1,0 +1,196 @@
+{
+    "artifact_root": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251213_155938",
+    "failures": [
+        {
+            "captured_at": "2025-12-13T15:59:33.952145+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_legatus_scriba_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_legatus_scriba_machina_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_legatus_scriba_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "c:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "duration_seconds": 0.7955938999948557,
+                "ended_at": "2025-12-13T15:59:33.952145+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "crud/__init__.py",
+                    "crud/processor.py",
+                    "factory/__init__.py",
+                    "factory/catalog_loader.py",
+                    "factory/cli.py",
+                    "factory/config/__init__.py",
+                    "factory/config/scribe_run_loader.py",
+                    "factory/core/__init__.py",
+                    "factory/core/factory.py",
+                    "factory/core/specs.py",
+                    "factory/headers.py",
+                    "factory/hooks/__init__.py",
+                    "factory/hooks/default_hooks.py",
+                    "factory/hooks/diagram_renderer.py",
+                    "factory/hooks/models.py",
+                    "factory/hooks/parser.py",
+                    "factory/hooks/registry.py",
+                    "factory/markdown_policy.py",
+                    "factory/renderers/__init__.py",
+                    "factory/renderers/markdown_renderer.py",
+                    "factory/renderers/pdf_renderer.py",
+                    "factory/scribe_factory.py",
+                    "factory/scribe_plan_cli.py",
+                    "factory/utils/__init__.py",
+                    "factory/utils/backup_paths.py",
+                    "factory/utils/checksum.py",
+                    "factory/utils/wkhtmltopdf_locator.py",
+                    "json_types.py",
+                    "scripts/__init__.py",
+                    "scripts/bootstrap_change_control_catch_up.py",
+                    "scripts/collect_open_issues.py",
+                    "scripts/doc_guard.py",
+                    "scripts/enforce_markdown_pdf_compliance.py",
+                    "scripts/find_wkhtmltopdf.py",
+                    "scripts/generate_markdown_inventory.py",
+                    "scripts/generate_markdown_manifest.py",
+                    "scripts/render_selected_documents.py",
+                    "scripts/render_subset.py",
+                    "scripts/run_catch_up_batch.py",
+                    "scripts/run_instruction_crud.py",
+                    "scripts/verify_factory_outputs.py",
+                    "tests/__init__.py",
+                    "tests/crud/__init__.py",
+                    "tests/crud/test_processor.py",
+                    "tests/factory/__init__.py",
+                    "tests/factory/test_catalog_loader.py",
+                    "tests/factory/test_factory.py",
+                    "tests/hooks/__init__.py",
+                    "tests/hooks/test_graphviz_renderer.py",
+                    "tools/__init__.py",
+                    "tools/generate_markdown_manifest.py",
+                    "typings/pytest/__init__.pyi"
+                ],
+                "repo": "x_legatus_scriba_machina_x",
+                "repo_hash": "54bb3b2602d125f3933103e090a5820fb96eb7b01bf3b1689a0a241e89d9a699",
+                "repo_path": "c:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "started_at": "2025-12-13T15:59:33.156403+00:00",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.19.0 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_legatus_scriba_machina_x (exit 1)\ncwd: c:\\x_runner_x\\x_legatus_scriba_machina_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_legatus_scriba_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-12-13T15:59:33.156403+00:00\nduration: 0.796s\ntool_version: mypy 1.19.0 (compiled: yes)\nstdout:\nscripts\\run_catch_up_batch.py:141: error: Expression has type \"Any\"  [misc]\nscripts\\run_catch_up_batch.py:144: error: Expression has type \"Any\"  [misc]\nfactory\\cli.py:196: error: Explicit \"Any\" is not allowed  [explicit-any]\nfactory\\cli.py:203: error: Explicit \"Any\" is not allowed  [explicit-any]\nfactory\\cli.py:205: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_scriba_machina_x",
+            "repo_path": "c:\\x_runner_x\\x_legatus_scriba_machina_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 20217,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251213_155938\\0001_x-legatus-scriba-machina-x_mypy_stdout.log",
+                "sha256": "c5b0d42625422436000139afc33196c057d03711b8002d205816e006c2e98e91"
+            },
+            "stdout_preview": "scripts\\run_catch_up_batch.py:141: error: Expression has type \"Any\"  [misc]\nscripts\\run_catch_up_batch.py:144: error: Expression has type \"Any\"  [misc]\nfactory\\cli.py:196: error: Explicit \"Any\" is not allowed  [explicit-any]\nfactory\\cli.py:203: error: Explicit \"Any\" is not allowed  [explicit-any]\nfactory\\cli.py:205: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_legatus_scriba_machina_x (exit 1) cwd: c:\\x_runner_x\\x_legatus_scriba_machina_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_legatus_scriba_machina_x --strict --no-warn-unused-configs --show-error-c\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.19.0 (compiled: yes)"
+        }
+    ],
+    "generated_at": "2025-12-13T15:59:38.414195+00:00",
+    "payload_checksum": "96a37fd21bd6ec1a1280dbd6f4eb6d1e63073702ebd196cce60e0886ddfaec0d",
+    "runtime": {
+        "environment": {
+            "PATH": "c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\HP\\HP One Agent;C:\\Program Files\\Git\\cmd;C:\\Program Files\\GitHub CLI\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;C:\\ProgramData\\chocolatey\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.16.0-win32-x64\\bundled\\scripts\\noConfigScripts"
+        },
+        "fast_paths": {
+            "quick_mode": false,
+            "skip_content_hash": false,
+            "skip_tools": false
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.12.6 (main, Sep  9 2024, 20:50:27) [MSC v.1929 64 bit (AMD64)]",
+        "run_completed_at": "2025-12-13T15:59:38.414195+00:00",
+        "run_started_at": "2025-12-13T15:59:23.741350+00:00",
+        "selected_tools": [
+            "ruff_fix",
+            "black",
+            "ruff_check",
+            "mypy",
+            "pyright"
+        ],
+        "workspace_root": "c:\\x_runner_x"
+    },
+    "schema_version": "x_make_github_visitor_x.report/1.0",
+    "summary": {
+        "fast_paths": {
+            "quick_mode": false,
+            "skip_content_hash": false,
+            "skip_tools": false
+        },
+        "fast_paths_active": [],
+        "overall_stats": {
+            "cache_hits": 0,
+            "cache_misses": 5,
+            "failed_tools": 1,
+            "had_failures": true,
+            "total_tools_run": 5
+        },
+        "repos": {
+            "x_legatus_scriba_machina_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "54bb3b2602d125f3933103e090a5820fb96eb7b01bf3b1689a0a241e89d9a699",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-12-13T15:59:38.414195+00:00",
+        "total_repos": 1
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.12.6",
+        "mypy": "mypy 1.19.0 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.9"
+    },
+    "workspace_root": "c:\\x_runner_x"
+}
