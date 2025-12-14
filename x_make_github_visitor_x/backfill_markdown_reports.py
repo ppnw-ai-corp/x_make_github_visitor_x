@@ -74,15 +74,29 @@ def _build_parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
     parser = _build_parser()
     args = parser.parse_args(argv)
+    force_attr: object = getattr(args, "force", False)
+    limit_attr: object = getattr(args, "limit", None)
+    force_flag = bool(force_attr)
+    limit_value: int | None
+    if isinstance(limit_attr, int):
+        limit_value = limit_attr
+    else:
+        limit_value = None
+    reports_dir_attr: object = getattr(args, "reports_dir", _default_reports_dir())
+    if isinstance(reports_dir_attr, Path):
+        reports_dir = reports_dir_attr
+    elif isinstance(reports_dir_attr, str):
+        reports_dir = Path(reports_dir_attr)
+    else:
+        parser.error("reports_dir must be a filesystem path")
     try:
         outcome = backfill_markdown_reports(
-            args.reports_dir,
-            force=bool(getattr(args, "force", False)),
-            limit=getattr(args, "limit", None),
+            reports_dir,
+            force=force_flag,
+            limit=limit_value,
         )
     except FileNotFoundError as exc:
         parser.error(str(exc))
-        return 2
 
     summary_line = (
         f"created={len(outcome.created)} skipped={len(outcome.skipped)} "

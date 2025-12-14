@@ -111,6 +111,17 @@ def _summarize_failures_for_digest(
     return repo_counters, tool_counts
 
 
+def _repo_summary_sort_key(item: tuple[str, Counter[str]]) -> tuple[int, str]:
+    repo, counter = item
+    total = sum(counter.values())
+    return (-total, repo.casefold())
+
+
+def _descending_tool_count_key(entry: tuple[str, int]) -> tuple[int, str]:
+    tool, count = entry
+    return (-count, tool.casefold())
+
+
 def _format_repo_table(repo_counters: Mapping[str, Counter[str]]) -> str:
     if not repo_counters:
         return (
@@ -120,7 +131,7 @@ def _format_repo_table(repo_counters: Mapping[str, Counter[str]]) -> str:
         )
     sorted_entries = sorted(
         repo_counters.items(),
-        key=lambda item: (-sum(item[1].values()), item[0].casefold()),
+        key=_repo_summary_sort_key,
     )[:_REPO_TABLE_LIMIT]
     lines = ["| Repo | Failures | Tool mix |", "| --- | --- | --- |"]
     for repo, counter in sorted_entries:
@@ -129,7 +140,7 @@ def _format_repo_table(repo_counters: Mapping[str, Counter[str]]) -> str:
             f"{tool} x{count}"
             for tool, count in sorted(
                 counter.items(),
-                key=lambda pair: (-pair[1], pair[0].casefold()),
+                key=_descending_tool_count_key,
             )
         )
         lines.append(f"| `{repo}` | {total} | {tool_mix or '—'} |")
@@ -142,7 +153,7 @@ def _format_tool_table(tool_counts: Counter[str]) -> str:
     lines = ["| Tool | Failures |", "| --- | --- |"]
     for tool, count in sorted(
         tool_counts.items(),
-        key=lambda item: (-item[1], item[0].casefold()),
+        key=_descending_tool_count_key,
     ):
         lines.append(f"| `{tool}` | {count} |")
     return "\n".join(lines)

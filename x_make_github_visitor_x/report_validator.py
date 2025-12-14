@@ -9,7 +9,7 @@ import sys
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 from .json_contracts import VISITOR_REPORT_SCHEMA
 
@@ -209,21 +209,23 @@ def _validate_failures(
     failures_obj = payload.get("failures")
     if not isinstance(failures_obj, Sequence):
         return []
+    failures_seq = cast("Sequence[object]", failures_obj)
     errors: list[str] = []
-    for index, entry in enumerate(failures_obj, 1):
+    for index, entry in enumerate(failures_seq, 1):
         if not isinstance(entry, Mapping):
             errors.append(f"failure #{index} is not an object")
             continue
+        typed_entry = cast("Mapping[str, object]", entry)
         errors.extend(
             _validate_artifact_ref(
-                ref=entry.get("stdout_artifact"),
+                ref=typed_entry.get("stdout_artifact"),
                 field=f"failure #{index} stdout_artifact",
                 artifact_root=artifact_root,
             ),
         )
         errors.extend(
             _validate_artifact_ref(
-                ref=entry.get("stderr_artifact"),
+                ref=typed_entry.get("stderr_artifact"),
                 field=f"failure #{index} stderr_artifact",
                 artifact_root=artifact_root,
             ),
@@ -297,11 +299,23 @@ def _build_parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
     parser = _build_parser()
     args = parser.parse_args(argv)
+    limit_attr: object = getattr(args, "limit", None)
+    limit_value: int | None
+    if isinstance(limit_attr, int):
+        limit_value = limit_attr
+    else:
+        limit_value = None
+    reports_dir_attr: object = getattr(args, "reports_dir", _default_reports_dir())
+    if isinstance(reports_dir_attr, Path):
+        reports_dir = reports_dir_attr
+    elif isinstance(reports_dir_attr, str):
+        reports_dir = Path(reports_dir_attr)
+    else:
+        parser.error("reports_dir must be a filesystem path")
     try:
-        outcome = validate_reports_dir(args.reports_dir, limit=args.limit)
+        outcome = validate_reports_dir(reports_dir, limit=limit_value)
     except FileNotFoundError as exc:
         parser.error(str(exc))
-        return 2
 
     sys.stdout.write(
         f"checked={len(outcome.checked)} errors={len(outcome.errors)}\n",
