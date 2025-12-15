@@ -1,0 +1,3573 @@
+{
+    "artifact_root": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736",
+    "failures": [
+        {
+            "captured_at": "2025-12-15T16:44:13.368518+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.16097859997535124,
+                "ended_at": "2025-12-15T16:44:13.368518+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "get_chocolatey_gviz_xmas_2025.py",
+                    "inspection_stream_tailer.py",
+                    "interface/__init__.py",
+                    "interface/commit.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/progress_board.py",
+                    "interface/gui/prototypes/__init__.py",
+                    "interface/gui/prototypes/form_schemas.py",
+                    "interface/gui/prototypes/nicegui_control_center.py",
+                    "interface/gui/prototypes/shared.py",
+                    "interface/gui/prototypes/textual_control_center.py",
+                    "interface/gui/tree.py",
+                    "interface/tree.py",
+                    "manifest.py",
+                    "naked_entry.py",
+                    "run_inspection_only.py",
+                    "run_make_all_switcharoo.py",
+                    "run_visitor_stage.py",
+                    "tests/__init__.py",
+                    "tests/test_environment_vault_disabled.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_ingestion_rotation.py",
+                    "tests/test_ingestion_schema_validation.py",
+                    "tests/test_inspection_stream_tailer.py",
+                    "tests/test_make_all_commit_cli.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_make_all_pip_updates.py",
+                    "tests/test_no_persistent_env_var_reference.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_orchestrator_visitor_stage.py",
+                    "tests/test_progress_board_flags.py",
+                    "tests/test_progress_board_streaming.py",
+                    "tests/test_publish_manifest.py",
+                    "tools/__init__.py",
+                    "tools/batch_smoke_runner.py",
+                    "tools/commit_all_repos.py",
+                    "tools/list_missing_wrappers.py",
+                    "tools/orchestrator_debug.py",
+                    "tools/run_lint_sweep.py",
+                    "tools/run_manual_lint_sweep.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d237a336e9862f05a06d7a2a3f62f289c4989fd01efefefb2f1736768ffbc42c",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-12-15T16:44:13.207540+00:00",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:44:13.207540+00:00\nduration: 0.161s\ntool_version: ruff 0.14.9\nstdout:\nPLW0603 Using the global statement to update `_GUI_PROBE_ERROR` is discouraged\n  --> run_make_all_switcharoo.py:97:12\n   |\n96 | def _gui_supported() -> bool:\n97 |     global _GUI_PROBE_ERROR\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 736,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0002_x-0-make-all-x_ruff-check_stdout.log",
+                "sha256": "3cc73a18eef7b542af77b92c88916e345e536255481ffb11ed6487cad3b652c4"
+            },
+            "stdout_preview": "PLW0603 Using the global statement to update `_GUI_PROBE_ERROR` is discouraged\n  --> run_make_all_switcharoo.py:97:12\n   |\n96 | def _gui_supported() -> bool:\n97 |     global _GUI_PROBE_ERROR\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:44:08.969920+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.23845509998500347,
+                "ended_at": "2025-12-15T16:44:08.969920+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "get_chocolatey_gviz_xmas_2025.py",
+                    "inspection_stream_tailer.py",
+                    "interface/__init__.py",
+                    "interface/commit.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/progress_board.py",
+                    "interface/gui/prototypes/__init__.py",
+                    "interface/gui/prototypes/form_schemas.py",
+                    "interface/gui/prototypes/nicegui_control_center.py",
+                    "interface/gui/prototypes/shared.py",
+                    "interface/gui/prototypes/textual_control_center.py",
+                    "interface/gui/tree.py",
+                    "interface/tree.py",
+                    "manifest.py",
+                    "naked_entry.py",
+                    "run_inspection_only.py",
+                    "run_make_all_switcharoo.py",
+                    "run_visitor_stage.py",
+                    "tests/__init__.py",
+                    "tests/test_environment_vault_disabled.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_ingestion_rotation.py",
+                    "tests/test_ingestion_schema_validation.py",
+                    "tests/test_inspection_stream_tailer.py",
+                    "tests/test_make_all_commit_cli.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_make_all_pip_updates.py",
+                    "tests/test_no_persistent_env_var_reference.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_orchestrator_visitor_stage.py",
+                    "tests/test_progress_board_flags.py",
+                    "tests/test_progress_board_streaming.py",
+                    "tests/test_publish_manifest.py",
+                    "tools/__init__.py",
+                    "tools/batch_smoke_runner.py",
+                    "tools/commit_all_repos.py",
+                    "tools/list_missing_wrappers.py",
+                    "tools/orchestrator_debug.py",
+                    "tools/run_lint_sweep.py",
+                    "tools/run_manual_lint_sweep.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d237a336e9862f05a06d7a2a3f62f289c4989fd01efefefb2f1736768ffbc42c",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-12-15T16:44:08.731466+00:00",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:44:08.731466+00:00\nduration: 0.238s\ntool_version: ruff 0.14.9\nstdout:\nPLW0603 Using the global statement to update `_GUI_PROBE_ERROR` is discouraged\n  --> run_make_all_switcharoo.py:97:12\n   |\n96 | def _gui_supported() -> bool:\n97 |     global _GUI_PROBE_ERROR\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 736,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0001_x-0-make-all-x_ruff-fix_stdout.log",
+                "sha256": "3cc73a18eef7b542af77b92c88916e345e536255481ffb11ed6487cad3b652c4"
+            },
+            "stdout_preview": "PLW0603 Using the global statement to update `_GUI_PROBE_ERROR` is discouraged\n  --> run_make_all_switcharoo.py:97:12\n   |\n96 | def _gui_supported() -> bool:\n97 |     global _GUI_PROBE_ERROR\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --tar\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:45:35.880119+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "duration_seconds": 3.851230800006306,
+                "ended_at": "2025-12-15T16:45:35.880119+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "crud/__init__.py",
+                    "crud/processor.py",
+                    "factory/__init__.py",
+                    "factory/catalog_loader.py",
+                    "factory/cli.py",
+                    "factory/config/__init__.py",
+                    "factory/config/scribe_run_loader.py",
+                    "factory/core/__init__.py",
+                    "factory/core/factory.py",
+                    "factory/core/specs.py",
+                    "factory/headers.py",
+                    "factory/hooks/__init__.py",
+                    "factory/hooks/default_hooks.py",
+                    "factory/hooks/diagram_renderer.py",
+                    "factory/hooks/models.py",
+                    "factory/hooks/parser.py",
+                    "factory/hooks/registry.py",
+                    "factory/markdown_policy.py",
+                    "factory/renderers/__init__.py",
+                    "factory/renderers/markdown_renderer.py",
+                    "factory/renderers/pdf_renderer.py",
+                    "factory/scribe_factory.py",
+                    "factory/scribe_plan_cli.py",
+                    "factory/utils/__init__.py",
+                    "factory/utils/backup_paths.py",
+                    "factory/utils/checksum.py",
+                    "factory/utils/wkhtmltopdf_locator.py",
+                    "json_types.py",
+                    "scripts/__init__.py",
+                    "scripts/bootstrap_change_control_catch_up.py",
+                    "scripts/collect_open_issues.py",
+                    "scripts/doc_guard.py",
+                    "scripts/enforce_markdown_pdf_compliance.py",
+                    "scripts/find_wkhtmltopdf.py",
+                    "scripts/generate_markdown_inventory.py",
+                    "scripts/generate_markdown_manifest.py",
+                    "scripts/render_selected_documents.py",
+                    "scripts/render_subset.py",
+                    "scripts/run_catch_up_batch.py",
+                    "scripts/run_instruction_crud.py",
+                    "scripts/verify_factory_outputs.py",
+                    "tests/__init__.py",
+                    "tests/crud/__init__.py",
+                    "tests/crud/test_processor.py",
+                    "tests/factory/__init__.py",
+                    "tests/factory/test_catalog_loader.py",
+                    "tests/factory/test_factory.py",
+                    "tests/hooks/__init__.py",
+                    "tests/hooks/test_graphviz_renderer.py",
+                    "tools/__init__.py",
+                    "tools/generate_markdown_manifest.py",
+                    "typings/pytest/__init__.pyi"
+                ],
+                "repo": "x_legatus_scriba_machina_x",
+                "repo_hash": "f8bd8726bb96868c4e4ae946ffaf2745cfdd252ca235340ff1449187e746adfe",
+                "repo_path": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "started_at": "2025-12-15T16:45:32.028890+00:00",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_legatus_scriba_machina_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_scriba_machina_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-12-15T16:45:32.028890+00:00\nduration: 3.851s\ntool_version: python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0\nstdout:\n--- C:\\x_runner_x\\x_legatus_scriba_machina_x\\scripts\\doc_guard.py\t2025-12-14 15:38:11.870781+00:00\n+++ C:\\x_runner_x\\x_legatus_scriba_machina_x\\scripts\\doc_guard.py\t2025-12-15 16:45:35.461923+00:00\n@@ -68,13 +68,11 @@\n     if override and override.strip():\n         return override.strip()\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_legatus_scriba_machina_x\\scripts\\doc_guard.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 52 files would be left unchanged.",
+            "repo": "x_legatus_scriba_machina_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+            "stderr_artifact": {
+                "bytes": 181,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0004_x-legatus-scriba-machina-x_black_stderr.log",
+                "sha256": "6b4bd549397eb220eed964882f5ba36c3aed2555649693cba87bad32b7eafbfd"
+            },
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_legatus_scriba_machina_x\\scripts\\doc_guard.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 52 files would be left unchanged.",
+            "stdout_artifact": {
+                "bytes": 712,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0004_x-legatus-scriba-machina-x_black_stdout.log",
+                "sha256": "acf811a14c81df95d8d9620a3d1291d0b56c3197d8d21c4cad5ec5aa21268f5b"
+            },
+            "stdout_preview": "--- C:\\x_runner_x\\x_legatus_scriba_machina_x\\scripts\\doc_guard.py\t2025-12-14 15:38:11.870781+00:00\n+++ C:\\x_runner_x\\x_legatus_scriba_machina_x\\scripts\\doc_guard.py\t2025-12-15 16:45:35.461923+00:00\n@@ -68,13 +68,11 @@\n     if override and override.strip():\n         return override.strip()\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_legatus_scriba_machina_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_scriba_machina_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0"
+        },
+        {
+            "captured_at": "2025-12-15T16:45:44.802221+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_scriba_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_legatus_scriba_machina_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_scriba_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "duration_seconds": 8.717458699975396,
+                "ended_at": "2025-12-15T16:45:44.802221+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "crud/__init__.py",
+                    "crud/processor.py",
+                    "factory/__init__.py",
+                    "factory/catalog_loader.py",
+                    "factory/cli.py",
+                    "factory/config/__init__.py",
+                    "factory/config/scribe_run_loader.py",
+                    "factory/core/__init__.py",
+                    "factory/core/factory.py",
+                    "factory/core/specs.py",
+                    "factory/headers.py",
+                    "factory/hooks/__init__.py",
+                    "factory/hooks/default_hooks.py",
+                    "factory/hooks/diagram_renderer.py",
+                    "factory/hooks/models.py",
+                    "factory/hooks/parser.py",
+                    "factory/hooks/registry.py",
+                    "factory/markdown_policy.py",
+                    "factory/renderers/__init__.py",
+                    "factory/renderers/markdown_renderer.py",
+                    "factory/renderers/pdf_renderer.py",
+                    "factory/scribe_factory.py",
+                    "factory/scribe_plan_cli.py",
+                    "factory/utils/__init__.py",
+                    "factory/utils/backup_paths.py",
+                    "factory/utils/checksum.py",
+                    "factory/utils/wkhtmltopdf_locator.py",
+                    "json_types.py",
+                    "scripts/__init__.py",
+                    "scripts/bootstrap_change_control_catch_up.py",
+                    "scripts/collect_open_issues.py",
+                    "scripts/doc_guard.py",
+                    "scripts/enforce_markdown_pdf_compliance.py",
+                    "scripts/find_wkhtmltopdf.py",
+                    "scripts/generate_markdown_inventory.py",
+                    "scripts/generate_markdown_manifest.py",
+                    "scripts/render_selected_documents.py",
+                    "scripts/render_subset.py",
+                    "scripts/run_catch_up_batch.py",
+                    "scripts/run_instruction_crud.py",
+                    "scripts/verify_factory_outputs.py",
+                    "tests/__init__.py",
+                    "tests/crud/__init__.py",
+                    "tests/crud/test_processor.py",
+                    "tests/factory/__init__.py",
+                    "tests/factory/test_catalog_loader.py",
+                    "tests/factory/test_factory.py",
+                    "tests/hooks/__init__.py",
+                    "tests/hooks/test_graphviz_renderer.py",
+                    "tools/__init__.py",
+                    "tools/generate_markdown_manifest.py",
+                    "typings/pytest/__init__.pyi"
+                ],
+                "repo": "x_legatus_scriba_machina_x",
+                "repo_hash": "f8bd8726bb96868c4e4ae946ffaf2745cfdd252ca235340ff1449187e746adfe",
+                "repo_path": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "started_at": "2025-12-15T16:45:36.084765+00:00",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.19.1 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_legatus_scriba_machina_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_scriba_machina_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_scriba_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-12-15T16:45:36.084765+00:00\nduration: 8.717s\ntool_version: mypy 1.19.1 (compiled: yes)\nstdout:\nscripts\\run_catch_up_batch.py:141: error: Expression has type \"Any\"  [misc]\nscripts\\run_catch_up_batch.py:144: error: Expression has type \"Any\"  [misc]\nfactory\\cli.py:137: error: Expression has type \"Any\"  [misc]\nfactory\\cli.py:138: error: Expression has type \"Any\"  [misc]\nfactory\\cli.py:139: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_scriba_machina_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 1824,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0006_x-legatus-scriba-machina-x_mypy_stdout.log",
+                "sha256": "13fe1bfe9b73b22883d2f6f0ce45ed4b5238d1c791443210bbce318812369ce7"
+            },
+            "stdout_preview": "scripts\\run_catch_up_batch.py:141: error: Expression has type \"Any\"  [misc]\nscripts\\run_catch_up_batch.py:144: error: Expression has type \"Any\"  [misc]\nfactory\\cli.py:137: error: Expression has type \"Any\"  [misc]\nfactory\\cli.py:138: error: Expression has type \"Any\"  [misc]\nfactory\\cli.py:139: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_legatus_scriba_machina_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_scriba_machina_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_scriba_machina_x --strict --no-warn-un\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.19.1 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-12-15T16:45:36.081977+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "duration_seconds": 0.1981841000088025,
+                "ended_at": "2025-12-15T16:45:36.081977+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "crud/__init__.py",
+                    "crud/processor.py",
+                    "factory/__init__.py",
+                    "factory/catalog_loader.py",
+                    "factory/cli.py",
+                    "factory/config/__init__.py",
+                    "factory/config/scribe_run_loader.py",
+                    "factory/core/__init__.py",
+                    "factory/core/factory.py",
+                    "factory/core/specs.py",
+                    "factory/headers.py",
+                    "factory/hooks/__init__.py",
+                    "factory/hooks/default_hooks.py",
+                    "factory/hooks/diagram_renderer.py",
+                    "factory/hooks/models.py",
+                    "factory/hooks/parser.py",
+                    "factory/hooks/registry.py",
+                    "factory/markdown_policy.py",
+                    "factory/renderers/__init__.py",
+                    "factory/renderers/markdown_renderer.py",
+                    "factory/renderers/pdf_renderer.py",
+                    "factory/scribe_factory.py",
+                    "factory/scribe_plan_cli.py",
+                    "factory/utils/__init__.py",
+                    "factory/utils/backup_paths.py",
+                    "factory/utils/checksum.py",
+                    "factory/utils/wkhtmltopdf_locator.py",
+                    "json_types.py",
+                    "scripts/__init__.py",
+                    "scripts/bootstrap_change_control_catch_up.py",
+                    "scripts/collect_open_issues.py",
+                    "scripts/doc_guard.py",
+                    "scripts/enforce_markdown_pdf_compliance.py",
+                    "scripts/find_wkhtmltopdf.py",
+                    "scripts/generate_markdown_inventory.py",
+                    "scripts/generate_markdown_manifest.py",
+                    "scripts/render_selected_documents.py",
+                    "scripts/render_subset.py",
+                    "scripts/run_catch_up_batch.py",
+                    "scripts/run_instruction_crud.py",
+                    "scripts/verify_factory_outputs.py",
+                    "tests/__init__.py",
+                    "tests/crud/__init__.py",
+                    "tests/crud/test_processor.py",
+                    "tests/factory/__init__.py",
+                    "tests/factory/test_catalog_loader.py",
+                    "tests/factory/test_factory.py",
+                    "tests/hooks/__init__.py",
+                    "tests/hooks/test_graphviz_renderer.py",
+                    "tools/__init__.py",
+                    "tools/generate_markdown_manifest.py",
+                    "typings/pytest/__init__.pyi"
+                ],
+                "repo": "x_legatus_scriba_machina_x",
+                "repo_hash": "f8bd8726bb96868c4e4ae946ffaf2745cfdd252ca235340ff1449187e746adfe",
+                "repo_path": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "started_at": "2025-12-15T16:45:35.883793+00:00",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_legatus_scriba_machina_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_scriba_machina_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:45:35.883793+00:00\nduration: 0.198s\ntool_version: ruff 0.14.9\nstdout:\nE501 Line too long (95 > 88)\n   --> scripts\\doc_guard.py:838:89\n    |\n836 |                     attempts += 1\n837 |                     print(\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_scriba_machina_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 454,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0005_x-legatus-scriba-machina-x_ruff-check_stdout.log",
+                "sha256": "b7ff60a729963cbdf0673d4ac8683518d59211f377990b7b6c8e27be88d4ac4f"
+            },
+            "stdout_preview": "E501 Line too long (95 > 88)\n   --> scripts\\doc_guard.py:838:89\n    |\n836 |                     attempts += 1\n837 |                     print(\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_legatus_scriba_machina_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_scriba_machina_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:45:32.025693+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "duration_seconds": 0.3501133999961894,
+                "ended_at": "2025-12-15T16:45:32.025693+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "crud/__init__.py",
+                    "crud/processor.py",
+                    "factory/__init__.py",
+                    "factory/catalog_loader.py",
+                    "factory/cli.py",
+                    "factory/config/__init__.py",
+                    "factory/config/scribe_run_loader.py",
+                    "factory/core/__init__.py",
+                    "factory/core/factory.py",
+                    "factory/core/specs.py",
+                    "factory/headers.py",
+                    "factory/hooks/__init__.py",
+                    "factory/hooks/default_hooks.py",
+                    "factory/hooks/diagram_renderer.py",
+                    "factory/hooks/models.py",
+                    "factory/hooks/parser.py",
+                    "factory/hooks/registry.py",
+                    "factory/markdown_policy.py",
+                    "factory/renderers/__init__.py",
+                    "factory/renderers/markdown_renderer.py",
+                    "factory/renderers/pdf_renderer.py",
+                    "factory/scribe_factory.py",
+                    "factory/scribe_plan_cli.py",
+                    "factory/utils/__init__.py",
+                    "factory/utils/backup_paths.py",
+                    "factory/utils/checksum.py",
+                    "factory/utils/wkhtmltopdf_locator.py",
+                    "json_types.py",
+                    "scripts/__init__.py",
+                    "scripts/bootstrap_change_control_catch_up.py",
+                    "scripts/collect_open_issues.py",
+                    "scripts/doc_guard.py",
+                    "scripts/enforce_markdown_pdf_compliance.py",
+                    "scripts/find_wkhtmltopdf.py",
+                    "scripts/generate_markdown_inventory.py",
+                    "scripts/generate_markdown_manifest.py",
+                    "scripts/render_selected_documents.py",
+                    "scripts/render_subset.py",
+                    "scripts/run_catch_up_batch.py",
+                    "scripts/run_instruction_crud.py",
+                    "scripts/verify_factory_outputs.py",
+                    "tests/__init__.py",
+                    "tests/crud/__init__.py",
+                    "tests/crud/test_processor.py",
+                    "tests/factory/__init__.py",
+                    "tests/factory/test_catalog_loader.py",
+                    "tests/factory/test_factory.py",
+                    "tests/hooks/__init__.py",
+                    "tests/hooks/test_graphviz_renderer.py",
+                    "tools/__init__.py",
+                    "tools/generate_markdown_manifest.py",
+                    "typings/pytest/__init__.pyi"
+                ],
+                "repo": "x_legatus_scriba_machina_x",
+                "repo_hash": "f8bd8726bb96868c4e4ae946ffaf2745cfdd252ca235340ff1449187e746adfe",
+                "repo_path": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+                "started_at": "2025-12-15T16:45:31.675581+00:00",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_legatus_scriba_machina_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_scriba_machina_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:45:31.675581+00:00\nduration: 0.350s\ntool_version: ruff 0.14.9\nstdout:\nE501 Line too long (95 > 88)\n   --> scripts\\doc_guard.py:838:89\n    |\n836 |                     attempts += 1\n837 |                     print(\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_scriba_machina_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_scriba_machina_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 454,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0003_x-legatus-scriba-machina-x_ruff-fix_stdout.log",
+                "sha256": "b7ff60a729963cbdf0673d4ac8683518d59211f377990b7b6c8e27be88d4ac4f"
+            },
+            "stdout_preview": "E501 Line too long (95 > 88)\n   --> scripts\\doc_guard.py:838:89\n    |\n836 |                     attempts += 1\n837 |                     print(\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_legatus_scriba_machina_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_scriba_machina_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T2\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:06.137373+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_segmentum_judicium_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_legatus_segmentum_judicium_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_segmentum_judicium_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_legatus_segmentum_judicium_x",
+                "duration_seconds": 10.281420099985553,
+                "ended_at": "2025-12-15T16:46:06.137373+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "paging_the_judge.py",
+                    "run_segmentum_review.py",
+                    "src/__init__.py",
+                    "src/segmentum_judicium/__init__.py",
+                    "src/segmentum_judicium/cli.py",
+                    "src/segmentum_judicium/launch_config.py",
+                    "src/segmentum_judicium/metadata.py",
+                    "src/segmentum_judicium/project.py",
+                    "src/segmentum_judicium/segmenter.py",
+                    "src/segmentum_judicium/session.py",
+                    "src/segmentum_judicium/ui/__init__.py",
+                    "src/segmentum_judicium/ui/app.py",
+                    "src/segmentum_judicium/ui/launchpad.py",
+                    "src/segmentum_judicium/ui/vlc_player.py",
+                    "tests/__init__.py",
+                    "tests/test_cli.py",
+                    "tests/test_project.py",
+                    "tests/test_session.py",
+                    "tools/bootstrap_chocolatey.py",
+                    "tools/install_ffmpeg_prebuilt.py",
+                    "tools/install_vlc_backend.py",
+                    "tools/install_vlc_desktop.py",
+                    "tools/midnight_firefight.py",
+                    "typings/PySide6/QtCore.pyi",
+                    "typings/PySide6/QtGui.pyi",
+                    "typings/PySide6/QtWidgets.pyi",
+                    "typings/PySide6/__init__.pyi"
+                ],
+                "repo": "x_legatus_segmentum_judicium_x",
+                "repo_hash": "b226dbd0eb2f10a3ca7362af9eb07f1e648750c1b38f41da61c146b643ce5fe0",
+                "repo_path": "C:\\x_runner_x\\x_legatus_segmentum_judicium_x",
+                "started_at": "2025-12-15T16:45:55.855953+00:00",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.19.1 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_legatus_segmentum_judicium_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_segmentum_judicium_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_segmentum_judicium_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-12-15T16:45:55.855953+00:00\nduration: 10.281s\ntool_version: mypy 1.19.1 (compiled: yes)\nstdout:\nsrc\\segmentum_judicium\\ui\\launchpad.py:147: error: Statement is unreachable  [unreachable]\nsrc\\segmentum_judicium\\ui\\launchpad.py:149: error: Statement is unreachable  [unreachable]\nsrc\\segmentum_judicium\\cli.py:102: error: Expression has type \"Any\"  [misc]\nsrc\\segmentum_judicium\\cli.py:108: error: Expression has type \"Any\"  [misc]\nsrc\\segmentum_judicium\\cli.py:179: error: Expression type contains \"Any\" (has type \"Any | int\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_segmentum_judicium_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_segmentum_judicium_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 1603,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0007_x-legatus-segmentum-judicium-x_mypy_stdout.log",
+                "sha256": "3c218a6de2e7d31022000ed9b1e011011bdab3ea846cba5db8f55a8c9b33fad0"
+            },
+            "stdout_preview": "src\\segmentum_judicium\\ui\\launchpad.py:147: error: Statement is unreachable  [unreachable]\nsrc\\segmentum_judicium\\ui\\launchpad.py:149: error: Statement is unreachable  [unreachable]\nsrc\\segmentum_judicium\\cli.py:102: error: Expression has type \"Any\"  [misc]\nsrc\\segmentum_judicium\\cli.py:108: error: Expression has type \"Any\"  [misc]\nsrc\\segmentum_judicium\\cli.py:179: error: Expression type contains \"Any\" (has type \"Any | int\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_legatus_segmentum_judicium_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_segmentum_judicium_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_segmentum_judicium_x --strict \u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.19.1 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:09.858373+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_legatus_segmentum_judicium_x",
+                "duration_seconds": 3.71771890000673,
+                "ended_at": "2025-12-15T16:46:09.858373+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "paging_the_judge.py",
+                    "run_segmentum_review.py",
+                    "src/__init__.py",
+                    "src/segmentum_judicium/__init__.py",
+                    "src/segmentum_judicium/cli.py",
+                    "src/segmentum_judicium/launch_config.py",
+                    "src/segmentum_judicium/metadata.py",
+                    "src/segmentum_judicium/project.py",
+                    "src/segmentum_judicium/segmenter.py",
+                    "src/segmentum_judicium/session.py",
+                    "src/segmentum_judicium/ui/__init__.py",
+                    "src/segmentum_judicium/ui/app.py",
+                    "src/segmentum_judicium/ui/launchpad.py",
+                    "src/segmentum_judicium/ui/vlc_player.py",
+                    "tests/__init__.py",
+                    "tests/test_cli.py",
+                    "tests/test_project.py",
+                    "tests/test_session.py",
+                    "tools/bootstrap_chocolatey.py",
+                    "tools/install_ffmpeg_prebuilt.py",
+                    "tools/install_vlc_backend.py",
+                    "tools/install_vlc_desktop.py",
+                    "tools/midnight_firefight.py",
+                    "typings/PySide6/QtCore.pyi",
+                    "typings/PySide6/QtGui.pyi",
+                    "typings/PySide6/QtWidgets.pyi",
+                    "typings/PySide6/__init__.pyi"
+                ],
+                "repo": "x_legatus_segmentum_judicium_x",
+                "repo_hash": "b226dbd0eb2f10a3ca7362af9eb07f1e648750c1b38f41da61c146b643ce5fe0",
+                "repo_path": "C:\\x_runner_x\\x_legatus_segmentum_judicium_x",
+                "started_at": "2025-12-15T16:46:06.140657+00:00",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.407"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_legatus_segmentum_judicium_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_segmentum_judicium_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-12-15T16:46:06.140657+00:00\nduration: 3.718s\ntool_version: pyright 1.1.407\nstdout:\nc:\\x_runner_x\\x_legatus_segmentum_judicium_x\\src\\segmentum_judicium\\ui\\app.py\n  c:\\x_runner_x\\x_legatus_segmentum_judicium_x\\src\\segmentum_judicium\\ui\\app.py:39:31 - error: \"QCloseEvent\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_legatus_segmentum_judicium_x\\src\\segmentum_judicium\\ui\\app.py:39:44 - error: \"QResizeEvent\" is unknown import symbol (reportAttributeAccessIssue)\n2 errors, 0 warnings, 0 informations\nstderr:\n<empty>",
+            "repo": "x_legatus_segmentum_judicium_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_segmentum_judicium_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 442,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0008_x-legatus-segmentum-judicium-x_pyright_stdout.log",
+                "sha256": "b4a837da860ed6cf126b65519a3256b923517c6042e672b24b69150a0095ff05"
+            },
+            "stdout_preview": "c:\\x_runner_x\\x_legatus_segmentum_judicium_x\\src\\segmentum_judicium\\ui\\app.py\n  c:\\x_runner_x\\x_legatus_segmentum_judicium_x\\src\\segmentum_judicium\\ui\\app.py:39:31 - error: \"QCloseEvent\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_legatus_segmentum_judicium_x\\src\\segmentum_judicium\\ui\\app.py:39:44 - error: \"QResizeEvent\" is unknown import symbol (reportAttributeAccessIssue)\n2 errors, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_legatus_segmentum_judicium_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_segmentum_judicium_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-12-15T16:46\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.407"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:16.003226+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_senatus_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_legatus_senatus_machina_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_senatus_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+                "duration_seconds": 3.512508899992099,
+                "ended_at": "2025-12-15T16:46:16.003226+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "_fallback_models.py",
+                    "models.py",
+                    "tests/test_persona_vetting.py",
+                    "tools/__init__.py",
+                    "tools/bootstrap_virtual_senate_env.py",
+                    "tools/generate_layout_preview.py",
+                    "tools/graphviz_layout_service.py",
+                    "tools/hello_senate.py",
+                    "tools/hello_world_path_runner.py",
+                    "tools/run_unity_release.py",
+                    "x_legatus_senatus_machina_x/__init__.py",
+                    "x_legatus_senatus_machina_x/copilot_support.py",
+                    "x_legatus_senatus_machina_x/models.py",
+                    "x_legatus_senatus_machina_x/persona_vetting.py",
+                    "x_legatus_senatus_machina_x/plan_runner.py",
+                    "x_legatus_senatus_machina_x/reporting.py",
+                    "x_legatus_senatus_machina_x/robot_senate.py",
+                    "x_legatus_senatus_machina_x/robot_senate_core.py",
+                    "x_legatus_senatus_machina_x/session_plan.py",
+                    "x_legatus_senatus_machina_x/session_runner.py",
+                    "x_legatus_senatus_machina_x/x_cls_make_robot_senate_x.py"
+                ],
+                "repo": "x_legatus_senatus_machina_x",
+                "repo_hash": "529eb58ff673377086138300b4f5eae210d9dd7fff3d043888991ed892bbf6dd",
+                "repo_path": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+                "started_at": "2025-12-15T16:46:12.490715+00:00",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.19.1 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_legatus_senatus_machina_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_senatus_machina_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_senatus_machina_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-12-15T16:46:12.490715+00:00\nduration: 3.513s\ntool_version: mypy 1.19.1 (compiled: yes)\nstdout:\nx_legatus_senatus_machina_x\\models.py:88: error: Expression type contains \"Any\" (has type \"Mapping[Any, Any] | dict[str | Any, object | Any]\")  [misc]\nx_legatus_senatus_machina_x\\models.py:88: error: Expression type contains \"Any\" (has type \"dict[str | Any, object | Any]\")  [misc]\nx_legatus_senatus_machina_x\\models.py:186: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_legatus_senatus_machina_x\\models.py:211: error: Expression type contains \"Any\" (has type \"tuple[str, list[dict[str, Any]]]\")  [misc]\nx_legatus_senatus_machina_x\\models.py:211: error: Expression type contains \"Any\" (has type \"list[dict[str, Any]]\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_senatus_machina_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 58453,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0011_x-legatus-senatus-machina-x_mypy_stdout.log",
+                "sha256": "78582e36b9897029864fd7fbaa0ac44a47f4e92549c98fb87f62750d0a47de98"
+            },
+            "stdout_preview": "x_legatus_senatus_machina_x\\models.py:88: error: Expression type contains \"Any\" (has type \"Mapping[Any, Any] | dict[str | Any, object | Any]\")  [misc]\nx_legatus_senatus_machina_x\\models.py:88: error: Expression type contains \"Any\" (has type \"dict[str | Any, object | Any]\")  [misc]\nx_legatus_senatus_machina_x\\models.py:186: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_legatus_senatus_machina_x\\models.py:211: error: Expression type contains \"Any\" (has type \"tuple[str, list[dict[str, Any]]]\")  [misc]\nx_legatus_senatus_machina_x\\models.py:211: error: Expression type contains \"Any\" (has type \"list[dict[str, Any]]\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_legatus_senatus_machina_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_senatus_machina_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_legatus_senatus_machina_x --strict --no-warn\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.19.1 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:12.474929+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+                "duration_seconds": 0.19703099998878315,
+                "ended_at": "2025-12-15T16:46:12.474929+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "_fallback_models.py",
+                    "models.py",
+                    "tests/test_persona_vetting.py",
+                    "tools/__init__.py",
+                    "tools/bootstrap_virtual_senate_env.py",
+                    "tools/generate_layout_preview.py",
+                    "tools/graphviz_layout_service.py",
+                    "tools/hello_senate.py",
+                    "tools/hello_world_path_runner.py",
+                    "tools/run_unity_release.py",
+                    "x_legatus_senatus_machina_x/__init__.py",
+                    "x_legatus_senatus_machina_x/copilot_support.py",
+                    "x_legatus_senatus_machina_x/models.py",
+                    "x_legatus_senatus_machina_x/persona_vetting.py",
+                    "x_legatus_senatus_machina_x/plan_runner.py",
+                    "x_legatus_senatus_machina_x/reporting.py",
+                    "x_legatus_senatus_machina_x/robot_senate.py",
+                    "x_legatus_senatus_machina_x/robot_senate_core.py",
+                    "x_legatus_senatus_machina_x/session_plan.py",
+                    "x_legatus_senatus_machina_x/session_runner.py",
+                    "x_legatus_senatus_machina_x/x_cls_make_robot_senate_x.py"
+                ],
+                "repo": "x_legatus_senatus_machina_x",
+                "repo_hash": "529eb58ff673377086138300b4f5eae210d9dd7fff3d043888991ed892bbf6dd",
+                "repo_path": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+                "started_at": "2025-12-15T16:46:12.277896+00:00",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_legatus_senatus_machina_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_senatus_machina_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:46:12.277896+00:00\nduration: 0.197s\ntool_version: ruff 0.14.9\nstdout:\nE501 Line too long (100 > 88)\n   --> _fallback_models.py:110:89\n    |\n108 |         identifier=\"melchior\",\n109 |         display_name=\"MELCHIOR\",\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_senatus_machina_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 53523,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0010_x-legatus-senatus-machina-x_ruff-check_stdout.log",
+                "sha256": "63aaa501e98e01584abd73ff42ee42a1707393e31b62fe4cf67a9a8a5833339b"
+            },
+            "stdout_preview": "E501 Line too long (100 > 88)\n   --> _fallback_models.py:110:89\n    |\n108 |         identifier=\"melchior\",\n109 |         display_name=\"MELCHIOR\",\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_legatus_senatus_machina_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_senatus_machina_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 \u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:12.257973+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+                "duration_seconds": 0.19776530002127402,
+                "ended_at": "2025-12-15T16:46:12.257973+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "_fallback_models.py",
+                    "models.py",
+                    "tests/test_persona_vetting.py",
+                    "tools/__init__.py",
+                    "tools/bootstrap_virtual_senate_env.py",
+                    "tools/generate_layout_preview.py",
+                    "tools/graphviz_layout_service.py",
+                    "tools/hello_senate.py",
+                    "tools/hello_world_path_runner.py",
+                    "tools/run_unity_release.py",
+                    "x_legatus_senatus_machina_x/__init__.py",
+                    "x_legatus_senatus_machina_x/copilot_support.py",
+                    "x_legatus_senatus_machina_x/models.py",
+                    "x_legatus_senatus_machina_x/persona_vetting.py",
+                    "x_legatus_senatus_machina_x/plan_runner.py",
+                    "x_legatus_senatus_machina_x/reporting.py",
+                    "x_legatus_senatus_machina_x/robot_senate.py",
+                    "x_legatus_senatus_machina_x/robot_senate_core.py",
+                    "x_legatus_senatus_machina_x/session_plan.py",
+                    "x_legatus_senatus_machina_x/session_runner.py",
+                    "x_legatus_senatus_machina_x/x_cls_make_robot_senate_x.py"
+                ],
+                "repo": "x_legatus_senatus_machina_x",
+                "repo_hash": "529eb58ff673377086138300b4f5eae210d9dd7fff3d043888991ed892bbf6dd",
+                "repo_path": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+                "started_at": "2025-12-15T16:46:12.060208+00:00",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_legatus_senatus_machina_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_senatus_machina_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:46:12.060208+00:00\nduration: 0.198s\ntool_version: ruff 0.14.9\nstdout:\nE501 Line too long (100 > 88)\n   --> _fallback_models.py:110:89\n    |\n108 |         identifier=\"melchior\",\n109 |         display_name=\"MELCHIOR\",\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_senatus_machina_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_senatus_machina_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 53523,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0009_x-legatus-senatus-machina-x_ruff-fix_stdout.log",
+                "sha256": "63aaa501e98e01584abd73ff42ee42a1707393e31b62fe4cf67a9a8a5833339b"
+            },
+            "stdout_preview": "E501 Line too long (100 > 88)\n   --> _fallback_models.py:110:89\n    |\n108 |         identifier=\"melchior\",\n109 |         display_name=\"MELCHIOR\",\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_legatus_senatus_machina_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_senatus_machina_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:24.507933+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+                "duration_seconds": 2.905117100017378,
+                "ended_at": "2025-12-15T16:46:24.507933+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "clients/__init__.py",
+                    "clients/session_client.py",
+                    "clients/windows/__init__.py",
+                    "clients/windows/main.py",
+                    "control_plane/__init__.py",
+                    "control_plane/config.py",
+                    "control_plane/models.py",
+                    "control_plane/security.py",
+                    "control_plane/session_manager.py",
+                    "control_plane/video_router.py",
+                    "firmware/__init__.py",
+                    "firmware/boot.py",
+                    "firmware/config_store.py",
+                    "firmware/hid_relay.py",
+                    "firmware/main.py",
+                    "firmware/video_pipeline.py",
+                    "firmware/websocket_router.py",
+                    "firmware/wifi_manager.py",
+                    "typings/httpx/__init__.pyi",
+                    "typings/pydantic/__init__.pyi",
+                    "typings/websockets/__init__.pyi"
+                ],
+                "repo": "x_legatus_vigil_nexus_x",
+                "repo_hash": "ab492225cb5ff1ac28b94572c9539a3e6caa5991326c8d37fd4a4635725d8a8a",
+                "repo_path": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+                "started_at": "2025-12-15T16:46:21.602815+00:00",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_legatus_vigil_nexus_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_vigil_nexus_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-12-15T16:46:21.602815+00:00\nduration: 2.905s\ntool_version: python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0\nstdout:\n--- C:\\x_runner_x\\x_legatus_vigil_nexus_x\\control_plane\\models.py\t2025-12-12 22:49:01.592799+00:00\n+++ C:\\x_runner_x\\x_legatus_vigil_nexus_x\\control_plane\\models.py\t2025-12-15 16:46:24.159613+00:00\n@@ -1,19 +1,21 @@\n from collections.abc import Callable\n from datetime import UTC, datetime, timedelta\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_legatus_vigil_nexus_x\\control_plane\\models.py\nwould reformat C:\\x_runner_x\\x_legatus_vigil_nexus_x\\typings\\httpx\\__init__.pyi\nwould reformat C:\\x_runner_x\\x_legatus_vigil_nexus_x\\typings\\websockets\\__init__.pyi\nwould reformat C:\\x_runner_x\\x_legatus_vigil_nexus_x\\clients\\session_client.py\n\n\u2026",
+            "repo": "x_legatus_vigil_nexus_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+            "stderr_artifact": {
+                "bytes": 426,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0013_x-legatus-vigil-nexus-x_black_stderr.log",
+                "sha256": "ddbdd87b9f4179d03cc8c3d81438b2dd7bc53408c122f65cc1b012305baba371"
+            },
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_legatus_vigil_nexus_x\\control_plane\\models.py\nwould reformat C:\\x_runner_x\\x_legatus_vigil_nexus_x\\typings\\httpx\\__init__.pyi\nwould reformat C:\\x_runner_x\\x_legatus_vigil_nexus_x\\typings\\websockets\\__init__.pyi\nwould reformat C:\\x_runner_x\\x_legatus_vigil_nexus_x\\clients\\session_client.py\n\n\u2026",
+            "stdout_artifact": {
+                "bytes": 3629,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0013_x-legatus-vigil-nexus-x_black_stdout.log",
+                "sha256": "6a5f16ac51f8dc9f0df92fe5ee0cc47cb68b4e1169e655dec85723d55e3af094"
+            },
+            "stdout_preview": "--- C:\\x_runner_x\\x_legatus_vigil_nexus_x\\control_plane\\models.py\t2025-12-12 22:49:01.592799+00:00\n+++ C:\\x_runner_x\\x_legatus_vigil_nexus_x\\control_plane\\models.py\t2025-12-15 16:46:24.159613+00:00\n@@ -1,19 +1,21 @@\n from collections.abc import Callable\n from datetime import UTC, datetime, timedelta\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_legatus_vigil_nexus_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_vigil_nexus_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff start\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:24.680026+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+                "duration_seconds": 0.16759699999238364,
+                "ended_at": "2025-12-15T16:46:24.680026+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "clients/__init__.py",
+                    "clients/session_client.py",
+                    "clients/windows/__init__.py",
+                    "clients/windows/main.py",
+                    "control_plane/__init__.py",
+                    "control_plane/config.py",
+                    "control_plane/models.py",
+                    "control_plane/security.py",
+                    "control_plane/session_manager.py",
+                    "control_plane/video_router.py",
+                    "firmware/__init__.py",
+                    "firmware/boot.py",
+                    "firmware/config_store.py",
+                    "firmware/hid_relay.py",
+                    "firmware/main.py",
+                    "firmware/video_pipeline.py",
+                    "firmware/websocket_router.py",
+                    "firmware/wifi_manager.py",
+                    "typings/httpx/__init__.pyi",
+                    "typings/pydantic/__init__.pyi",
+                    "typings/websockets/__init__.pyi"
+                ],
+                "repo": "x_legatus_vigil_nexus_x",
+                "repo_hash": "ab492225cb5ff1ac28b94572c9539a3e6caa5991326c8d37fd4a4635725d8a8a",
+                "repo_path": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+                "started_at": "2025-12-15T16:46:24.512431+00:00",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_legatus_vigil_nexus_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_vigil_nexus_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:46:24.512431+00:00\nduration: 0.168s\ntool_version: ruff 0.14.9\nstdout:\nTC003 Move standard library import `collections.abc.AsyncIterator` into a type-checking block\n --> clients\\session_client.py:7:29\n  |\n5 | import asyncio\n6 | import json\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_vigil_nexus_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 4395,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0014_x-legatus-vigil-nexus-x_ruff-check_stdout.log",
+                "sha256": "cf9cba624eaa38514282f7eea71698a4f39868f3f093a6cdc6d1ce693c0a97f5"
+            },
+            "stdout_preview": "TC003 Move standard library import `collections.abc.AsyncIterator` into a type-checking block\n --> clients\\session_client.py:7:29\n  |\n5 | import asyncio\n6 | import json\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_legatus_vigil_nexus_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_vigil_nexus_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-l\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:21.598435+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+                "duration_seconds": 0.17475090001244098,
+                "ended_at": "2025-12-15T16:46:21.598435+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "clients/__init__.py",
+                    "clients/session_client.py",
+                    "clients/windows/__init__.py",
+                    "clients/windows/main.py",
+                    "control_plane/__init__.py",
+                    "control_plane/config.py",
+                    "control_plane/models.py",
+                    "control_plane/security.py",
+                    "control_plane/session_manager.py",
+                    "control_plane/video_router.py",
+                    "firmware/__init__.py",
+                    "firmware/boot.py",
+                    "firmware/config_store.py",
+                    "firmware/hid_relay.py",
+                    "firmware/main.py",
+                    "firmware/video_pipeline.py",
+                    "firmware/websocket_router.py",
+                    "firmware/wifi_manager.py",
+                    "typings/httpx/__init__.pyi",
+                    "typings/pydantic/__init__.pyi",
+                    "typings/websockets/__init__.pyi"
+                ],
+                "repo": "x_legatus_vigil_nexus_x",
+                "repo_hash": "ab492225cb5ff1ac28b94572c9539a3e6caa5991326c8d37fd4a4635725d8a8a",
+                "repo_path": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+                "started_at": "2025-12-15T16:46:21.423685+00:00",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_legatus_vigil_nexus_x (exit 1)\ncwd: C:\\x_runner_x\\x_legatus_vigil_nexus_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:46:21.423685+00:00\nduration: 0.175s\ntool_version: ruff 0.14.9\nstdout:\nTC003 Move standard library import `collections.abc.AsyncIterator` into a type-checking block\n --> clients\\session_client.py:7:29\n  |\n5 | import asyncio\n6 | import json\n\u2026\nstderr:\n<empty>",
+            "repo": "x_legatus_vigil_nexus_x",
+            "repo_path": "C:\\x_runner_x\\x_legatus_vigil_nexus_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 4395,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0012_x-legatus-vigil-nexus-x_ruff-fix_stdout.log",
+                "sha256": "cf9cba624eaa38514282f7eea71698a4f39868f3f093a6cdc6d1ce693c0a97f5"
+            },
+            "stdout_preview": "TC003 Move standard library import `collections.abc.AsyncIterator` into a type-checking block\n --> clients\\session_client.py:7:29\n  |\n5 | import asyncio\n6 | import json\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_legatus_vigil_nexus_x (exit 1) cwd: C:\\x_runner_x\\x_legatus_vigil_nexus_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --li\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:29.894960+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 3.4710386999940965,
+                "ended_at": "2025-12-15T16:46:29.894960+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "copilot_normalizer.py",
+                    "detect/__init__.py",
+                    "detect/entrypoints.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "json_contracts.py",
+                    "ledger.py",
+                    "neon_palette.py",
+                    "neon_qt_theme.py",
+                    "persona_vetting.py",
+                    "progress_snapshot.py",
+                    "run_reports.py",
+                    "shared_typings/PySide6/QtCore.py",
+                    "shared_typings/PySide6/QtCore.pyi",
+                    "shared_typings/PySide6/QtGui.py",
+                    "shared_typings/PySide6/QtGui.pyi",
+                    "shared_typings/PySide6/QtSvgWidgets.pyi",
+                    "shared_typings/PySide6/QtWidgets.py",
+                    "shared_typings/PySide6/QtWidgets.pyi",
+                    "shared_typings/PySide6/__init__.py",
+                    "shared_typings/PySide6/__init__.pyi",
+                    "shared_typings/_pytest/__init__.py",
+                    "shared_typings/_pytest/__init__.pyi",
+                    "shared_typings/_pytest/capture.py",
+                    "shared_typings/_pytest/capture.pyi",
+                    "shared_typings/_pytest/monkeypatch.py",
+                    "shared_typings/_pytest/monkeypatch.pyi",
+                    "shared_typings/cv2.pyi",
+                    "shared_typings/fastapi/__init__.pyi",
+                    "shared_typings/fastapi/cli.pyi",
+                    "shared_typings/fastapi/params/__init__.pyi",
+                    "shared_typings/fastapi/testclient/__init__.pyi",
+                    "shared_typings/fastapi_cli/__init__.pyi",
+                    "shared_typings/fastapi_cli/cli.pyi",
+                    "shared_typings/framebuf/__init__.pyi",
+                    "shared_typings/httpx/__init__.pyi",
+                    "shared_typings/jsonschema/__init__.py",
+                    "shared_typings/jsonschema/__init__.pyi",
+                    "shared_typings/jsonschema/exceptions.pyi",
+                    "shared_typings/jsonschema/validators.py",
+                    "shared_typings/jsonschema/validators.pyi",
+                    "shared_typings/jwt/__init__.pyi",
+                    "shared_typings/machine/__init__.pyi",
+                    "shared_typings/micropython/__init__.pyi",
+                    "shared_typings/network/__init__.pyi",
+                    "shared_typings/nicegui/__init__.pyi",
+                    "shared_typings/numpy/__init__.pyi",
+                    "shared_typings/pydantic/__init__.pyi",
+                    "shared_typings/pytest/__init__.pyi",
+                    "shared_typings/reportlab/graphics/__init__.pyi",
+                    "shared_typings/reportlab/graphics/renderPM.pyi",
+                    "shared_typings/requests/__init__.pyi",
+                    "shared_typings/st7789/__init__.pyi",
+                    "shared_typings/textual/__init__.pyi",
+                    "shared_typings/textual/app.pyi",
+                    "shared_typings/textual/widgets.pyi",
+                    "shared_typings/typer/__init__.py",
+                    "shared_typings/typer/__init__.pyi",
+                    "shared_typings/typer/main.py",
+                    "shared_typings/typer/main.pyi",
+                    "shared_typings/typer/testing.pyi",
+                    "shared_typings/uhashlib/__init__.pyi",
+                    "shared_typings/ujson/__init__.pyi",
+                    "shared_typings/uos/__init__.pyi",
+                    "shared_typings/urandom/__init__.pyi",
+                    "shared_typings/utime.pyi",
+                    "shared_typings/uvicorn/__init__.pyi",
+                    "shared_typings/uwebsockets/__init__.pyi",
+                    "shared_typings/uwebsockets/client.pyi",
+                    "shared_typings/vga1_8x8/__init__.pyi",
+                    "shared_typings/vga2_16x32/__init__.pyi",
+                    "shared_typings/websockets/__init__.pyi",
+                    "shared_typings/x_cls_make_github_clones_x.pyi",
+                    "shared_typings/x_make_common_x/__init__.pyi",
+                    "shared_typings/x_make_common_x/copilot_normalizer.pyi",
+                    "shared_typings/x_make_common_x/exporters.pyi",
+                    "shared_typings/x_make_common_x/persona_vetting.pyi",
+                    "shared_typings/x_make_common_x/run_reports.pyi",
+                    "shared_typings/x_make_common_x/x_env_x.pyi",
+                    "shared_typings/x_make_common_x/x_http_client_x.pyi",
+                    "shared_typings/x_make_common_x/x_logging_utils_x.pyi",
+                    "shared_typings/x_make_common_x/x_subprocess_utils_x.pyi",
+                    "shared_typings/x_make_github_clones_x/__init__.pyi",
+                    "shared_typings/x_make_github_clones_x/x_cls_make_github_clones_x.pyi",
+                    "stage_progress.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_subprocess_utils.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "7a53f673d633bf565e1b9060c28aeeb85cbb435700ae2fa9c53ae703313906dc",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-12-15T16:46:26.423921+00:00",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-12-15T16:46:26.423921+00:00\nduration: 3.471s\ntool_version: python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0\nstdout:\n--- C:\\x_runner_x\\x_make_common_x\\neon_palette.py\t2025-12-14 15:38:11.843682+00:00\n+++ C:\\x_runner_x\\x_make_common_x\\neon_palette.py\t2025-12-15 16:46:29.430932+00:00\n@@ -63,11 +63,17 @@\n     x_make_common_x lives at `<repo_root>/x_make_common_x`, so stepping one level up\n     lands at the workspace root even when the repo is cloned elsewhere.\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_common_x\\neon_palette.py\nwould reformat C:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 94 files would be left unchanged.",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_artifact": {
+                "bytes": 228,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0016_x-make-common-x_black_stderr.log",
+                "sha256": "5d91f044d31fc594fe58022095ed40c5650bbdeae0a6c47a0bb3eec83137daa4"
+            },
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_common_x\\neon_palette.py\nwould reformat C:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 94 files would be left unchanged.",
+            "stdout_artifact": {
+                "bytes": 7461,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0016_x-make-common-x_black_stdout.log",
+                "sha256": "67dd5e7b10b655e26667b78c23e266ecfb22dd611760c77e319ba04788458d8b"
+            },
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_common_x\\neon_palette.py\t2025-12-14 15:38:11.843682+00:00\n+++ C:\\x_runner_x\\x_make_common_x\\neon_palette.py\t2025-12-15 16:46:29.430932+00:00\n@@ -63,11 +63,17 @@\n     x_make_common_x lives at `<repo_root>/x_make_common_x`, so stepping one level up\n     lands at the workspace root even when the repo is cloned elsewhere.\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-12-1\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:33.437209+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 3.3173577999987174,
+                "ended_at": "2025-12-15T16:46:33.437209+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "copilot_normalizer.py",
+                    "detect/__init__.py",
+                    "detect/entrypoints.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "json_contracts.py",
+                    "ledger.py",
+                    "neon_palette.py",
+                    "neon_qt_theme.py",
+                    "persona_vetting.py",
+                    "progress_snapshot.py",
+                    "run_reports.py",
+                    "shared_typings/PySide6/QtCore.py",
+                    "shared_typings/PySide6/QtCore.pyi",
+                    "shared_typings/PySide6/QtGui.py",
+                    "shared_typings/PySide6/QtGui.pyi",
+                    "shared_typings/PySide6/QtSvgWidgets.pyi",
+                    "shared_typings/PySide6/QtWidgets.py",
+                    "shared_typings/PySide6/QtWidgets.pyi",
+                    "shared_typings/PySide6/__init__.py",
+                    "shared_typings/PySide6/__init__.pyi",
+                    "shared_typings/_pytest/__init__.py",
+                    "shared_typings/_pytest/__init__.pyi",
+                    "shared_typings/_pytest/capture.py",
+                    "shared_typings/_pytest/capture.pyi",
+                    "shared_typings/_pytest/monkeypatch.py",
+                    "shared_typings/_pytest/monkeypatch.pyi",
+                    "shared_typings/cv2.pyi",
+                    "shared_typings/fastapi/__init__.pyi",
+                    "shared_typings/fastapi/cli.pyi",
+                    "shared_typings/fastapi/params/__init__.pyi",
+                    "shared_typings/fastapi/testclient/__init__.pyi",
+                    "shared_typings/fastapi_cli/__init__.pyi",
+                    "shared_typings/fastapi_cli/cli.pyi",
+                    "shared_typings/framebuf/__init__.pyi",
+                    "shared_typings/httpx/__init__.pyi",
+                    "shared_typings/jsonschema/__init__.py",
+                    "shared_typings/jsonschema/__init__.pyi",
+                    "shared_typings/jsonschema/exceptions.pyi",
+                    "shared_typings/jsonschema/validators.py",
+                    "shared_typings/jsonschema/validators.pyi",
+                    "shared_typings/jwt/__init__.pyi",
+                    "shared_typings/machine/__init__.pyi",
+                    "shared_typings/micropython/__init__.pyi",
+                    "shared_typings/network/__init__.pyi",
+                    "shared_typings/nicegui/__init__.pyi",
+                    "shared_typings/numpy/__init__.pyi",
+                    "shared_typings/pydantic/__init__.pyi",
+                    "shared_typings/pytest/__init__.pyi",
+                    "shared_typings/reportlab/graphics/__init__.pyi",
+                    "shared_typings/reportlab/graphics/renderPM.pyi",
+                    "shared_typings/requests/__init__.pyi",
+                    "shared_typings/st7789/__init__.pyi",
+                    "shared_typings/textual/__init__.pyi",
+                    "shared_typings/textual/app.pyi",
+                    "shared_typings/textual/widgets.pyi",
+                    "shared_typings/typer/__init__.py",
+                    "shared_typings/typer/__init__.pyi",
+                    "shared_typings/typer/main.py",
+                    "shared_typings/typer/main.pyi",
+                    "shared_typings/typer/testing.pyi",
+                    "shared_typings/uhashlib/__init__.pyi",
+                    "shared_typings/ujson/__init__.pyi",
+                    "shared_typings/uos/__init__.pyi",
+                    "shared_typings/urandom/__init__.pyi",
+                    "shared_typings/utime.pyi",
+                    "shared_typings/uvicorn/__init__.pyi",
+                    "shared_typings/uwebsockets/__init__.pyi",
+                    "shared_typings/uwebsockets/client.pyi",
+                    "shared_typings/vga1_8x8/__init__.pyi",
+                    "shared_typings/vga2_16x32/__init__.pyi",
+                    "shared_typings/websockets/__init__.pyi",
+                    "shared_typings/x_cls_make_github_clones_x.pyi",
+                    "shared_typings/x_make_common_x/__init__.pyi",
+                    "shared_typings/x_make_common_x/copilot_normalizer.pyi",
+                    "shared_typings/x_make_common_x/exporters.pyi",
+                    "shared_typings/x_make_common_x/persona_vetting.pyi",
+                    "shared_typings/x_make_common_x/run_reports.pyi",
+                    "shared_typings/x_make_common_x/x_env_x.pyi",
+                    "shared_typings/x_make_common_x/x_http_client_x.pyi",
+                    "shared_typings/x_make_common_x/x_logging_utils_x.pyi",
+                    "shared_typings/x_make_common_x/x_subprocess_utils_x.pyi",
+                    "shared_typings/x_make_github_clones_x/__init__.pyi",
+                    "shared_typings/x_make_github_clones_x/x_cls_make_github_clones_x.pyi",
+                    "stage_progress.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_subprocess_utils.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "7a53f673d633bf565e1b9060c28aeeb85cbb435700ae2fa9c53ae703313906dc",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-12-15T16:46:30.119854+00:00",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.407"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-12-15T16:46:30.119854+00:00\nduration: 3.317s\ntool_version: pyright 1.1.407\nstdout:\nc:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py\n  c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py:58:44 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py:59:37 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py:72:23 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py:72:46 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 1239,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0018_x-make-common-x_pyright_stdout.log",
+                "sha256": "1cf3bd43a95a613f6d322390849f4f15c9155aaf2a5d7c89cf12a24778ccac24"
+            },
+            "stdout_preview": "c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py\n  c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py:58:44 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py:59:37 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py:72:23 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_common_x\\neon_qt_theme.py:72:46 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-12-15T16:46:30.119854+00:00 duration: 3.3\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.407"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:30.082690+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 0.16333390001091175,
+                "ended_at": "2025-12-15T16:46:30.082690+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "copilot_normalizer.py",
+                    "detect/__init__.py",
+                    "detect/entrypoints.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "json_contracts.py",
+                    "ledger.py",
+                    "neon_palette.py",
+                    "neon_qt_theme.py",
+                    "persona_vetting.py",
+                    "progress_snapshot.py",
+                    "run_reports.py",
+                    "shared_typings/PySide6/QtCore.py",
+                    "shared_typings/PySide6/QtCore.pyi",
+                    "shared_typings/PySide6/QtGui.py",
+                    "shared_typings/PySide6/QtGui.pyi",
+                    "shared_typings/PySide6/QtSvgWidgets.pyi",
+                    "shared_typings/PySide6/QtWidgets.py",
+                    "shared_typings/PySide6/QtWidgets.pyi",
+                    "shared_typings/PySide6/__init__.py",
+                    "shared_typings/PySide6/__init__.pyi",
+                    "shared_typings/_pytest/__init__.py",
+                    "shared_typings/_pytest/__init__.pyi",
+                    "shared_typings/_pytest/capture.py",
+                    "shared_typings/_pytest/capture.pyi",
+                    "shared_typings/_pytest/monkeypatch.py",
+                    "shared_typings/_pytest/monkeypatch.pyi",
+                    "shared_typings/cv2.pyi",
+                    "shared_typings/fastapi/__init__.pyi",
+                    "shared_typings/fastapi/cli.pyi",
+                    "shared_typings/fastapi/params/__init__.pyi",
+                    "shared_typings/fastapi/testclient/__init__.pyi",
+                    "shared_typings/fastapi_cli/__init__.pyi",
+                    "shared_typings/fastapi_cli/cli.pyi",
+                    "shared_typings/framebuf/__init__.pyi",
+                    "shared_typings/httpx/__init__.pyi",
+                    "shared_typings/jsonschema/__init__.py",
+                    "shared_typings/jsonschema/__init__.pyi",
+                    "shared_typings/jsonschema/exceptions.pyi",
+                    "shared_typings/jsonschema/validators.py",
+                    "shared_typings/jsonschema/validators.pyi",
+                    "shared_typings/jwt/__init__.pyi",
+                    "shared_typings/machine/__init__.pyi",
+                    "shared_typings/micropython/__init__.pyi",
+                    "shared_typings/network/__init__.pyi",
+                    "shared_typings/nicegui/__init__.pyi",
+                    "shared_typings/numpy/__init__.pyi",
+                    "shared_typings/pydantic/__init__.pyi",
+                    "shared_typings/pytest/__init__.pyi",
+                    "shared_typings/reportlab/graphics/__init__.pyi",
+                    "shared_typings/reportlab/graphics/renderPM.pyi",
+                    "shared_typings/requests/__init__.pyi",
+                    "shared_typings/st7789/__init__.pyi",
+                    "shared_typings/textual/__init__.pyi",
+                    "shared_typings/textual/app.pyi",
+                    "shared_typings/textual/widgets.pyi",
+                    "shared_typings/typer/__init__.py",
+                    "shared_typings/typer/__init__.pyi",
+                    "shared_typings/typer/main.py",
+                    "shared_typings/typer/main.pyi",
+                    "shared_typings/typer/testing.pyi",
+                    "shared_typings/uhashlib/__init__.pyi",
+                    "shared_typings/ujson/__init__.pyi",
+                    "shared_typings/uos/__init__.pyi",
+                    "shared_typings/urandom/__init__.pyi",
+                    "shared_typings/utime.pyi",
+                    "shared_typings/uvicorn/__init__.pyi",
+                    "shared_typings/uwebsockets/__init__.pyi",
+                    "shared_typings/uwebsockets/client.pyi",
+                    "shared_typings/vga1_8x8/__init__.pyi",
+                    "shared_typings/vga2_16x32/__init__.pyi",
+                    "shared_typings/websockets/__init__.pyi",
+                    "shared_typings/x_cls_make_github_clones_x.pyi",
+                    "shared_typings/x_make_common_x/__init__.pyi",
+                    "shared_typings/x_make_common_x/copilot_normalizer.pyi",
+                    "shared_typings/x_make_common_x/exporters.pyi",
+                    "shared_typings/x_make_common_x/persona_vetting.pyi",
+                    "shared_typings/x_make_common_x/run_reports.pyi",
+                    "shared_typings/x_make_common_x/x_env_x.pyi",
+                    "shared_typings/x_make_common_x/x_http_client_x.pyi",
+                    "shared_typings/x_make_common_x/x_logging_utils_x.pyi",
+                    "shared_typings/x_make_common_x/x_subprocess_utils_x.pyi",
+                    "shared_typings/x_make_github_clones_x/__init__.pyi",
+                    "shared_typings/x_make_github_clones_x/x_cls_make_github_clones_x.pyi",
+                    "stage_progress.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_subprocess_utils.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "7a53f673d633bf565e1b9060c28aeeb85cbb435700ae2fa9c53ae703313906dc",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-12-15T16:46:29.919357+00:00",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:46:29.919357+00:00\nduration: 0.163s\ntool_version: ruff 0.14.9\nstdout:\nTRY003 Avoid specifying long messages outside the exception class\n  --> neon_palette.py:56:19\n   |\n54 |         value = self.role_value(\"primary_accent\")\n55 |         if not value:\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 16426,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0017_x-make-common-x_ruff-check_stdout.log",
+                "sha256": "a4aa1188bc155157bead2ad8f0736a9badbc10d4ff5a152c15fe00dabba4e436"
+            },
+            "stdout_preview": "TRY003 Avoid specifying long messages outside the exception class\n  --> neon_palette.py:56:19\n   |\n54 |         value = self.role_value(\"primary_accent\")\n55 |         if not value:\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targe\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:46:26.404325+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 0.207488399988506,
+                "ended_at": "2025-12-15T16:46:26.404325+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "copilot_normalizer.py",
+                    "detect/__init__.py",
+                    "detect/entrypoints.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "json_contracts.py",
+                    "ledger.py",
+                    "neon_palette.py",
+                    "neon_qt_theme.py",
+                    "persona_vetting.py",
+                    "progress_snapshot.py",
+                    "run_reports.py",
+                    "shared_typings/PySide6/QtCore.py",
+                    "shared_typings/PySide6/QtCore.pyi",
+                    "shared_typings/PySide6/QtGui.py",
+                    "shared_typings/PySide6/QtGui.pyi",
+                    "shared_typings/PySide6/QtSvgWidgets.pyi",
+                    "shared_typings/PySide6/QtWidgets.py",
+                    "shared_typings/PySide6/QtWidgets.pyi",
+                    "shared_typings/PySide6/__init__.py",
+                    "shared_typings/PySide6/__init__.pyi",
+                    "shared_typings/_pytest/__init__.py",
+                    "shared_typings/_pytest/__init__.pyi",
+                    "shared_typings/_pytest/capture.py",
+                    "shared_typings/_pytest/capture.pyi",
+                    "shared_typings/_pytest/monkeypatch.py",
+                    "shared_typings/_pytest/monkeypatch.pyi",
+                    "shared_typings/cv2.pyi",
+                    "shared_typings/fastapi/__init__.pyi",
+                    "shared_typings/fastapi/cli.pyi",
+                    "shared_typings/fastapi/params/__init__.pyi",
+                    "shared_typings/fastapi/testclient/__init__.pyi",
+                    "shared_typings/fastapi_cli/__init__.pyi",
+                    "shared_typings/fastapi_cli/cli.pyi",
+                    "shared_typings/framebuf/__init__.pyi",
+                    "shared_typings/httpx/__init__.pyi",
+                    "shared_typings/jsonschema/__init__.py",
+                    "shared_typings/jsonschema/__init__.pyi",
+                    "shared_typings/jsonschema/exceptions.pyi",
+                    "shared_typings/jsonschema/validators.py",
+                    "shared_typings/jsonschema/validators.pyi",
+                    "shared_typings/jwt/__init__.pyi",
+                    "shared_typings/machine/__init__.pyi",
+                    "shared_typings/micropython/__init__.pyi",
+                    "shared_typings/network/__init__.pyi",
+                    "shared_typings/nicegui/__init__.pyi",
+                    "shared_typings/numpy/__init__.pyi",
+                    "shared_typings/pydantic/__init__.pyi",
+                    "shared_typings/pytest/__init__.pyi",
+                    "shared_typings/reportlab/graphics/__init__.pyi",
+                    "shared_typings/reportlab/graphics/renderPM.pyi",
+                    "shared_typings/requests/__init__.pyi",
+                    "shared_typings/st7789/__init__.pyi",
+                    "shared_typings/textual/__init__.pyi",
+                    "shared_typings/textual/app.pyi",
+                    "shared_typings/textual/widgets.pyi",
+                    "shared_typings/typer/__init__.py",
+                    "shared_typings/typer/__init__.pyi",
+                    "shared_typings/typer/main.py",
+                    "shared_typings/typer/main.pyi",
+                    "shared_typings/typer/testing.pyi",
+                    "shared_typings/uhashlib/__init__.pyi",
+                    "shared_typings/ujson/__init__.pyi",
+                    "shared_typings/uos/__init__.pyi",
+                    "shared_typings/urandom/__init__.pyi",
+                    "shared_typings/utime.pyi",
+                    "shared_typings/uvicorn/__init__.pyi",
+                    "shared_typings/uwebsockets/__init__.pyi",
+                    "shared_typings/uwebsockets/client.pyi",
+                    "shared_typings/vga1_8x8/__init__.pyi",
+                    "shared_typings/vga2_16x32/__init__.pyi",
+                    "shared_typings/websockets/__init__.pyi",
+                    "shared_typings/x_cls_make_github_clones_x.pyi",
+                    "shared_typings/x_make_common_x/__init__.pyi",
+                    "shared_typings/x_make_common_x/copilot_normalizer.pyi",
+                    "shared_typings/x_make_common_x/exporters.pyi",
+                    "shared_typings/x_make_common_x/persona_vetting.pyi",
+                    "shared_typings/x_make_common_x/run_reports.pyi",
+                    "shared_typings/x_make_common_x/x_env_x.pyi",
+                    "shared_typings/x_make_common_x/x_http_client_x.pyi",
+                    "shared_typings/x_make_common_x/x_logging_utils_x.pyi",
+                    "shared_typings/x_make_common_x/x_subprocess_utils_x.pyi",
+                    "shared_typings/x_make_github_clones_x/__init__.pyi",
+                    "shared_typings/x_make_github_clones_x/x_cls_make_github_clones_x.pyi",
+                    "stage_progress.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_subprocess_utils.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "7a53f673d633bf565e1b9060c28aeeb85cbb435700ae2fa9c53ae703313906dc",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-12-15T16:46:26.196837+00:00",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:46:26.196837+00:00\nduration: 0.207s\ntool_version: ruff 0.14.9\nstdout:\nTRY003 Avoid specifying long messages outside the exception class\n  --> neon_palette.py:56:19\n   |\n54 |         value = self.role_value(\"primary_accent\")\n55 |         if not value:\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 16426,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0015_x-make-common-x_ruff-fix_stdout.log",
+                "sha256": "a4aa1188bc155157bead2ad8f0736a9badbc10d4ff5a152c15fe00dabba4e436"
+            },
+            "stdout_preview": "TRY003 Avoid specifying long messages outside the exception class\n  --> neon_palette.py:56:19\n   |\n54 |         value = self.role_value(\"primary_accent\")\n55 |         if not value:\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --t\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:47:18.120007+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 0.1732911000144668,
+                "ended_at": "2025-12-15T16:47:18.120007+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "tests/__init__.py",
+                    "tests/test_acceleration_flags.py",
+                    "tests/test_github_visitor.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_markdown_backfill.py",
+                    "tests/test_report_validator.py",
+                    "tools/__init__.py",
+                    "tools/analyze_visitor_failures.py",
+                    "tools/list_visitor_failures.py",
+                    "x_cls_make_github_visitor_x.py",
+                    "x_make_github_visitor_x/__init__.py",
+                    "x_make_github_visitor_x/backfill_markdown_reports.py",
+                    "x_make_github_visitor_x/inspection_flow.py",
+                    "x_make_github_visitor_x/json_contracts.py",
+                    "x_make_github_visitor_x/report_validator.py",
+                    "x_make_github_visitor_x/runner.py",
+                    "x_make_github_visitor_x/x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "1fe0470ffcc48df10aa2fb92ed0cda4739ff8d7a1c3c19e864df474deb086edd",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-12-15T16:47:17.946716+00:00",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:47:17.946716+00:00\nduration: 0.173s\ntool_version: ruff 0.14.9\nstdout:\nSIM108 Use ternary operator `limit_value = limit_attr if isinstance(limit_attr, int) else None` instead of `if`-`else`-block\n  --> x_make_github_visitor_x\\backfill_markdown_reports.py:81:5\n   |\n79 |       force_flag = bool(force_attr)\n80 |       limit_value: int | None\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 1505,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0020_x-make-github-visitor-x_ruff-check_stdout.log",
+                "sha256": "550d4b93349b6b60ff269b67391ee9b3b2c2b2bf1d6c86a448e83b66bda08395"
+            },
+            "stdout_preview": "SIM108 Use ternary operator `limit_value = limit_attr if isinstance(limit_attr, int) else None` instead of `if`-`else`-block\n  --> x_make_github_visitor_x\\backfill_markdown_reports.py:81:5\n   |\n79 |       force_flag = bool(force_attr)\n80 |       limit_value: int | None\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-l\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:47:14.383392+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 0.20523630001116544,
+                "ended_at": "2025-12-15T16:47:14.383392+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "tests/__init__.py",
+                    "tests/test_acceleration_flags.py",
+                    "tests/test_github_visitor.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_markdown_backfill.py",
+                    "tests/test_report_validator.py",
+                    "tools/__init__.py",
+                    "tools/analyze_visitor_failures.py",
+                    "tools/list_visitor_failures.py",
+                    "x_cls_make_github_visitor_x.py",
+                    "x_make_github_visitor_x/__init__.py",
+                    "x_make_github_visitor_x/backfill_markdown_reports.py",
+                    "x_make_github_visitor_x/inspection_flow.py",
+                    "x_make_github_visitor_x/json_contracts.py",
+                    "x_make_github_visitor_x/report_validator.py",
+                    "x_make_github_visitor_x/runner.py",
+                    "x_make_github_visitor_x/x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "1fe0470ffcc48df10aa2fb92ed0cda4739ff8d7a1c3c19e864df474deb086edd",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-12-15T16:47:14.178154+00:00",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.9"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-12-15T16:47:14.178154+00:00\nduration: 0.205s\ntool_version: ruff 0.14.9\nstdout:\nSIM108 Use ternary operator `limit_value = limit_attr if isinstance(limit_attr, int) else None` instead of `if`-`else`-block\n  --> x_make_github_visitor_x\\backfill_markdown_reports.py:81:5\n   |\n79 |       force_flag = bool(force_attr)\n80 |       limit_value: int | None\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 1505,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0019_x-make-github-visitor-x_ruff-fix_stdout.log",
+                "sha256": "550d4b93349b6b60ff269b67391ee9b3b2c2b2bf1d6c86a448e83b66bda08395"
+            },
+            "stdout_preview": "SIM108 Use ternary operator `limit_value = limit_attr if isinstance(limit_attr, int) else None` instead of `if`-`else`-block\n  --> x_make_github_visitor_x\\backfill_markdown_reports.py:81:5\n   |\n79 |       force_flag = bool(force_attr)\n80 |       limit_value: int | None\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --li\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.9"
+        },
+        {
+            "captured_at": "2025-12-15T16:47:31.273388+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_graphviz_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_graphviz_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_graphviz_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+                "duration_seconds": 3.1727963000012096,
+                "ended_at": "2025-12-15T16:47:31.273388+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "examples/__init__.py",
+                    "examples/rca_tool.py",
+                    "examples/switcharoo_ishikawa_factory.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_graphviz_builder.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_rca_tool.py",
+                    "x_cls_make_graphviz_x.py"
+                ],
+                "repo": "x_make_graphviz_x",
+                "repo_hash": "f1b877fc950971671ba21b7f49ef2c68b72ac6fd4150332b238b2f31f197f667",
+                "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+                "started_at": "2025-12-15T16:47:28.100588+00:00",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.19.1 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_graphviz_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_graphviz_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_graphviz_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-12-15T16:47:28.100588+00:00\nduration: 3.173s\ntool_version: mypy 1.19.1 (compiled: yes)\nstdout:\nexamples\\switcharoo_ishikawa_factory.py:257: error: Expression has type \"Any\"  [misc]\nexamples\\switcharoo_ishikawa_factory.py:259: error: Expression has type \"Any\"  [misc]\nexamples\\switcharoo_ishikawa_factory.py:260: error: Expression has type \"Any\"  [misc]\nexamples\\switcharoo_ishikawa_factory.py:261: error: Expression has type \"Any\"  [misc]\nexamples\\switcharoo_ishikawa_factory.py:262: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_graphviz_x",
+            "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+            "stderr_artifact": null,
+            "stderr_preview": null,
+            "stdout_artifact": {
+                "bytes": 11728,
+                "path": "C:\\x_runner_x\\x_make_github_visitor_x\\x_make_github_visitor_x\\reports\\artifacts\\visitor_failures_20251215_164736\\0021_x-make-graphviz-x_mypy_stdout.log",
+                "sha256": "05957cd87b4d5d56633a2383dfe6708d5f69d39b23b441bac6842b5d196b7b42"
+            },
+            "stdout_preview": "examples\\switcharoo_ishikawa_factory.py:257: error: Expression has type \"Any\"  [misc]\nexamples\\switcharoo_ishikawa_factory.py:259: error: Expression has type \"Any\"  [misc]\nexamples\\switcharoo_ishikawa_factory.py:260: error: Expression has type \"Any\"  [misc]\nexamples\\switcharoo_ishikawa_factory.py:261: error: Expression has type \"Any\"  [misc]\nexamples\\switcharoo_ishikawa_factory.py:262: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_graphviz_x (exit 1) cwd: C:\\x_runner_x\\x_make_graphviz_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_graphviz_x --strict --no-warn-unused-configs --show-error-c\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.19.1 (compiled: yes)"
+        }
+    ],
+    "generated_at": "2025-12-15T16:47:36.544076+00:00",
+    "payload_checksum": "a6974cd4e8d2ef6c3518d4ab907527aaf4fec67bc8cb8b23390da48f80774b23",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\PySide6;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\PySide6;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\HP\\HP One Agent;C:\\Program Files\\Git\\cmd;C:\\Program Files\\GitHub CLI\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;C:\\ProgramData\\chocolatey\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.16.0-win32-x64\\bundled\\scripts\\noConfigScripts",
+            "PYTHONPATH": "C:\\x_runner_x;C:\\x_runner_x\\x_0_make_all_x;C:\\x_runner_x\\x_0_make_ppnw_dot_ai_change_control_x;C:\\x_runner_x\\x_0_make_ppnw_dot_ai_hr_x;C:\\x_runner_x\\x_0_make_ppnw_dot_ai_website_x;C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x;C:\\x_runner_x\\x_0_video_x;C:\\x_runner_x\\x_legatus_acta_schedae_x;C:\\x_runner_x\\x_legatus_architectura_fabula_x;C:\\x_runner_x\\x_legatus_astra_textor_x;C:\\x_runner_x\\x_legatus_bestia_locus_x;C:\\x_runner_x\\x_legatus_caecus_orator_x;C:\\x_runner_x\\x_legatus_canis_cursor_x;C:\\x_runner_x\\x_legatus_capsula_calculus_x;C:\\x_runner_x\\x_legatus_catena_sensus_x;C:\\x_runner_x\\x_legatus_celer_notitia_x;C:\\x_runner_x\\x_legatus_crustulum_pictor_x;C:\\x_runner_x\\x_legatus_inceptio_praesidium_x;C:\\x_runner_x\\x_legatus_mentis_multiplex_x;C:\\x_runner_x\\x_legatus_multipes_explorator_x;C:\\x_runner_x\\x_legatus_officina_automatarum_x;C:\\x_runner_x\\x_legatus_politia_tabularium_x;C:\\x_runner_x\\x_legatus_pulsus_astra_x;C:\\x_runner_x\\x_legatus_ratio_ordo_x;C:\\x_runner_x\\x_legatus_scriba_machina_x;C:\\x_runner_x\\x_legatus_segmentum_judicium_x;C:\\x_runner_x\\x_legatus_senatus_machina_x;C:\\x_runner_x\\x_legatus_spiritus_valvae_x;C:\\x_runner_x\\x_legatus_tactica_impetus_x;C:\\x_runner_x\\x_legatus_vigil_nexus_x;C:\\x_runner_x\\x_legatus_vox_vicaria_x;C:\\x_runner_x\\x_make_cli_scaffolder_x;C:\\x_runner_x\\x_make_common_x;C:\\x_runner_x\\x_make_contract_validators_x;C:\\x_runner_x\\x_make_copilot_cli_one_time_setup_x;C:\\x_runner_x\\x_make_github_clones_x;C:\\x_runner_x\\x_make_github_visitor_x;C:\\x_runner_x\\x_make_gitignore_sync_x;C:\\x_runner_x\\x_make_graphviz_x;C:\\x_runner_x\\x_make_markdown_x;C:\\x_runner_x\\x_make_mermaid_x;C:\\x_runner_x\\x_make_persistent_env_var_x;C:\\x_runner_x\\x_make_pip_updates_x;C:\\x_runner_x\\x_make_progress_board_x;C:\\x_runner_x\\x_make_pypi_x;C:\\x_runner_x\\x_make_py_mod_sideload_x;C:\\x_runner_x\\x_make_py_venv_x;C:\\x_runner_x\\x_make_slack_dump_and_reset_x;C:\\x_runner_x\\x_make_telemetry_vector_x;C:\\x_runner_x\\x_make_who_is_John_Connor_x;C:\\x_runner_x\\x_make_yahw_x;C:\\x_runner_x\\x_product_000_balance_punching_x;C:\\x_runner_x\\x_vault_x"
+        },
+        "fast_paths": {
+            "quick_mode": false,
+            "skip_content_hash": false,
+            "skip_tools": false
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-12-15T16:47:36.543629+00:00",
+        "run_started_at": "2025-12-15T16:43:59.028895+00:00",
+        "selected_tools": [
+            "ruff_fix",
+            "black",
+            "ruff_check",
+            "mypy",
+            "pyright"
+        ],
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "x_make_github_visitor_x.report/1.0",
+    "summary": {
+        "fast_paths": {
+            "quick_mode": false,
+            "skip_content_hash": false,
+            "skip_tools": false
+        },
+        "fast_paths_active": [],
+        "overall_stats": {
+            "cache_hits": 170,
+            "cache_misses": 60,
+            "failed_tools": 21,
+            "had_failures": true,
+            "total_tools_run": 230
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "d237a336e9862f05a06d7a2a3f62f289c4989fd01efefefb2f1736768ffbc42c",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_change_control_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "cc2f0ed10ef9f731649560d736a4d05f905d78514e5b086e2012ec8585739247",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_hr_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "c2a8dc1e09776ece24129a392548de1c2850a8e0ad572925836e40615d982801",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_website_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "9b084deef8ba4d4ca4d208e2be1e5ac09ffc80b9a6205948c68faf88998ef126",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "99d51b701c1c1b35e7117e9a673b65c82c92fdf937386ffbc045d4af4385e8dd",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_architectura_fabula_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "4e3c351d099a2978118b8be361d3e1751eeda4da47422809ba4086416c75cae1",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_astra_textor_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "362020b379bb0fce5070a4f3c09c65549a6e0dc65f81f0c3d4652d2275b69056",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_bestia_locus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "7d09f9e901d4635868529fe69002e0a34b3bfa913845cec1ce39dd59c2201657",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_caecus_orator_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "a49a69c1206aa93020cd658b0312d98ecc91448a912f91de1b98e053376d9259",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_canis_cursor_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "f49b3505968637a4e9dd6e577797a543349972b51f31e3c029398b6e7db62a9b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_capsula_calculus_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "8fdbf221202e6d4ccbf9d5652c90dd61d1625c55d5886ae1f44af2b49448664f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_catena_sensus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "ff9deeca587e972d034ce8552a8ea7573ce03989b154d84da4fdd0bb9328c42d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_celer_notitia_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "24d5cdc195474ba8f10afe30a6283a5655e8b658fec822c428a9d094cffa02ae",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_inceptio_praesidium_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "ca343a7e5fc049e66b81ec982c4e6452e12edb243696bed67c53bc0c82d25c8e",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_mentis_multiplex_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "f2ab9b8c4e4eb436b42a5298e3afd95d48bb62fba62efc63418e9f08c273173c",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_multipes_explorator_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "90a08be2c0681c2aac3c8dd4921bf660500c20d23c4dc6618abe3a99374717be",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_officina_automatarum_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "eeb46f97ae17b6a9d7db5c015e1f813a2b9760c56496201df260fef127b311a4",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_politia_tabularium_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "d5084880a9eda9b0694a3e270f215f7d2532da38fa2a615ae00df822ff7ba00e",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_pulsus_astra_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "9c38b9c1c45bcac6c577527485bdbc1cd4200edbc2e7242085502f516adb678b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_scriba_machina_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "f8bd8726bb96868c4e4ae946ffaf2745cfdd252ca235340ff1449187e746adfe",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_segmentum_judicium_x": {
+                "cached": 3,
+                "failed": 2,
+                "repo_hash": "b226dbd0eb2f10a3ca7362af9eb07f1e648750c1b38f41da61c146b643ce5fe0",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_senatus_machina_x": {
+                "cached": 2,
+                "failed": 3,
+                "repo_hash": "529eb58ff673377086138300b4f5eae210d9dd7fff3d043888991ed892bbf6dd",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "92ae3ff733f8af45d9abb5584462ff9e62554006f50c477a204c263a238ee699",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_vigil_nexus_x": {
+                "cached": 2,
+                "failed": 3,
+                "repo_hash": "ab492225cb5ff1ac28b94572c9539a3e6caa5991326c8d37fd4a4635725d8a8a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_cli_scaffolder_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "0a4930e1b6d223a05108cf9c06feca47d4d58c5f31019d2312d82af95cd7ea17",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 1,
+                "failed": 4,
+                "repo_hash": "7a53f673d633bf565e1b9060c28aeeb85cbb435700ae2fa9c53ae703313906dc",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_contract_validators_x": {
+                "cached": 4,
+                "failed": 0,
+                "repo_hash": "ae06c8fde722a5948bb315c3add62351d59ca4006aa0b7ccaa95e233dc5802ac",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_copilot_cli_one_time_setup_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "aed7871cbcd3c66a2357ca9228fdb98cfd28b9177504e350c8af9d82d22949b4",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "dd96ee2274dd4ad3d0bb1840ed75e5defe1ac2b1914a29a0ead48f71d1898632",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "1fe0470ffcc48df10aa2fb92ed0cda4739ff8d7a1c3c19e864df474deb086edd",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_gitignore_sync_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "5c79c8f2463ca8e4fade9e065fe1d892b7f844aff6acf85b64c8de686f2052ef",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 4,
+                "failed": 1,
+                "repo_hash": "f1b877fc950971671ba21b7f49ef2c68b72ac6fd4150332b238b2f31f197f667",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "04777836a734b5863e20ab8a5726591b066dc866118b8128438faab82d3621b5",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "baedcfc9a9c5a6e7a6c0a5be263a8b84f5cf178485aa87683a0cdfbd88376001",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "ed5bd40cff7125f88cd037e85b5d7ec0cd72264b0a7368f8fe96799a15701e89",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "e41a1a38cb5cf07c19c0d692d44cbcb2ef1b33eb4d7ea67fa412f4e92442e47e",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_progress_board_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "840909629ea72e8861d2fd24b9542c83b3665f2da0c65094d19c709a3e7a367f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "22d3fd921a69a645a03ea61e944842dd2b6375e0fd524ad96de45b208cdbfe6e",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_venv_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "82332322828ab90f782074e8cf8f8da384ae00f694f4c865068f921637d2706f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "d702d95783bcbd5c8e449cd6e1d403c5ad9ac5ad690654f60ceef0f8edb65345",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_slack_dump_and_reset_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "bb26fca7da48d94d84d17fb4b6edaa6ea4b4bc89c770443e4ed19265655a85e6",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_telemetry_vector_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "03472338205056aaca576c8324ab317892b20147969a73e1440fdeb6cb312e68",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_who_is_John_Connor_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "1bf1165c5569c48de56a7e7b61139fd77a10a7a12dbe178dfa06373e2aa84049",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "9b577d1c6db321eb52be61cdefc53144f29070edaa7d97edbb1b6c855ca00e97",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_product_000_balance_punching_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "5470905f034dbf139d0bc131a6966af3c320696ec19e85d206cd9c15c80b9989",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_vault_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "a913e0c885093af3a9ddf55d7134b4918c9653548c17c0087b624ef2a48621d8",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-12-15T16:47:36.544257+00:00",
+        "total_repos": 46
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.12.0 (compiled: yes)\nPython (CPython) 3.14.0",
+        "mypy": "mypy 1.19.1 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.9"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}
