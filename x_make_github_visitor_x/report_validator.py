@@ -301,10 +301,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     limit_attr: object = getattr(args, "limit", None)
     limit_value: int | None
-    if isinstance(limit_attr, int):
-        limit_value = limit_attr
-    else:
-        limit_value = None
+    limit_value = limit_attr if isinstance(limit_attr, int) else None
     reports_dir_attr: object = getattr(args, "reports_dir", _default_reports_dir())
     if isinstance(reports_dir_attr, Path):
         reports_dir = reports_dir_attr
